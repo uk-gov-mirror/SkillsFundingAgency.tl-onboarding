@@ -14,7 +14,7 @@
     "CSS": "zendesk",
     "SCSS": "Frontend/src/scss/",
     "JS": "zendesk",
-    "Assets": "zendesk/assets",
+    "Assets": "zendesk/assets/",
     "Templates": "zendesk/templates"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Frontend",
+    "\\Frontend\\src",
+    "\\node_modules\\govuk-frontend",
+    "\\node_modules\\govuk-frontend\\govuk",
+    "\\node_modules\\govuk-frontend\\govuk\\assets",
+    "\\node_modules\\govuk-frontend\\govuk\\settings",
+    "\\node_modules\\govuk-frontend\\govuk\\tools",
+    "\\node_modules\\govuk-frontend\\govuk\\utilities",
+    "\\zendesk"
+  ],
+  "SelectedNode": "\\zendesk\\script.js",
+  "PreviewInSolutionExplorer": false
+}

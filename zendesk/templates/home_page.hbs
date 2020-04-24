@@ -1,4 +1,44 @@
-<h1 class="visibility-hidden">{{ help_center.name }}</h1>
+<div class="govuk-width-container ">
+    <!-- Alpha banner -->
+    <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+            <strong class="govuk-tag govuk-phase-banner__content__tag">
+                alpha
+            </strong>
+            <span class="govuk-phase-banner__text">
+                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+    </div>
+</div>
+
+<!-- Main content -->
+<main id="main-content" role="main">
+    <!-- Hero Banner -->
+    <div class="tl-hero">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-xl">Get ready for T Levels</h1>
+                    <label class="govuk-heading-s" for="query">
+                        Search for T Level information for providers
+                    </label>
+
+                    {{search submit=true instant=settings.instant_search class='tl-search'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Lower Content -->
+    <div class="govuk-width-container govuk-main-wrapper">
+        <h1 class="govuk-heading-xl">{{ help_center.name }}</h1>
+    </div>
+</main>
+
+<!--DO NOT COPY BELOW THIS POINT - USED FOR REFERENCE-->
+<!-- Search helper, doesn't support label though :( -->
+
+
 
 <section id="main-content" class="section hero">
     <div class="hero-inner">
@@ -7,7 +47,6 @@
             <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor" />
             <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5" />
         </svg>
-        {{search submit=false instant=settings.instant_search class='search search-full'}}
     </div>
 </section>
 

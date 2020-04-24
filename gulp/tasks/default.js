@@ -21,8 +21,8 @@ gulp.task('assets', () => {
 gulp.task('js', () => {
     return src([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/govuk-frontend/govuk/all.js',
-        (paths.src.JS)
+        (paths.src.JS),
+        'node_modules/govuk-frontend/govuk/all.js'
     ])
         .pipe(concat('script.js'))
         .pipe(gulp.dest(paths.dist.JS));
@@ -33,6 +33,12 @@ gulp.task('sass', () => {
             .pipe(wait(200))
             .pipe(sass(sassOptions))
             .pipe(gulp.dest(paths.dist.CSS));
+});
+
+gulp.task('sass:watch', () => {
+    gulp.watch((paths.src.SCSS), gulp.series('sass'));
+    gulp.watch((paths.src.Assets), gulp.series('assets'));
+    gulp.watch((paths.src.JS), gulp.series('js'));
 });
 
 gulp.task('templates', () => {

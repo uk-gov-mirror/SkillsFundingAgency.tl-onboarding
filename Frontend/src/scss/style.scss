@@ -1,5 +1,95 @@
+$govuk-images-path: "/assets/" !default;
+
+
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function zendesk-asset($filename) {
+    @return url(#{"$assets-" + str-replace($filename, '.', '-')});
+}
+
+
+$govuk-image-url-function: 'zendesk-asset';
+
+$govuk-font-url-function: 'zendesk-asset';
 
 @import "../../../node_modules/govuk-frontend/govuk/all";
 
 
+.tl-hero {
+    background-color: $govuk-link-colour;
+    color: govuk-colour("white");
+    @include govuk-responsive-padding(7, "top");
+    @include govuk-responsive-padding(7, "bottom");
 
+    * {
+        color: govuk-colour("white");
+    }
+}
+
+.tl-search {
+    display: flex;
+
+    input[type=search] {
+        @extend .govuk-input;
+        border: none;
+        flex-grow: 1;
+        padding-left: 10px;
+        color: $govuk-text-colour;
+
+        &:focus {
+            box-shadow: none;
+            z-index: 1;
+        }
+    }
+
+    input[type=submit] {
+        width: 100px;
+        background-color: $govuk-text-colour;
+        border: none;
+        cursor: pointer;
+        text-indent: -5000px;
+        overflow: hidden;
+        height: 40px;
+        width: 40px;
+        background-image: govuk-image-url("searchicon.png");
+        background-repeat: no-repeat;
+        background-position: 2px 50%;
+
+        &:focus {
+            outline: 3px solid $govuk-focus-colour;
+            outline-offset: 0;
+            z-index: 1;
+        }
+
+
+        &:hover {
+            background-color: lighten($govuk-text-colour, 7%);
+        }
+    }
+}
+
+.tl-home--categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.tl-home--category {
+    width: 100%;
+    padding: 0 15px;
+    @include govuk-responsive-margin(3, "bottom");
+
+    @include govuk-media-query($from: tablet) {
+        width: calc(33.333% - 30px);
+    }
+}
