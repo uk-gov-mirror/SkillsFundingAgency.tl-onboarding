@@ -21,6 +21,7 @@ $govuk-image-url-function: 'zendesk-asset';
 $govuk-font-url-function: 'zendesk-asset';
 
 @import "../../../node_modules/govuk-frontend/govuk/all";
+@import "articles";
 
 
 .tl-hero {
@@ -34,6 +35,25 @@ $govuk-font-url-function: 'zendesk-asset';
     }
 }
 
+/*Breadcrumbs*/
+.tl-breadcrumbs {
+    @extend .govuk-breadcrumbs;
+
+    ol {
+        @extend .govuk-breadcrumbs__list;
+    }
+
+    li {
+        @extend .govuk-breadcrumbs__list-item;
+    }
+
+    a {
+        @extend .govuk-breadcrumbs__link;
+    }
+}
+
+
+/*Search*/
 .tl-search {
     display: flex;
 
@@ -92,4 +112,48 @@ $govuk-font-url-function: 'zendesk-asset';
     @include govuk-media-query($from: tablet) {
         width: calc(33.333% - 30px);
     }
+}
+
+
+.tl-article--content {
+    p {
+        @extend %govuk-body-m;
+    }
+}
+
+.tl-article--date {
+    @include govuk-responsive-margin(7, "top");
+}
+
+.tl-attachments {
+    @include govuk-clearfix;
+    @include govuk-responsive-margin(7, "top");
+}
+
+.tl-attachment--thumbnail {
+    position: relative;
+    width: auto;
+    margin-right: 25px;
+    margin-bottom: 15px;
+    padding: 5px;
+    float: left;
+
+    svg {
+        display: block;
+        width: auto;
+        max-width: 99px;
+        height: 140px;
+        border: rgba(11, 12, 12, 0.1);
+        outline: 5px solid rgba(11, 12, 12, 0.1);
+        background: #ffffff;
+        box-shadow: 0 2px 2px rgba(11, 12, 12, 0.4);
+        fill: #b1b4b6;
+        stroke: #b1b4b6;
+    }
+}
+
+.tl-attachment--link {
+    @include govuk-font($size: 24, $weight: normal);
+    @include govuk-responsive-margin(4, "bottom");
+    font-weight: normal;
 }
