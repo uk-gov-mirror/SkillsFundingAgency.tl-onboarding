@@ -21,8 +21,9 @@ gulp.task('assets', () => {
 gulp.task('js', () => {
     return src([
         'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/govuk-frontend/govuk/all.js',
         (paths.src.JS),
-        'node_modules/govuk-frontend/govuk/all.js'
+
     ])
         .pipe(concat('script.js'))
         .pipe(gulp.dest(paths.dist.JS));

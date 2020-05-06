@@ -59,11 +59,10 @@ $govuk-font-url-function: 'zendesk-asset';
 
     input[type=search] {
         @extend .govuk-input;
-        border: none;
+        /*border: none;
         flex-grow: 1;
         padding-left: 10px;
-        color: $govuk-text-colour;
-
+        color: $govuk-text-colour;*/
         &:focus {
             box-shadow: none;
             z-index: 1;
@@ -72,7 +71,7 @@ $govuk-font-url-function: 'zendesk-asset';
 
     input[type=submit] {
         width: 100px;
-        background-color: $govuk-text-colour;
+        background-color: $govuk-link-colour;
         border: none;
         cursor: pointer;
         text-indent: -5000px;
@@ -82,6 +81,8 @@ $govuk-font-url-function: 'zendesk-asset';
         background-image: govuk-image-url("searchicon.png");
         background-repeat: no-repeat;
         background-position: 2px 50%;
+        position: relative;
+        left: -2px;
 
         &:focus {
             outline: 3px solid $govuk-focus-colour;
@@ -94,7 +95,75 @@ $govuk-font-url-function: 'zendesk-asset';
             background-color: lighten($govuk-text-colour, 7%);
         }
     }
+
+    &--home {
+        input[type=submit] {
+            background-color: $govuk-text-colour;
+            left: 0px;
+        }
+
+        input[type=search] {
+            border: none;
+            flex-grow: 1;
+            padding-left: 10px;
+            color: $govuk-text-colour;
+
+            &:focus {
+                box-shadow: none;
+                z-index: 1;
+            }
+        }
+    }
 }
+
+.tl-search--results--list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        padding: 25px 0;
+        border-top: 1px solid $govuk-border-colour;
+        border-bottom: 1px solid $govuk-border-colour;
+    }
+
+    .tl-search--results--body {
+        margin: 0;
+
+        em {
+            font-weight: bold;
+            font-style: normal;
+        }
+    }
+
+    .tl-search--results--category {
+        text-transform: uppercase;
+        padding: 2px 8px;
+        @extend .govuk-body-s;
+        font-weight: bold;
+        @include govuk-responsive-margin(0, "bottom");
+        @include govuk-clearfix;
+        float: left;
+    }
+}
+
+
+
+.tl-clear {
+    clear: both;
+}
+
+/* Search results categories */
+
+$categories: "implementationplans" #c0e3e0, "courseinformation" #fff7bf, "eventsandwebinars" #e6e6e8, "communicationupdates" #d2daf8, "marketingmaterials" #d0f4ff;
+
+@each $category, $colour in $categories {
+    .tl-search--category--#{$category} {
+        background-color: $colour;
+        color: darken($colour, 60%);
+    }
+}
+
 
 .tl-home--categories {
     display: flex;
@@ -157,3 +226,5 @@ $govuk-font-url-function: 'zendesk-asset';
     @include govuk-responsive-margin(4, "bottom");
     font-weight: normal;
 }
+
+
