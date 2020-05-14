@@ -45,11 +45,11 @@
                         <li>
                             {{#each path_steps}}
                             {{#is @index 1}}
-                            <span class="tl-search--results--category tl-search--category--identifier">{{name}}</span>
+                            <span class="tl-search--results--category">{{name}}</span>
                             {{/is}}
                             {{/each}}
 
-                            <h3 class="govuk-heading-m tl-clear"><a class="govuk-link" href="{{url}}">{{title}}</a></h3>
+                            <h3 class="govuk-heading-m"><a class="govuk-link tl-search--results--link" href="{{url}}">{{title}}</a></h3>
                             <p class="govuk-body tl-search--results--body">{{text}}</p>
                         </li>
                         {{/each}}

@@ -22,11 +22,18 @@ gulp.task('js', () => {
     return src([
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/govuk-frontend/govuk/all.js',
-        (paths.src.JS),
+    ])
+        .pipe(concat('govuk.js'))
+        .pipe(gulp.dest(paths.dist.JS));
+});
+
+gulp.task('customjs', () => {
+    return src([
+        'Frontend/src/js/custom.js',
 
     ])
-        .pipe(concat('script.js'))
-        .pipe(gulp.dest(paths.dist.JS));
+        .pipe(concat('custom.js'))
+        .pipe(gulp.dest(paths.dist.Assets));
 });
 
 gulp.task('sass', () => {

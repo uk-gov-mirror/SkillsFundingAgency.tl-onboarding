@@ -36,31 +36,34 @@
         <section id="tl-search--results">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
+                    {{#if results}}
                     <h2 class="govuk-body-m govuk-!-margin-top-6">
                         Showing <span class="govuk-!-font-weight-bold">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
                     </h2>
-                    {{#if results}}
                     <ul class="tl-search--results--list">
                         {{#each results}}
                         <li>
                             {{#each path_steps}}
                             {{#is @index 1}}
-                            <span class="tl-search--results--category tl-search--category--identifier">{{name}}</span>
+                            <span class="tl-search--results--category">{{name}}</span>
                             {{/is}}
                             {{/each}}
 
-                            <h3 class="govuk-heading-m"><a class="govuk-link" href="{{url}}">{{title}}</a></h3>
-                            <p class="govuk-body">{{text}}</p>
+                            <h3 class="govuk-heading-m"><a class="govuk-link tl-search--results--link" href="{{url}}">{{title}}</a></h3>
+                            <p class="govuk-body tl-search--results--body">{{text}}</p>
                         </li>
                         {{/each}}
                     </ul>
                     {{else}}
-                    <p>
-                        {{t 'no_results_unified'}}
-                        {{#link 'help_center'}}
-                        {{t 'browse_help_center'}}
-                        {{/link}}
-                    </p>
+                    <h2 class="govuk-body-m govuk-!-margin-top-6">
+                        No results found for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
+                    </h2>
+                    <p class="govuk-body">Improve your search results by:</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>double-checking your spelling</li>
+                        <li>using fewer keywords</li>
+                        <li>searching for something less specific</li>
+                    </ul>
                     {{/if}}
 
                 </div>

@@ -21,210 +21,21 @@ $govuk-image-url-function: 'zendesk-asset';
 $govuk-font-url-function: 'zendesk-asset';
 
 @import "../../../node_modules/govuk-frontend/govuk/all";
-@import "articles";
-
-
-.tl-hero {
-    background-color: $govuk-link-colour;
-    color: govuk-colour("white");
-    @include govuk-responsive-padding(7, "top");
-    @include govuk-responsive-padding(7, "bottom");
-
-    * {
-        color: govuk-colour("white");
-    }
-}
-
-/*Breadcrumbs*/
-.tl-breadcrumbs {
-    @extend .govuk-breadcrumbs;
-
-    ol {
-        @extend .govuk-breadcrumbs__list;
-    }
-
-    li {
-        @extend .govuk-breadcrumbs__list-item;
-    }
-
-    a {
-        @extend .govuk-breadcrumbs__link;
-    }
-}
-
-
-/*Search*/
-.tl-search {
-    display: flex;
-
-    input[type=search] {
-        @extend .govuk-input;
-        /*border: none;
-        flex-grow: 1;
-        padding-left: 10px;
-        color: $govuk-text-colour;*/
-        &:focus {
-            box-shadow: none;
-            z-index: 1;
-        }
-    }
-
-    input[type=submit] {
-        width: 100px;
-        background-color: $govuk-link-colour;
-        border: none;
-        cursor: pointer;
-        text-indent: -5000px;
-        overflow: hidden;
-        height: 40px;
-        width: 40px;
-        background-image: govuk-image-url("searchicon.png");
-        background-repeat: no-repeat;
-        background-position: 2px 50%;
-        position: relative;
-        left: -2px;
-
-        &:focus {
-            outline: 3px solid $govuk-focus-colour;
-            outline-offset: 0;
-            z-index: 1;
-        }
-
-
-        &:hover {
-            background-color: lighten($govuk-text-colour, 7%);
-        }
-    }
-
-    &--home {
-        input[type=submit] {
-            background-color: $govuk-text-colour;
-            left: 0px;
-        }
-
-        input[type=search] {
-            border: none;
-            flex-grow: 1;
-            padding-left: 10px;
-            color: $govuk-text-colour;
-
-            &:focus {
-                box-shadow: none;
-                z-index: 1;
-            }
-        }
-    }
-}
-
-.tl-search--results--list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-        padding: 25px 0;
-        border-top: 1px solid $govuk-border-colour;
-        border-bottom: 1px solid $govuk-border-colour;
-    }
-
-    .tl-search--results--body {
-        margin: 0;
-
-        em {
-            font-weight: bold;
-            font-style: normal;
-        }
-    }
-
-    .tl-search--results--category {
-        text-transform: uppercase;
-        padding: 2px 8px;
-        @extend .govuk-body-s;
-        font-weight: bold;
-        @include govuk-responsive-margin(0, "bottom");
-        @include govuk-clearfix;
-        float: left;
-    }
-}
+@import "imports/helpers";
+@import "imports/search";
+@import "imports/articles";
+@import "imports/home";
+@import "imports/breadcrumbs";
 
 
 
-.tl-clear {
-    clear: both;
-}
-
-/* Search results categories */
-
-$categories: "implementationplans" #c0e3e0, "courseinformation" #fff7bf, "eventsandwebinars" #e6e6e8, "communicationupdates" #d2daf8, "marketingmaterials" #d0f4ff;
-
-@each $category, $colour in $categories {
-    .tl-search--category--#{$category} {
-        background-color: $colour;
-        color: darken($colour, 60%);
-    }
-}
 
 
-.tl-home--categories {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
-.tl-home--category {
-    width: 100%;
-    padding: 0 15px;
-    @include govuk-responsive-margin(3, "bottom");
-
-    @include govuk-media-query($from: tablet) {
-        width: calc(33.333% - 30px);
-    }
-}
 
 
-.tl-article--content {
-    p {
-        @extend %govuk-body-m;
-    }
-}
 
-.tl-article--date {
-    @include govuk-responsive-margin(7, "top");
-}
 
-.tl-attachments {
-    @include govuk-clearfix;
-    @include govuk-responsive-margin(7, "top");
-}
 
-.tl-attachment--thumbnail {
-    position: relative;
-    width: auto;
-    margin-right: 25px;
-    margin-bottom: 15px;
-    padding: 5px;
-    float: left;
 
-    svg {
-        display: block;
-        width: auto;
-        max-width: 99px;
-        height: 140px;
-        border: rgba(11, 12, 12, 0.1);
-        outline: 5px solid rgba(11, 12, 12, 0.1);
-        background: #ffffff;
-        box-shadow: 0 2px 2px rgba(11, 12, 12, 0.4);
-        fill: #b1b4b6;
-        stroke: #b1b4b6;
-    }
-}
-
-.tl-attachment--link {
-    @include govuk-font($size: 24, $weight: normal);
-    @include govuk-responsive-margin(4, "bottom");
-    font-weight: normal;
-}
 
 

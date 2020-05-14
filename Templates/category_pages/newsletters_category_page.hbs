@@ -31,38 +31,22 @@
                 {{#if category.description}}
                 <p class="govuk-body-l">{{category.description}}</p>
                 {{/if}}
-                <section>
-                    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default--{{category.id}}">
-                        {{#each sections}}
-                        <div class="govuk-accordion__section ">
-                            <div class="govuk-accordion__section-header">
-                                <h2 class="govuk-accordion__section-heading">
-                                    <span class="govuk-accordion__section-button" id="accordion-default-heading-{{id}}">
-                                        {{name}}
-                                    </span>
-                                </h2>
-                            </div>
-                            <div id="accordion-default-content-{{id}}" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-{{id}}">
-                                {{#if articles}}
-                                <ul class="govuk-list">
-                                    {{#each articles}}
-                                    <li>
-                                        <a class="govuk-link" href="{{url}}">{{title}}</a>
-                                    </li>
-                                    {{/each}}
-                                </ul>
-                                {{else}}
-                                <ul class="govuk-list">
-                                    <li>
-                                        <p class="govuk-body">There's nothing here at the moment</p>
-                                    </li>
-                                </ul>
-                                {{/if}}
-                            </div>
-                        </div>
-                        {{/each}}
+            <section>
+                <ul class="govuk-list">
+                    {{#each sections}}
+                    {{#if articles}}
 
-                    </div>
+                    {{#each articles}}
+                    <li>
+                        <a class="govuk-link govuk-heading-m govuk-!-margin-bottom-1" href="{{url}}">{{title}}</a>
+                        <p class="govuk-body govuk-!-margin-top-0">{{excerpt body}}</p>
+                    </li>
+                    {{/each}}
+
+                    {{/if}}
+                    {{/each}}
+
+                </ul>
                 </section>
             </div>
         </div>

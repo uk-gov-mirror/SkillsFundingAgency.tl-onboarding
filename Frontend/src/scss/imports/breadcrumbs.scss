@@ -1,0 +1,16 @@
+/*Breadcrumbs*/
+.tl-breadcrumbs {
+    @extend .govuk-breadcrumbs;
+
+    ol {
+        @extend .govuk-breadcrumbs__list;
+    }
+
+    li {
+        @extend .govuk-breadcrumbs__list-item;
+    }
+
+    a {
+        @extend .govuk-breadcrumbs__link;
+    }
+}

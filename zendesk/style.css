@@ -311,7 +311,7 @@
     .govuk-caption-l {
       margin-bottom: 0; } }
 
-.govuk-caption-m {
+.govuk-caption-m, .tl-search--results--list .tl-search--results--category {
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -322,15 +322,15 @@
   display: block;
   color: #626a6e; }
   @media print {
-    .govuk-caption-m {
+    .govuk-caption-m, .tl-search--results--list .tl-search--results--category {
       font-family: sans-serif; } }
   @media (min-width: 40.0625em) {
-    .govuk-caption-m {
+    .govuk-caption-m, .tl-search--results--list .tl-search--results--category {
       font-size: 19px;
       font-size: 1.1875rem;
       line-height: 1.31579; } }
   @media print {
-    .govuk-caption-m {
+    .govuk-caption-m, .tl-search--results--list .tl-search--results--category {
       font-size: 14pt;
       line-height: 1.15; } }
 
@@ -394,7 +394,7 @@
     .govuk-body-m, .govuk-body, .tl-article--content p {
       margin-bottom: 20px; } }
 
-.govuk-body-s, .tl-search--results--list .tl-search--results--category {
+.govuk-body-s {
   color: #0b0c0c;
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -406,22 +406,22 @@
   margin-top: 0;
   margin-bottom: 15px; }
   @media print {
-    .govuk-body-s, .tl-search--results--list .tl-search--results--category {
+    .govuk-body-s {
       color: #000000; } }
   @media print {
-    .govuk-body-s, .tl-search--results--list .tl-search--results--category {
+    .govuk-body-s {
       font-family: sans-serif; } }
   @media (min-width: 40.0625em) {
-    .govuk-body-s, .tl-search--results--list .tl-search--results--category {
+    .govuk-body-s {
       font-size: 16px;
       font-size: 1rem;
       line-height: 1.25; } }
   @media print {
-    .govuk-body-s, .tl-search--results--list .tl-search--results--category {
+    .govuk-body-s {
       font-size: 14pt;
       line-height: 1.2; } }
   @media (min-width: 40.0625em) {
-    .govuk-body-s, .tl-search--results--list .tl-search--results--category {
+    .govuk-body-s {
       margin-bottom: 20px; } }
 
 .govuk-body-xs {
@@ -462,37 +462,31 @@
 
 .govuk-body-m + .govuk-heading-l, .govuk-body + .govuk-heading-l, .tl-article--content p + .govuk-heading-l,
 .govuk-body-s + .govuk-heading-l,
-.tl-search--results--list .tl-search--results--category + .govuk-heading-l,
 .govuk-list + .govuk-heading-l {
   padding-top: 15px; }
   @media (min-width: 40.0625em) {
     .govuk-body-m + .govuk-heading-l, .govuk-body + .govuk-heading-l, .tl-article--content p + .govuk-heading-l,
     .govuk-body-s + .govuk-heading-l,
-    .tl-search--results--list .tl-search--results--category + .govuk-heading-l,
     .govuk-list + .govuk-heading-l {
       padding-top: 20px; } }
 
 .govuk-body-m + .govuk-heading-m, .govuk-body + .govuk-heading-m, .tl-article--content p + .govuk-heading-m,
 .govuk-body-s + .govuk-heading-m,
-.tl-search--results--list .tl-search--results--category + .govuk-heading-m,
 .govuk-list + .govuk-heading-m,
 .govuk-body-m + .govuk-heading-s,
 .govuk-body + .govuk-heading-s,
 .tl-article--content p + .govuk-heading-s,
 .govuk-body-s + .govuk-heading-s,
-.tl-search--results--list .tl-search--results--category + .govuk-heading-s,
 .govuk-list + .govuk-heading-s {
   padding-top: 5px; }
   @media (min-width: 40.0625em) {
     .govuk-body-m + .govuk-heading-m, .govuk-body + .govuk-heading-m, .tl-article--content p + .govuk-heading-m,
     .govuk-body-s + .govuk-heading-m,
-    .tl-search--results--list .tl-search--results--category + .govuk-heading-m,
     .govuk-list + .govuk-heading-m,
     .govuk-body-m + .govuk-heading-s,
     .govuk-body + .govuk-heading-s,
     .tl-article--content p + .govuk-heading-s,
     .govuk-body-s + .govuk-heading-s,
-    .tl-search--results--list .tl-search--results--category + .govuk-heading-s,
     .govuk-list + .govuk-heading-s {
       padding-top: 10px; } }
 
@@ -4359,22 +4353,9 @@
     .govuk-\!-width-one-quarter {
       width: 25% !important; } }
 
-.tl-hero {
-  background-color: #1d70b8;
-  color: #ffffff;
-  padding-top: 25px;
-  padding-bottom: 25px; }
-  @media (min-width: 40.0625em) {
-    .tl-hero {
-      padding-top: 40px; } }
-  @media (min-width: 40.0625em) {
-    .tl-hero {
-      padding-bottom: 40px; } }
-  .tl-hero * {
-    color: #ffffff; }
+.tl-nowrap {
+  white-space: nowrap; }
 
-/*Breadcrumbs*/
-/*Search*/
 .tl-search {
   display: flex; }
   .tl-search input[type=search] {
@@ -4423,68 +4404,39 @@
   padding: 0; }
   .tl-search--results--list li {
     padding: 25px 0;
-    border-top: 1px solid #b1b4b6;
-    border-bottom: 1px solid #b1b4b6; }
+    border-top: 1px solid #b1b4b6; }
   .tl-search--results--list .tl-search--results--body {
     margin: 0; }
     .tl-search--results--list .tl-search--results--body em {
       font-weight: bold;
       font-style: normal; }
   .tl-search--results--list .tl-search--results--category {
-    text-transform: uppercase;
-    padding: 2px 8px;
-    font-weight: bold;
-    margin-bottom: 0;
-    float: left; }
+    margin-bottom: 5px;
+    font-family: "GDS Transport", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 1.14286; }
     @media (min-width: 40.0625em) {
       .tl-search--results--list .tl-search--results--category {
-        margin-bottom: 0; } }
-    .tl-search--results--list .tl-search--results--category:after {
-      content: "";
-      display: block;
-      clear: both; }
-
-.tl-clear {
-  clear: both; }
-
-/* Search results categories */
-.tl-search--category--implementationplans {
-  background-color: #c0e3e0;
-  color: #234e4b; }
-
-.tl-search--category--courseinformation {
-  background-color: #fff7bf;
-  color: #8c7b00; }
-
-.tl-search--category--eventsandwebinars {
-  background-color: #e6e6e8;
-  color: #4b4b51; }
-
-.tl-search--category--communicationupdates {
-  background-color: #d2daf8;
-  color: #142c84; }
-
-.tl-search--category--marketingmaterials {
-  background-color: #d0f4ff;
-  color: #00789d; }
-
-.tl-home--categories {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px; }
-
-.tl-home--category {
-  width: 100%;
-  padding: 0 15px;
-  margin-bottom: 15px; }
-  @media (min-width: 40.0625em) {
-    .tl-home--category {
-      margin-bottom: 15px; } }
-  @media (min-width: 40.0625em) {
-    .tl-home--category {
-      width: calc(33.333% - 30px); } }
+        margin-bottom: 5px; } }
+    @media print {
+      .tl-search--results--list .tl-search--results--category {
+        font-family: sans-serif; } }
+    @media (min-width: 40.0625em) {
+      .tl-search--results--list .tl-search--results--category {
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1.25; } }
+    @media print {
+      .tl-search--results--list .tl-search--results--category {
+        font-size: 14pt;
+        line-height: 1.2; } }
+  .tl-search--results--list .tl-search--results--link {
+    text-decoration: none; }
+    .tl-search--results--list .tl-search--results--link:hover {
+      text-decoration: underline; }
 
 .tl-article--date {
   margin-top: 25px; }
@@ -4545,3 +4497,37 @@
   @media (min-width: 40.0625em) {
     .tl-attachment--link {
       margin-bottom: 20px; } }
+
+.tl-home--categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px; }
+
+.tl-home--category {
+  width: 100%;
+  padding: 0 15px;
+  margin-bottom: 15px; }
+  @media (min-width: 40.0625em) {
+    .tl-home--category {
+      margin-bottom: 15px; } }
+  @media (min-width: 40.0625em) {
+    .tl-home--category {
+      width: calc(33.333% - 30px); } }
+
+.tl-hero {
+  background-color: #1d70b8;
+  color: #ffffff;
+  padding-top: 25px;
+  padding-bottom: 25px; }
+  @media (min-width: 40.0625em) {
+    .tl-hero {
+      padding-top: 40px; } }
+  @media (min-width: 40.0625em) {
+    .tl-hero {
+      padding-bottom: 40px; } }
+  .tl-hero * {
+    color: #ffffff; }
+
+/*Breadcrumbs*/
