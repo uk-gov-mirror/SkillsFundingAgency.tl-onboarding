@@ -26,12 +26,16 @@
         <section id="tl-search--box">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
-                    <h1 class="govuk-heading-xl">Search results</h1>
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Search results</h1>
 
-                    {{search submit=true instant=settings.instant_search class='tl-search'}}
-
+                    <div class="tl-form-group tl-search--container">
+                        <div class="tl-search--error tl-hidden">
+                            <span class="tl-error--message"></span>
+                        </div>
+                        {{search submit=true instant=settings.instant_search class='tl-search govuk-!-margin-top-2'}}
+                    </div>
+                    </div>
                 </div>
-            </div>
         </section>
         <section id="tl-search--results">
             <div class="govuk-grid-row">
@@ -54,6 +58,9 @@
                         </li>
                         {{/each}}
                     </ul>
+                    <div class="tl-search--pagination">
+                        {{pagination}}
+                    </div>
                     {{else}}
                     <h2 class="govuk-body-m govuk-!-margin-top-6">
                         No results found for <span class="govuk-!-font-weight-bold">"{{query}}"</span>

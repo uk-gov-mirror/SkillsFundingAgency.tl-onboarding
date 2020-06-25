@@ -93,3 +93,44 @@
         }
     }
 }
+
+
+.tl-search--pagination {
+    border-top: 1px solid $govuk-border-colour;
+    padding: 40px 0px;
+
+    .pagination-next-text, .pagination-prev-text {
+        &:after {
+            content: " page";
+        }
+    }
+
+    .pagination-next {
+        float: right;
+    }
+    
+    .pagination-first, .pagination-last {
+        display: none;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+
+        li {
+            float: left;
+            padding: 0 20px 0 0;
+            @include govuk-font($size: 19, $weight: bold);
+
+            a {
+                @extend .govuk-link;
+            }
+        }
+    }
+}
+
+.tl-search--error--message {
+    @include govuk-font($size: 19, $weight: bold);
+}

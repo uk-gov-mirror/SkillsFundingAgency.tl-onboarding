@@ -1,3 +1,19 @@
 .tl-nowrap {
     white-space: nowrap;
 }
+
+.tl-hidden {
+    display: none !important;
+}
+
+.tl-inline {
+    display: inline;
+}
+
+.tl-inlineblock {
+    display: inline-block;
+}
+
+.tl-block {
+    display: block;
+}

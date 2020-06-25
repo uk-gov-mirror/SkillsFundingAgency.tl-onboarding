@@ -14,6 +14,10 @@
     @include govuk-responsive-margin(7, "top");
 }
 
+.tl-attachment {
+    display: inline-block;
+}
+
 .tl-attachment--thumbnail {
     position: relative;
     width: auto;
@@ -40,4 +44,80 @@
     @include govuk-font($size: 24, $weight: normal);
     @include govuk-responsive-margin(4, "bottom");
     font-weight: normal;
+}
+
+
+.tl-article--vote {
+    background-color: $govuk-link-colour;
+    color: govuk-colour("white");
+    padding: 10px 0;
+    position: relative;
+    top: 1px;
+
+    .tl-article--vote--container {
+        @extend .govuk-width-container;
+    }
+
+    .tl-article--vote--question {
+        @include govuk-font($size: 19, $weight: bold);
+        color: govuk-colour("white");
+        float: left;
+        @include govuk-responsive-margin(3, "right");
+    }
+
+    .tl-article--vote--button {
+        @extend .govuk-link;
+        color: govuk-colour("white") !important;
+        @include govuk-font($size: 19, $weight: normal);
+        @include govuk-responsive-margin(3, "right");
+        border: none;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.tl-article--subscribe {
+    button {
+        margin-top: 5px;
+        @extend .govuk-button;
+        @extend .govuk-button--secondary;
+
+        &:after {
+            content: " this article"
+        }
+    }
+}
+
+/* Article content styling */
+
+.tl-article--content {
+
+    h1 {
+        @extend .govuk-heading-xl
+    }
+
+    h2 {
+        @extend .govuk-heading-l
+    }
+
+    h3 {
+        @extend .govuk-heading-m
+    }
+
+    h4 {
+        @extend .govuk-heading-s
+    }
+
+    p {
+        @extend .govuk-body;
+    }
+
+    ul {
+        @extend .govuk-list;
+        @extend .govuk-list--bullet;
+    }
+
+    a {
+        @extend .govuk-link;
+    }
 }

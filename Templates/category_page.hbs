@@ -13,7 +13,7 @@
 </div>
 
 <div class="govuk-width-container">
-    <div class="tl-breadcrumbs">
+    <div class="tl-breadcrumbs" id="tl-breadcrumbs--category">
         {{breadcrumbs}}
     </div>
 </div>
@@ -32,7 +32,30 @@
                 <p class="govuk-body-l">{{category.description}}</p>
                 {{/if}}
                 <section>
+
+                    {{#is sections.length 1}}
+                    {{#each sections}}
+                    <ul class="govuk-list">
+                        {{#if articles}}
+
+                        {{#each articles}}
+                        <li>
+                            <a class="govuk-link govuk-!-margin-bottom-1" href="{{url}}">{{title}}</a>
+                        </li>
+                        {{/each}}
+
+                        {{else}}
+                        <ul class="govuk-list">
+                            <li>
+                                <p class="govuk-body">There's nothing here at the moment</p>
+                            </li>
+                        </ul>
+                        {{/if}}
+                    </ul>
+                    {{/each}}
+                    {{else}}
                     <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default--{{category.id}}">
+
                         {{#each sections}}
                         <div class="govuk-accordion__section ">
                             <div class="govuk-accordion__section-header">
@@ -61,8 +84,9 @@
                             </div>
                         </div>
                         {{/each}}
-
                     </div>
+
+                    {{/is}}
                 </section>
             </div>
         </div>
