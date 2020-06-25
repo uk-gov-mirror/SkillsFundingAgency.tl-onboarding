@@ -22,10 +22,18 @@ gulp.task('js', () => {
     return src([
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/govuk-frontend/govuk/all.js',
-        (paths.src.JS)
     ])
-        .pipe(concat('script.js'))
+        .pipe(concat('govuk.js'))
         .pipe(gulp.dest(paths.dist.JS));
+});
+
+gulp.task('customjs', () => {
+    return src([
+        'Frontend/src/js/custom.js',
+
+    ])
+        .pipe(concat('custom.js'))
+        .pipe(gulp.dest(paths.dist.Assets));
 });
 
 gulp.task('sass', () => {
@@ -33,6 +41,12 @@ gulp.task('sass', () => {
             .pipe(wait(200))
             .pipe(sass(sassOptions))
             .pipe(gulp.dest(paths.dist.CSS));
+});
+
+gulp.task('sass:watch', () => {
+    gulp.watch((paths.src.SCSS), gulp.series('sass'));
+    gulp.watch((paths.src.Assets), gulp.series('assets'));
+    gulp.watch((paths.src.JS), gulp.series('js'));
 });
 
 gulp.task('templates', () => {

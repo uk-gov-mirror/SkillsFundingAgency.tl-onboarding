@@ -1,3 +1,110 @@
+<div class="govuk-width-container ">
+    <!-- Alpha banner -->
+    <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+            <strong class="govuk-tag govuk-phase-banner__content__tag">
+                alpha
+            </strong>
+            <span class="govuk-phase-banner__text">
+                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+    </div>
+</div>
+
+<div class="govuk-width-container">
+    <div class="tl-breadcrumbs" id="tl-breadcrumbs--article">
+        {{breadcrumbs}}
+    </div>
+</div>
+
+<!-- Main content -->
+<main id="main-content" role="main">
+    <!-- Article Content -->
+    <div class="govuk-width-container govuk-main-wrapper">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">{{article.title}}</h1>
+
+                <h2 class="govuk-heading-m">Summary</h2>
+                <div class="tl-article--content">{{article.body}}</div>
+
+                <section class="tl-attachments">
+                    {{#each attachments}}
+                    <div class="tl-attachment">
+                        <div class="tl-attachment--thumbnail">
+                            <a href="{{url}}" class="govuk-link">
+                                <svg version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+                                    <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+                                    <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+                                    <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="tl-attachment--details">
+                            <h2 class="tl-attachment--title">
+                                <a class="govuk-link tl-attachment--link" target="_self" href="{{url}}">{{name}}</a>
+                            </h2>
+                            <p class="tl-attachment--metadata govuk-body-s">File size: <span class="tl-attachment--attribute">{{size}}</span></p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </section>
+
+                <p class="govuk-body-s tl-article--date">
+                    {{#is article.created_at article.edited_at}}
+                    Created {{date article.created_at}}
+                    {{else}}
+                    Last updated {{date article.edited_at}}
+                    {{/is}}
+                </p>
+
+
+
+            </div>
+            <div class="govuk-grid-column-one-third">
+                {{#if settings.show_follow_article}}
+                <div class="article-subscribe tl-article--subscribe">{{subscribe}}</div>
+                {{/if}}
+            </div>
+        </div>
+
+
+
+    </div>
+
+    {{#with article}}
+
+            <div class="tl-article--vote">
+                <div class="tl-article--vote--container">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-full">
+                            <span class="tl-article--vote--question" id="article-votes-label">Was this article helpful?</span>
+                            <div role="group" aria-labelledby="article-votes-label" class="tl-article--vote--buttons">
+                                <a class="tl-article--vote--button" href="#" id="tl-article--vote--yes">Yes <span class="govuk-visually-hidden">this article was useful</span></a>
+                                <a class="tl-article--vote--button" href="#" id="tl-article--vote--no">No <span class="govuk-visually-hidden">this article wasn't useful</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    {{/with}}
+
+</main>
+
+<!-- LEGACY -->
+<ul class="meta-group">
+    {{#is article.created_at article.edited_at}}
+    <li class="meta-data">{{date article.created_at timeago=true}}</li>
+    {{else}}
+    <li class="meta-data">{{date article.edited_at timeago=true}}</li>
+    <li class="meta-data">{{t 'updated'}}</li>
+    {{/is}}
+</ul>
+
+
 <div class="container-divider"></div>
 <div class="container">
     <nav class="sub-nav">
