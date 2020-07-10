@@ -8,7 +8,7 @@
                 </strong>
             </a>
             <span class="govuk-phase-banner__text">
-                This is a new service – <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/">help us to improve it</a>
+                This is a new service â€“ <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/">help us to improve it</a>
             </span>
         </p>
     </div>
@@ -51,16 +51,18 @@
 
                 </section>
             </div>
+          
             <div class="govuk-grid-column-one-third">
                 {{#if signed_in}}
                 {{#if settings.show_follow_article}}
-                <div class="article-subscribe tl-article--subscribe--signedin">{{subscribe}}</div>
+                <div class="article-subscribe tl-article--subscribe--signedin">
+                  <button id="follow-btn" type="button" class="tl-hidden">Follow </button>
+                </div>
                 {{/if}}
                 {{else}}
-                {{#if settings.show_follow_article}}
+                {{#if settings.show_follow_article}}              
                 <div class="article-subscribe tl-article--subscribe">{{subscribe}}</div>
                 {{/if}}
-
                 {{/if}}
             </div>
         </div>
