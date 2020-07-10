@@ -26,9 +26,17 @@
     }
 }
 
-#tl-breadcrumbs--section, #tl-breadcrumbs--help {
+#tl-breadcrumbs--help {
     ol {
         li:nth-child(2), li:nth-child(3) {
+            display: none;
+        }
+    }
+}
+
+#tl-breadcrumbs--section, #tl-breadcrumbs--help {
+    ol {
+        li:nth-child(3) {
             display: none;
         }
     }

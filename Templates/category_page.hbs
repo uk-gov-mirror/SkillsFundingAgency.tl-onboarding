@@ -8,7 +8,7 @@
                 </strong>
             </a>
             <span class="govuk-phase-banner__text">
-                This is a new service – <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/">help us to improve it</a>
+                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/">help us to improve it</a>
             </span>
         </p>
     </div>
@@ -74,6 +74,14 @@
                                         <a class="govuk-link" href="{{url}}">{{title}}</a>
                                     </li>
                                     {{/each}}
+
+                                    {{#if more_articles}}
+                                    <li class="govuk-!-margin-top-4">
+                                        <a class="govuk-link govuk-body-s" href="{{url}}">
+                                            {{t 'show_all_articles' count=article_count}}
+                                        </a>
+                                    </li>
+                                    {{/if}}
                                 </ul>
                                 {{else}}
                                 <ul class="govuk-list">
