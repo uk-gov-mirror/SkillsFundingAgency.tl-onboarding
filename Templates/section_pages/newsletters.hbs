@@ -13,7 +13,7 @@
         </p>
     </div>
 </div>
-<div class="govuk-width-container" id="tl-breadcrumbs--section">
+<div class="govuk-width-container" id="tl-breadcrumbs--help">
     <div class="tl-breadcrumbs">
         {{breadcrumbs}}
     </div>
@@ -51,7 +51,6 @@
 
                 </section>
             </div>
-          
             <div class="govuk-grid-column-one-third">
                 {{#if signed_in}}
                 {{#if settings.show_follow_article}}
@@ -60,8 +59,12 @@
                 </div>
                 {{/if}}
                 {{else}}
-                {{#if settings.show_follow_article}}              
-                <div class="article-subscribe tl-article--subscribe">{{subscribe}}</div>
+                {{#if settings.show_follow_article}}
+                <div class="article-subscribe tl-article--subscribe">
+                    <button data-auth-action="signin" data-selected="false" aria-expanded="false" aria-haspopup="menu" type="button">
+                        Sign in to get news updates
+                    </button>
+                </div>
                 {{/if}}
                 {{/if}}
             </div>

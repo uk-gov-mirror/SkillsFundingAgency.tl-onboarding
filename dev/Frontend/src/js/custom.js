@@ -20,8 +20,6 @@ $(document).ready(function () {
         event.preventDefault();
         $(".tl-article--vote--buttons").addClass("tl-hidden");       
         $(".tl-article--vote--question").text("Thank you for your feedback");
-
-        
     });
 });
 
@@ -62,8 +60,8 @@ $(document).ready(function () {
         return sectionId;  
       }
   
-      const followButtonText = 'Follow';
-      const unfollowButtonText = 'Unfollow';
+      const followButtonText = 'Get news updates';
+      const unfollowButtonText = 'Stop getting news updates';
   
       function setFollowButtonStatus() {
         const locale = getLocale(); 
