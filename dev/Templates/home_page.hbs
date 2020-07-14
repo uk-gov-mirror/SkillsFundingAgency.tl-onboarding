@@ -2,13 +2,13 @@
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
         <p class="govuk-phase-banner__content">
-            <a href="https://www.smartsurvey.co.uk/s/XXECG8/">
+            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
                 <strong class="govuk-tag govuk-phase-banner__content__tag">
                     Give feedback
                 </strong>
             </a>
             <span class="govuk-phase-banner__text">
-                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/">help us to improve it</a>
+                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback">help us to improve it</a>
             </span>
         </p>
     </div>
@@ -47,14 +47,14 @@
             {{#is name "T Level news and events"}}
             {{#each sections}}
             <div class="tl-home--category">
-                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link">{{name}}</a></h3>
+                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link" GTMname="{{name}}">{{name}}</a></h3>
                 <p class="govuk-body">{{excerpt description}}</p>
             </div>
             {{/each}}
 
             {{else}}
             <div class="tl-home--category">
-                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link">{{name}}</a></h3>
+                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link" GTMname="{{name}}">{{name}}</a></h3>
                 <p class="govuk-body">{{excerpt description}}</p>
             </div>
             {{/is}}
@@ -76,7 +76,7 @@
                         <li>comments on any of the content</li>
                         <li>suggestions for how we can improve</li>
                     </ul>
-                    <p class="govuk-body govuk-!-margin-bottom-0">Email: <a class="govuk-link" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-0">Email: <a class="govuk-link" id="tl-home--contact" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
 
                 </div>
             </div>
