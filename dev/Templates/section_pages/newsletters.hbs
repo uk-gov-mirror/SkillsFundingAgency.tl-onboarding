@@ -60,8 +60,12 @@
                 </div>
                 {{/if}}
                 {{else}}
-                {{#if settings.show_follow_article}}              
-                <div class="article-subscribe tl-article--subscribe">{{subscribe}}</div>
+                {{#if settings.show_follow_article}}
+                <div class="article-subscribe tl-article--subscribe">
+                    <button data-auth-action="signin" data-selected="false" aria-expanded="false" aria-haspopup="menu" type="button">
+                        Sign in to get news updates
+                    </button>
+                </div>
                 {{/if}}
                 {{/if}}
             </div>
