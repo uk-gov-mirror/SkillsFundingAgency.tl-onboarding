@@ -83,17 +83,6 @@
         @extend .govuk-button;
         @extend .govuk-button--secondary;
         text-transform: lowercase;
-
-        &:before {
-            content: "Sign in and ";
-            position: static;
-            display: inline;
-            text-transform: none !important;
-        }
-
-        &:after {
-            content: " for updates"
-        }
     }
 
     &--signedin {
@@ -101,10 +90,6 @@
             margin-top: 5px;
             @extend .govuk-button;
             @extend .govuk-button--secondary;
-
-            &:after {
-                content: " for updates"
-            }
         }
     }
 }
