@@ -4691,20 +4691,10 @@
         margin-right: 15px; } }
 
 .tl-article--subscribe button {
-  margin-top: 5px;
-  text-transform: lowercase; }
-  .tl-article--subscribe button:before {
-    content: "Sign in and ";
-    position: static;
-    display: inline;
-    text-transform: none !important; }
-  .tl-article--subscribe button:after {
-    content: " for updates"; }
+  margin-top: 5px; }
 
 .tl-article--subscribe--signedin button {
   margin-top: 5px; }
-  .tl-article--subscribe--signedin button:after {
-    content: " for updates"; }
 
 /* Article content styling */
 .tl-section--subscribe button {
