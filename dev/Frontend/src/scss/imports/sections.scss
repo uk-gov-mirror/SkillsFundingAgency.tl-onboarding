@@ -6,8 +6,5 @@
         @extend .govuk-button;
         @extend .govuk-button--secondary;
 
-        &:after {
-            content: " this category"
-        }
     }
 }

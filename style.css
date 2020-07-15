@@ -4583,7 +4583,8 @@
       margin-top: 40px; } }
 
 .tl-attachment {
-  display: inline-block; }
+  display: inline-block;
+  width: 100%; }
 
 .tl-attachment--thumbnail {
   position: relative;

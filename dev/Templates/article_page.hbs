@@ -50,9 +50,9 @@
 
                 <p class="govuk-body-s tl-article--date">
                     {{#is article.created_at article.edited_at}}
-                    Created {{date article.created_at}}
+                    Created: {{date article.created_at format='medium'}}
                     {{else}}
-                    Last updated {{date article.edited_at}}
+                    Last updated: {{date article.edited_at format='medium'}}
                     {{/is}}
                 </p>
 
@@ -73,8 +73,8 @@
                 <div class="govuk-grid-column-full">
                     <span class="tl-article--vote--question" id="article-votes-label">Was this page helpful?</span>
                     <div role="group" aria-labelledby="article-votes-label" class="tl-article--vote--buttons">
-                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--yes">Yes <span class="govuk-visually-hidden">this article was useful</span></a>
-                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--no">No <span class="govuk-visually-hidden">this article wasn't useful</span></a>
+                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--yes" vote="yes">Yes <span class="govuk-visually-hidden">this article was useful</span></a>
+                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--no" vote="no">No <span class="govuk-visually-hidden">this article wasn't useful</span></a>
                     </div>
                 </div>
             </div>

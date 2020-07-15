@@ -44,11 +44,11 @@
                     {{#if results}}
                     {{#is results_count 1}}
                     <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        There is <span class="govuk-!-font-weight-bold">{{results_count}}</span> result for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
+                        There is <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> result for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
                     </h2>
                     {{else}}
                     <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        There are <span class="govuk-!-font-weight-bold">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
+                        There are <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
                     </h2>
                     {{/is}}
                     <ul class="tl-search--results--list">
