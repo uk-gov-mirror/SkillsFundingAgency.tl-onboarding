@@ -36,7 +36,8 @@
                             <a href="{{url}}" class="govuk-link">
                                 <svg class="gem-c-attachment__thumbnail-image" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
                                     <path d="M12 12h75v27H12zM12 59h9v9h-9zM12 77h9v9h-9zM12 95h9v9h-9zM12 113h9v9h-9zM30 59h57v9H30zM30 77h39v9H30zM30 95h57v9H30zM30 113h48v9H30z" stroke-width="0"></path>
-                                </svg>                            </a>
+                                </svg>
+                            </a>
                         </div>
                         <div class="tl-attachment--details">
                             <h2 class="tl-attachment--title">
@@ -50,9 +51,9 @@
 
                 <p class="govuk-body-s tl-article--date">
                     {{#is article.created_at article.edited_at}}
-                    Created {{date article.created_at}}
+                    Created: {{date article.created_at format='medium'}}
                     {{else}}
-                    Last updated {{date article.edited_at}}
+                    Last updated: {{date article.edited_at format='medium'}}
                     {{/is}}
                 </p>
 
@@ -73,8 +74,8 @@
                 <div class="govuk-grid-column-full">
                     <span class="tl-article--vote--question" id="article-votes-label">Was this page helpful?</span>
                     <div role="group" aria-labelledby="article-votes-label" class="tl-article--vote--buttons">
-                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--yes">Yes <span class="govuk-visually-hidden">this article was useful</span></a>
-                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--no">No <span class="govuk-visually-hidden">this article wasn't useful</span></a>
+                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--yes" vote="yes">Yes <span class="govuk-visually-hidden">this article was useful</span></a>
+                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--no" vote="no">No <span class="govuk-visually-hidden">this article wasn't useful</span></a>
                     </div>
                 </div>
             </div>

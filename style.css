@@ -4700,8 +4700,6 @@
 /* Article content styling */
 .tl-section--subscribe button {
   margin-top: 5px; }
-  .tl-section--subscribe button:after {
-    content: " this category"; }
 
 .tl-home--categories {
   display: flex;
