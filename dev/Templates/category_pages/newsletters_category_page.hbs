@@ -32,22 +32,22 @@
                 {{#if category.description}}
                 <p class="govuk-body-l">{{category.description}}</p>
                 {{/if}}
-            <section>
-                <ul class="govuk-list">
-                    {{#each sections}}
-                    {{#if articles}}
+                <section>
+                    <ul class="govuk-list">
+                        {{#each sections}}
+                        {{#if articles}}
 
-                    {{#each articles}}
-                    <li>
-                        <a class="govuk-link govuk-heading-m govuk-!-margin-bottom-1" href="{{url}}">{{title}}</a>
-                        <p class="govuk-body govuk-!-margin-top-0">{{excerpt body}}</p>
-                    </li>
-                    {{/each}}
+                        {{#each articles}}
+                        <li>
+                            <a class="govuk-link govuk-heading-m govuk-!-margin-bottom-1" href="{{url}}">{{title}}</a>
+                            <p class="govuk-body govuk-!-margin-top-0">{{excerpt body}}</p>
+                        </li>
+                        {{/each}}
 
-                    {{/if}}
-                    {{/each}}
+                        {{/if}}
+                        {{/each}}
 
-                </ul>
+                    </ul>
                 </section>
             </div>
         </div>
