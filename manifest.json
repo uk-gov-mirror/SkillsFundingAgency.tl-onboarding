@@ -2,7 +2,7 @@
   "name": "GDS",
   "author": "Ashley Anderton",
   "version": "2.2.4",
-  "api_version": 1,
+  "api_version": 2,
   "default_locale": "en-gb",
   "settings": [
     {
