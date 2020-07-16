@@ -1,143 +1,87 @@
-<section class="app-section app-section--blue govuk-!-margin-top-3">
-  <div class="govuk-width-container">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">  
-        <h1 class="govuk-heading-m app-heading--section-blue">Get help with the apprenticeship service</h1>
-        {{search submit=true instant=settings.instant_search class='app-search'}}
-      </div>
+<div class="govuk-width-container ">
+    <!-- Phase banner -->
+    <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
+        <p class="govuk-phase-banner__content">
+            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    Give feedback
+                </strong>
+            </a>
+            <span class="govuk-phase-banner__text">
+                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback">help us to improve it</a>
+            </span>
+        </p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="app-section">
-  <div class="govuk-width-container">
-    
-  
-   {{#each categories}}
-      <!-- Internal articles -->
-    	{{#is name "Internal"}}
-	    	
-	    	<h2 class="govuk-heading-l">Internal articles</h2>
+<!-- Main content -->
+<main id="main-content" role="main">
+    <!-- Hero Banner -->
+    <div class="tl-hero">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Support with delivering T Levels</h1>
+                    <label class="tl-inlineblock govuk-body govuk-!-font-size-24 govuk-!-margin-bottom-5" for="query">
+                        Help, guidance and support materials for colleges, schools and other T Level providers
+                    </label>
+                    <div class="tl-form-group tl-search--container tl-search--home">
 
-        <div class="govuk-grid-row block-grid">
-          {{#each sections}}
-              <div class="govuk-grid-column-one-third govuk-!-margin-bottom-6">
-                <h3 class="govuk-heading-m">{{name}}</h3>
-                <p>{{description}}</p>
-                <ul class="govuk-list">
-                  <li class="govuk-!-margin-top-6"><a class="govuk-link govuk-!-font-weight-bold" href='{{url}}'>View all <span class="app-text--lowercase">{{name}}</span> articles</a></li>
-                </ul>
-              </div>
-          {{/each}}
-        </div>
-    
-        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
-    	{{/is}}
-      <!-- Internal articles -->
+                        <div class="tl-search--error tl-hidden">
+                            <span class="tl-error--message"></span>
+                        </div>
+                        {{search placeholder="Search for support" submit=true instant=settings.instant_search class='tl-search govuk-!-margin-top-2'}}
 
-      <!-- Public articles -->
-    	{{#is name "Articles"}}  {{!-- articles, not cookies/feedback/terms/etc --}}
-	    	
-	    	<h2 class="govuk-heading-l">Help articles</h2>
-
-        <div class="govuk-grid-row block-grid">
-          {{#each sections}}
-              <div class="govuk-grid-column-one-third">
-                <h3 class="govuk-heading-m">{{name}}</h3>
-                <ul class="govuk-list">
-                  {{#each articles}}
-                    <li class="govuk-!-margin-top-6"><a class="govuk-link" href="{{url}}">{{title}}</a></li>
-                  {{/each}}
-                  <li class="govuk-!-margin-top-6"><a class="govuk-link govuk-!-font-weight-bold" href='{{url}}'>View all <span class="app-text--lowercase">{{name}}</span> articles</a></li>
-              </ul>
+                    </div>
+                </div>
             </div>
-          {{/each}}
         </div>
-    	
-    	{{/is}}
-    <!-- Public articles -->
-    {{/each}}
-  </div>
-</section>
-
-
-<!-- ****** cronavirus articles start ****** -->
-<section class="app-section govuk-width-container" style="padding-top: 0;">
-    <div class="app-section--blue" style="padding: 25px 25px 10px 25px; margin-top: 0;">
-      
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">  
-
-          <h2 class="govuk-heading-m app-heading--section-blue">Looking for articles related to Coronavirus (COVID-19)?</h2>
-          
-          <p class="govuk-body" style="color: #fff;">We have a section where you can 
-            <a href="/hc/en-gb/sections/{{settings.article_id_covid19}}-Coronavirus" class="govuk-link" style="color: inherit;">check how the apprenticeship service will support you</a>. 
-          </p>
-
-        </div>
-      </div>
-      
     </div>
-</section>
-<!-- ****** cronavirus articles ends ****** -->
+    <!-- Lower Content -->
+    <div class="govuk-width-container govuk-main-wrapper">
+        <div class="tl-home--categories">
 
-
-<section class="app-section">
-  <div class="govuk-width-container">
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full"> 
-
-        <h2 class="govuk-heading-l" id="contact-us">Contact us</h2>
-        <p class="govuk-body">Our opening times are 8am to 8pm Monday to Friday.</p>
-        <div class="das-cards">
-          <div class="das-card app-card">
-            <div class="app-card-inner--grey">
-              <h3 class="govuk-heading-m">Phone</h3>
-              <p class="govuk-body">Call us on 08000 150 600.</p>
-              <p class="govuk-body">Text us on <a href="sms:07588690018" class="mobile-link">07588 690018</a>.</p>
-              <p class="govuk-body">You cannot send us photos or videos via text.</p>
-              <p class="govuk-body">Your phone company may charge you separately, standard <abbr>SMS</abbr> rates apply.</p>
-              <p class="govuk-body"><a href="https://www.gov.uk/call-charges" class="govuk-link" target="_blank">Find out about call charges</a>.</p>
+            {{#each categories}}
+            {{#is name "How this site works"}}
+            {{else}}
+            {{#is name "T Level news and events"}}
+            {{#each sections}}
+            <div class="tl-home--category">
+                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link" GTMname="{{name}}">{{name}}</a></h3>
+                <p class="govuk-body">{{excerpt description}}</p>
             </div>
-          </div>
+            {{/each}}
 
-          <div class="das-card app-card">
-            <div class="app-card-inner--grey">
-              <h3 class="govuk-heading-m">Email</h3>
-              <p class="govuk-body">Send an email to</p>
-              <p class="govuk-body"><a href="mailto:helpdesk@manage-apprenticeships.service.gov.uk" class="govuk-link">helpdesk@manage-apprenticeships.service.gov.uk</a>.</p>
-              <p class="govuk-body">During our opening times, we’ll reply within 4 hours.</p>
+            {{else}}
+            <div class="tl-home--category">
+                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link" GTMname="{{name}}">{{name}}</a></h3>
+                <p class="govuk-body">{{excerpt description}}</p>
             </div>
-          </div>
+            {{/is}}
+            {{/is}}
+            {{/each}}
+
 
         </div>
-      </div>
-    </div>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <div class="app-card-inner--grey govuk-!-margin-top-3">
-          <h2 class="govuk-heading-m">Send a message</h2>
-          <p class="govuk-body">You can <a class="submit-a-request govuk-link" role="button" href="/hc/en-gb/requests/new?ticket_form_id={{settings.form_id_default}}">send a message</a>.
-          During our opening times, we’ll reply within 4 hours.</p>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <div class="tl-card">
+                    <h3 class="govuk-heading-m">Contact us</h3>
+                    <p class="govuk-body">
+                        We want to hear if you have any:
+                    </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>questions about how to use the site</li>
+                        <li>comments on any of the content</li>
+                        <li>suggestions for how we can improve</li>
+                    </ul>
+                    <p class="govuk-body govuk-!-margin-bottom-0">Email: <a class="govuk-link" id="tl-home--contact" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
+
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <div class="app-card-inner--grey govuk-!-margin-top-3">
-          <h2 class="govuk-heading-m">Webchat</h2>
-          <p id="chat-available" class="govuk-body">
-            <a class="submit-a-request govuk-link" role="button" href="#" onclick="zE.activate();return false;">Speak to an adviser now</a>.
-          </p>
-          <p id="chat-unavailable" class="govuk-body">
-            All webchat advisers are busy at the moment.
-          </p>
-        </div>
-      </div>
-    </div>
 
-  </div>
-</section>
+</main>

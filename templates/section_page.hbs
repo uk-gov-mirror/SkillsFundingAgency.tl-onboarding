@@ -1,109 +1,56 @@
-<div class="govuk-width-container">
-  
-<!-- Apprentice Articles -->
-{{#is section.name 'Apprentice' }}
-  <style>.hide-for-apprentices { display: none; }</style>
-{{else}}
-  {{#link 'help_center' class='govuk-back-link'}}
-    Help home
-  {{/link}}
-{{/is}}
-  
-<!-- Coronavirus Promoted Articles -->
-{{#is section.name 'Coronavirus' }}
-    
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div style="background-color: #f3f2f1; padding: 20px; margin: 50px 0;">
-      	
-        <h1 class="govuk-heading-l">Essential coronavirus (COVID-19) guidance</h1>
-        
-        	<p class="govuk-body"><a href="https://www.gov.uk/government/publications/coronavirus-covid-19-apprenticeship-programme-response" target="_blank" title="Opens in a new window">Read our guidance</a> on the changes we’re making to apprenticeships. You can also find out how to:</p>
-        
-        {{#if section.articles}}
-          <ul class="govuk-list govuk-list--bullet">
-            {{#each section.articles}}
-              {{#if promoted}}
-              <li class="govuk-!-margin-bottom-2">
-                <a href="{{url}}" class="govuk-link">{{title}}</a>
-              </li>              
-              {{/if}}
-            {{/each}}
-          </ul>
-        {{/if}}        
-      </div>
+<div class="govuk-width-container ">
+    <!-- Phase banner -->
+    <div class="govuk-phase-banner tl-phase-banner">
+        <p class="govuk-phase-banner__content">
+            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    Give feedback
+                </strong>
+            </a>
+            <span class="govuk-phase-banner__text">
+                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-link">help us to improve it</a>
+            </span>
+        </p>
     </div>
-  </div>
-{{/is}}
-<!-- Coronavirus Promoted Articles -->
-
-<!-- Apprentice Promoted Articles -->
-{{#is section.name 'Apprentice' }}
-    
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div style="background-color: #f3f2f1; padding: 20px; margin: 50px 0;">
-      	
-        <h1 class="govuk-heading-l">Essential coronavirus (COVID-19) guidance</h1>
-        
-        {{#if section.articles}}
-          <ul class="govuk-list govuk-list--bullet">
-            {{#each section.articles}}
-              {{#if promoted}}
-              <li class="govuk-!-margin-bottom-2">
-                <a href="{{url}}" class="govuk-link">{{title}}</a>
-              </li>              
-              {{/if}}
-            {{/each}}
-          </ul>
-        {{/if}}        
-        
-      </div>
+</div>
+<div class="govuk-width-container" id="tl-breadcrumbs--section">
+    <div class="tl-breadcrumbs">
+        {{breadcrumbs}}
     </div>
-  </div>
-{{/is}}
-<!-- Apprentice Promoted Articles -->
+</div>
 
 
 
-<div class="govuk-grid-row govuk-!-margin-bottom-7">
-  <div class="govuk-grid-column-two-thirds">
+<!-- Main content -->
+<main id="main-content" role="main">
+    <!-- Article Content -->
+    <div class="govuk-width-container govuk-main-wrapper">
 
-    <h2 class="govuk-heading-l">All <span class="app-text--lowercase">{{section.name}}</span> articles for the apprenticeship service</h2>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">{{section.name}}</h1>
+                {{#if section.description}}
+                <p class="govuk-body-l">{{section.description}}</p>
+                {{/if}}
+                <section>
+                    <ul class="govuk-list">
+                        {{#if section.articles}}
 
-    {{#if section.description}}
-      <p class="govuk-body">{{section.description}}</p>
-    {{/if}}
+                        {{#each section.articles}}
+                        <li>
+                            <a class="govuk-link govuk-!-margin-bottom-1 tl-category--article" href="{{url}}">{{title}}</a>
+                        </li>
+                        {{/each}}
+                        {{else}}
+                        <li>
+                            <p class="govuk-body">There's nothing here at the moment</p>
+                        </li>
 
-    {{#if section.articles}}
-      <ul class="govuk-list">
-        {{#each section.articles}}
-          <li class="govuk-!-margin-bottom-3">
-            <a href="{{url}}" class="govuk-link">{{title}}</a>
-          </li>
-        {{/each}}
-      </ul>
-    {{/if}}
+                        {{/if}}
+                    </ul>
 
-    <br>{{pagination}}
-
-  </div>
-</div>      
-  
-<!-- Apprentices Articles -->
-{{#is section.name 'Apprentice' }}
-<hr />  
-<section class="app-section">
-  <div class="govuk-width-container">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full"> 
-        <h2 class="govuk-heading-l" id="contact-us">Apprenticeship helpline</h2>
-        <p class="govuk-body"><a href="mailto:nationalhelpdesk@apprenticeships.gov.uk" class="govuk-link" target="_blank">nationalhelpdesk@apprenticeships.gov.uk</a>.</p>
-        <p class="govuk-body">Telephone: 0800 015 0400</p>
-        <p class="govuk-body">8am to 10pm, 7 days a week</p>
-      </div>
+                </section>
+            </div>
+        </div>
     </div>
-  </div>
-</section>  
-{{/is}}
-  
+</main>

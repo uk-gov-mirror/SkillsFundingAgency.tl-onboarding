@@ -1,25 +1,21 @@
-<div class="govuk-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{#is error 'unauthorized'}}
-        <h1 class="govuk-heading-xl">{{link 'sign_in'}}</h2>
-      {{/is}}
+<div class="container-divider"></div>
+<div id="main-content" class="error-page">
+    <h1>{{t 'oops'}}</h1>
 
-      {{#is error 'forbidden'}}
-        <h1 class="govuk-heading-xl">{{t 'not_authorized'}}</h2>
-      {{/is}}
+    {{#is error 'unauthorized'}}
+    <h2>{{link 'sign_in'}}</h2>
+    {{/is}}
 
-      {{#is error 'not_found'}}
-        <h1 class="govuk-heading-xl">{{t 'nonexistent_page'}}</h1>
-        <p class="govuk-body">
-          {{t 'mistyped_address_or_moved_page'}}
-        </p>
-      {{/is}}
+    {{#is error 'forbidden'}}
+    <h2>{{t 'not_authorized'}}</h2>
+    {{/is}}
 
-      {{#link 'help_center'}}
-        {{t 'back_to_homepage'}}
-      {{/link}}
+    {{#is error 'not_found'}}
+    <h2>{{t 'nonexistent_page'}}</h2>
+    <p>{{t 'mistyped_address_or_moved_page'}}</p>
+    {{/is}}
 
-    </div>
-  </div>
+    {{#link 'help_center'}}
+    {{t 'back_to_homepage'}}
+    {{/link}}
 </div>

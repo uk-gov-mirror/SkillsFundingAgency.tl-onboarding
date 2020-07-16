@@ -1,29 +1,33 @@
-{{#if settings.disable_search_engine_indexing}}
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
-{{/if}}
+<!-- Google Tag Manager -->
+<script>
+    (function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-M4PZ3D4');</script>
+<!-- End Google Tag Manager -->
 
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link rel="stylesheet" href="https://das-prd-frnt-end.azureedge.net/css/main.css">
+<meta charset="utf-8">
+<title>GOV.UK - The best place to find government services and information</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0c0c">
 
-{{#if settings.google_tag_manager_id}}
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','settings.google_tag_manager_id');</script>
-<!-- End Google Tag Manager -->
-{{/if}}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-{{#if settings.recursive_api_key}}
-<script id="co-snippet" src="https://embed-euw1.rcrsv.io/{{settings.recursive_api_key}}?zwwi=1"> </script>
-{{/if}}
+<link rel="shortcut icon" sizes="16x16 32x32 48x48" href="{{asset 'favicon.ico'}}" type="image/x-icon">
+<link rel="mask-icon" href="{{asset 'govuk-mask-icon.svg'}}" color="#0b0c0c">
+<link rel="apple-touch-icon" sizes="180x180" href="{{asset 'govuk-apple-touch-icon-180x180.png'}}">
+<link rel="apple-touch-icon" sizes="167x167" href="{{asset 'govuk-apple-touch-icon-167x167.png'}}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{asset 'govuk-apple-touch-icon-152x152.png'}}">
+<link rel="apple-touch-icon" href="{{asset 'govuk-apple-touch-icon.png'}}">
 
-<script>
-  // Hack to get settings into `script.js`, which does not support
-  // theme-defined variables.
-  var esfa_variables = {
-  	form_id_default: {{settings.form_id_default}},
-  	form_id_feedback: {{settings.form_id_feedback}},
-  };
-</script>
+<meta property="og:image" content="{{asset 'govuk-opengraph-image.png'}}">
+<script src="{{asset 'govuk.js'}}">
+
+
+
+
