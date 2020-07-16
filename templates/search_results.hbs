@@ -1,92 +1,50 @@
-<div class="govuk-width-container ">
-    <!-- Phase banner -->
-    <div class="govuk-phase-banner tl-phase-banner">
-        <p class="govuk-phase-banner__content">
-            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
-                <strong class="govuk-tag govuk-phase-banner__content__tag">
-                    Give feedback
-                </strong>
-            </a>
-            <span class="govuk-phase-banner__text">
-                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-link">help us to improve it</a>
-            </span>
-        </p>
+<div class="govuk-width-container">
+  {{#link 'help_center' class='govuk-back-link'}}
+    Help home
+  {{/link}}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl govuk-!-margin-top-8 govuk-!-margin-bottom-8">{{t 'search_results'}}</h1>
+      <div class="govuk-!-margin-bottom-6">
+        {{search submit=true instant=settings.instant_search class='app-search app-search--black-border'}}
+      </div>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{t 'results' query=query count=results_count}}</p>
     </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{#if article_results}}
+      <ul class="govuk-list">
+        {{#each article_results}}
+          <li class="govuk-!-margin-bottom-6">
+            <a href="{{url}}" class="govuk-heading-m govuk-!-margin-bottom-3 govuk-link">{{title}}</a>
+            {{#each path_steps}}
+              {{#if @last}}
+                <div class="govuk-tag app-tag--grey govuk-!-margin-bottom-3">{{name}}</div>
+              {{/if}}
+            {{/each}}
+            <p class="govuk-body">{{text}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>
+<!--           {{t 'no_results' query=query}} -->
+        {{#link 'help_center'}}
+          Browse articles.
+        {{/link}}
+      </p>
+    {{/if}}
+    {{pagination}}
+    </div>
+  </div>
+        
 </div>
-<div class="govuk-width-container" id="tl-breadcrumbs--search">
-    <div class="tl-breadcrumbs">
-        {{breadcrumbs}}
-    </div>
-</div>
-
-
-<!-- Main content -->
-<main id="main-content" role="main">
-    <!-- Article Content -->
-    <div class="govuk-width-container govuk-main-wrapper">
-        <section id="tl-search--box">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Search results</h1>
-
-                    <div class="tl-form-group tl-search--container">
-                        <div class="tl-search--error tl-hidden">
-                            <span class="tl-error--message"></span>
-                        </div>
-                        {{search placeholder="Search for support"  submit=true instant=settings.instant_search class='tl-search govuk-!-margin-top-2'}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="tl-search--results">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                    {{#if results}}
-                    {{#is results_count 1}}
-                    <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        There is <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> result for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
-                    </h2>
-                    {{else}}
-                    <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        There are <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
-                    </h2>
-                    {{/is}}
-                    <ul class="tl-search--results--list">
-                        {{#each results}}
-                        <li>
-                            {{#each path_steps}}
-                            {{#is @index 1}}
-                            <span class="tl-search--results--category">{{name}}</span>
-                            {{/is}}
-                            {{/each}}
-
-                            <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a class="govuk-link tl-search--results--link" href="{{url}}">{{title}}</a></h3>
-                            <p class="govuk-body tl-search--results--body">{{text}}</p>
-                        </li>
-                        {{/each}}
-                    </ul>
-                    <div class="tl-search--pagination">
-                        {{pagination}}
-                    </div>
-                    {{else}}
-                    <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        No results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
-                    </h2>
-                    <p class="govuk-body">Improve your search results by:</p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>double-checking your spelling</li>
-                        <li>using fewer keywords</li>
-                        <li>searching for something less specific</li>
-                    </ul>
-                    {{/if}}
-
-                </div>
-            </div>
-        </section>
-
-    </div>
-</main>
-
-
-
-
