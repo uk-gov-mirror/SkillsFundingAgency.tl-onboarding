@@ -68,5 +68,21 @@
 
 
     </div>
+    {{#with article}}
 
+    <div class="tl-article--vote">
+        <div class="tl-article--vote--container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <span class="tl-article--vote--question" id="article-votes-label">Was this page helpful?</span>
+                    <div role="group" aria-labelledby="article-votes-label" class="tl-article--vote--buttons">
+                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--yes" vote="yes">Yes <span class="govuk-visually-hidden">this article was useful</span></a>
+                        <a class="tl-article--vote--button" href="#" id="tl-article--vote--no" vote="no">No <span class="govuk-visually-hidden">this article wasn't useful</span></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{/with}}
 </main>
