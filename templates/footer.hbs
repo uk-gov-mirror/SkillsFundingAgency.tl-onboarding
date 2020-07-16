@@ -1,4 +1,32 @@
-<footer class="govuk-footer " role="contentinfo">
+<footer class="footer">
+    <div class="footer-inner">
+        {{#link 'help_center'}}{{help_center.name}}{{/link}}
+
+        <div class="footer-language-selector">
+            {{#if alternative_locales}}
+            <div class="dropdown language-selector">
+                <button class="dropdown-toggle" aria-haspopup="true">
+                    {{current_locale.name}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5" />
+                    </svg>
+                </button>
+                <span class="dropdown-menu dropdown-menu-end" role="menu">
+                    {{#each alternative_locales}}
+                    <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+                        {{name}}
+                    </a>
+                    {{/each}}
+                </span>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</footer>
+
+
+
+<footer class="govuk-footer" role="contentinfo">
     <div class="govuk-width-container ">
         <div class="govuk-footer__meta">
             <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
@@ -49,4 +77,6 @@
     </div>
 </footer>
 
+
+<script src="{{asset 'custom.js'}}"></script>
 
