@@ -1,8 +1,8 @@
 {
   "name": "GDS Style",
-  "author": "Ash Anderton",
+  "author": "Ben Arnold",
   "version": "1.9.20",
-  "api_version": 2,
+  "api_version": 1,
   "default_locale": "en-gb",
   "settings": [
     {
