@@ -1,21 +1,44 @@
-<div class="container-divider"></div>
-<div id="main-content" class="error-page">
-  <h1>{{t 'oops'}}</h1>
-
-  {{#is error 'unauthorized'}}
-    <h2>{{link 'sign_in'}}</h2>
-  {{/is}}
-
-  {{#is error 'forbidden'}}
-    <h2>{{t 'not_authorized'}}</h2>
-  {{/is}}
-
-  {{#is error 'not_found'}}
-    <h2>{{t 'nonexistent_page'}}</h2>
-    <p>{{t 'mistyped_address_or_moved_page'}}</p>
-  {{/is}}
-
-  {{#link 'help_center'}}
-    {{t 'back_to_homepage'}}
-  {{/link}}
+<div class="govuk-width-container ">
+    <!-- Phase banner -->
+    <div class="govuk-phase-banner tl-phase-banner">
+        <p class="govuk-phase-banner__content">
+            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    Give feedback
+                </strong>
+            </a>
+            <span class="govuk-phase-banner__text">
+                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-link">help us to improve it</a>
+            </span>
+        </p>
+    </div>
 </div>
+
+
+<!-- Main content -->
+<main id="main-content" role="main">
+    <!-- Error page content -->
+    <div class="govuk-width-container govuk-main-wrapper">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-l">Page not found</h1>
+                <p class="govuk-body">
+                    If you typed the web address, check it is correct.
+                </p>
+                <p class="govuk-body">
+                    If you pasted the web address, check you copied the entire address.
+                </p>
+
+                {{#link class="govuk-link" 'help_center'}}
+                {{t 'back_to_homepage'}}
+                {{/link}}
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+
+
