@@ -24,36 +24,58 @@
             <div class="govuk-grid-column-two-thirds">
 
                 {{#is error 'unauthorized'}}
-                <h2>{{link 'sign_in'}}</h2>
-                {{/is}}
-
-                {{#is error 'forbidden'}}
-                <h2>{{t 'not_authorized'}}</h2>
-                {{/is}}
-
-                {{#is error 'not_found'}}
-                <h2>{{t 'nonexistent_page'}}</h2>
-                <p>{{t 'mistyped_address_or_moved_page'}}</p>
-                {{/is}}
-
-
-                {{link 'help_center' class="govuk-link"}}
-                {{t 'Test'}}
-                {{/link}}
-
                 <h1 class="govuk-heading-l">You must sign in to view this page</h1>
                 <p class="govuk-body">
                     If you do not have an account, you can set one up after you click 'Sign in'.
                 </p>
 
                 <p class="govuk-body">
-                    {{#link "sign_in" class="govuk-link"}}Sign in{{/link}}
-                </p>
-                <p class="govuk-body">
-                    {{link 'help_center' class="govuk-link"}}
-                    Test
+                    {{#link "help_center" class="govuk-button" role='button'}}
+                    Sign in
                     {{/link}}
                 </p>
+                <p class="govuk-body">
+                    {{#link 'help_center' class='govuk-link' }}
+                    Back to home page
+                    {{/link}}
+                </p>
+                {{/is}}
+
+                {{#is error 'forbidden'}}
+                <h1 class="govuk-heading-l">You cannot access this page</h1>
+                <p class="govuk-body">
+                    Your account is not authorised to view this page.
+                </p>
+                <p class="govuk-body">
+                    If you need further help, email <a href="mailto:support.deliveringtlevels@education.gov.uk" class="govuk-link">support.deliveringtlevels@education.gov.uk</a>.
+                </p>
+                <p class="govuk-body">
+                    {{#link 'help_center' class='govuk-link' }}
+                    Back to home page
+                    {{/link}}
+                </p>
+                {{/is}}
+
+                {{#is error 'not_found'}}
+                <h1 class="govuk-heading-l">Page not found</h1>
+                <p class="govuk-body">
+                    If you typed the web address, check it is correct.
+                </p>
+                <p class="govuk-body">
+                    If you pasted the web address, check you copied the entire address.
+                </p>
+                <p class="govuk-body">
+                    If you still need help, email <a href="mailto:support.deliveringtlevels@education.gov.uk" class="govuk-link">support.deliveringtlevels@education.gov.uk</a>.
+                </p>
+                <p class="govuk-body">
+                    {{#link 'help_center' class='govuk-link' }}
+                    Back to home page
+                    {{/link}}
+                </p>
+                {{/is}}
+
+
+
 
             </div>
         </div>
