@@ -1,9 +1,9 @@
 {
-  "name": "GDS",
-  "author": "Ashley Anderton",
-  "version": "2.2.4",
+  "name": "GDS Style",
+  "author": "Ash Anderton",
+  "version": "1.2.0",
   "api_version": 2,
-  "default_locale": "en-gb",
+  "default_locale": "en-us",
   "settings": [
     {
       "label": "colors_group_label",
@@ -93,7 +93,7 @@
           "type": "checkbox",
           "description": "instant_search_description",
           "label": "instant_search_label",
-          "value": false
+          "value": true
         },
         {
           "identifier": "scoped_kb_search",
@@ -112,69 +112,110 @@
       ]
     },
     {
-      "label": "Form / Kowledge Base IDs",
+      "label": "home_page_group_label",
       "variables": [
         {
-          "identifier": "form_id_default",
-          "type": "text",
-          "description": "Ticket form",
-          "label": "Send a Message",
-          "value": "360000695579"
-        },
-        {
-          "identifier": "form_id_feedback",
-          "type": "text",
-          "description": "Ticket form",
-          "label": "Feedback",
-          "value": "360000712140"
-        },
-        {
-          "identifier": "article_id_cookies",
-          "type": "text",
-          "description": "Footer section",
-          "label": "Cookies",
-          "value": "360008941440"
-        },
-        {
-          "identifier": "article_id_accessibility",
-          "type": "text",
-          "description": "Footer section",
-          "label": "Accesibility",
-          "value": "360008997820"
-        },
-        {
-          "identifier": "article_id_covid19",
-          "type": "text",
-          "description": "Articles section",
-          "label": "COVID-19 Guidance",
-          "value": "360003793119"
-        },
-        {
-          "identifier": "article_id_apprentice",
-          "type": "text",
-          "description": "Articles section",
-          "label": "COVID-19 Apprentice",
-          "value": "360003798540"
-        },
-        {
-          "identifier": "google_tag_manager_id",
-          "type": "text",
-          "description": "GTM Identifier",
-          "label": "Google Tag Manager",
-          "value": ""
-        },
-        {
-          "identifier": "recursive_api_key",
-          "type": "text",
-          "description": "Co-Browsing",
-          "label": "Recursive API Key",
-          "value": ""
-        },
-        {
-          "identifier": "disable_search_engine_indexing",
+          "identifier": "show_recent_activity",
           "type": "checkbox",
-          "description": "Tell Google/Bing etc not to index",
-          "label": "Add NoRobots tag",
+          "description": "recent_activity_description",
+          "label": "recent_activity_label",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "article_page_group_label",
+      "variables": [
+        {
+          "identifier": "show_articles_in_section",
+          "type": "checkbox",
+          "description": "articles_in_section_description",
+          "label": "articles_in_section_label",
+          "value": true
+        },
+        {
+          "identifier": "show_article_author",
+          "type": "checkbox",
+          "description": "article_author_description",
+          "label": "article_author_label",
+          "value": true
+        },
+        {
+          "identifier": "show_article_comments",
+          "type": "checkbox",
+          "description": "article_comments_description",
+          "label": "article_comments_label",
+          "value": true
+        },
+        {
+          "identifier": "show_follow_article",
+          "type": "checkbox",
+          "description": "follow_article_description",
+          "label": "follow_article_label",
+          "value": true
+        },
+        {
+          "identifier": "show_recently_viewed_articles",
+          "type": "checkbox",
+          "description": "recently_viewed_articles_description",
+          "label": "recently_viewed_articles_label",
+          "value": true
+        },
+        {
+          "identifier": "show_related_articles",
+          "type": "checkbox",
+          "description": "related_articles_description",
+          "label": "related_articles_label",
+          "value": true
+        },
+        {
+          "identifier": "show_article_sharing",
+          "type": "checkbox",
+          "description": "article_sharing_description",
+          "label": "article_sharing_label",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "section_page_group_label",
+      "variables": [
+        {
+          "identifier": "show_follow_section",
+          "type": "checkbox",
+          "description": "follow_section_description",
+          "label": "follow_section_label",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "community_post_group_label",
+      "variables": [
+        {
+          "identifier": "show_follow_post",
+          "type": "checkbox",
+          "description": "follow_post_description",
+          "label": "follow_post_label",
+          "value": true
+        },
+        {
+          "identifier": "show_post_sharing",
+          "type": "checkbox",
+          "description": "post_sharing_description",
+          "label": "post_sharing_label",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "community_topic_group_label",
+      "variables": [
+        {
+          "identifier": "show_follow_topic",
+          "type": "checkbox",
+          "description": "follow_topic_description",
+          "label": "follow_topic_label",
           "value": true
         }
       ]
