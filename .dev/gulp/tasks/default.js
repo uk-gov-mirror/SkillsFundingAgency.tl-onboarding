@@ -31,7 +31,7 @@ gulp.task('js', () => {
 gulp.task('customjs', () => {
     return src([
         'Frontend/src/js/custom.js',
-
+        'node_modules/moment/moment.js',
     ])
         .pipe(concat('custom.js'))
         .pipe(gulp.dest(paths.dist.Assets));

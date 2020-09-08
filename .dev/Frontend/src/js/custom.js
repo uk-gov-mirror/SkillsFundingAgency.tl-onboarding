@@ -45,6 +45,7 @@ $(document).ready(function () {
     });
 });
 
+
 /* Follow/unfollow section subscription */
 $(document).ready(function () {
     if($('#follow-btn').length) {

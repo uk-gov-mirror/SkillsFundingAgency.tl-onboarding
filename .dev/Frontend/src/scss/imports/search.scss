@@ -58,6 +58,24 @@
             }
         }
     }
+
+    &--community {
+        input[type=submit] {
+            background-color: $govuk-text-colour;
+            left: 0px;
+        }
+
+        input[type=search] {
+            flex-grow: 1;
+            padding-left: 10px;
+            color: $govuk-text-colour;
+
+            &:focus {
+                box-shadow: none;
+                z-index: 1;
+            }
+        }
+    }
 }
 
 .tl-search--results--list {
