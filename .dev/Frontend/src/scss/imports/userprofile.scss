@@ -1,0 +1,39 @@
+.tl-profile {
+    &--avatar {
+        border-radius: 50%;
+        float: left;
+        max-width: 50px;
+        margin-right: 20px;
+        position: relative;
+        top: 5px;
+    }
+
+}
+
+.tl-profile--left {
+    border-right: 2px solid white;
+    @include govuk-responsive-padding(7, "right");
+    @include govuk-responsive-padding(2, "top");
+}
+
+.tl-profile--right {
+    @include govuk-responsive-padding(7, "left");
+    @include govuk-responsive-padding(2, "top");
+}
+
+.tl-profile--delete {
+    .govuk-details__text {
+        border-color: white;
+    }
+}
+
+
+.tl-profile-user--only {
+    display: none;
+}
+
+.tl-profile--me {
+    .tl-profile-user--only {
+        display: block;
+    }
+}

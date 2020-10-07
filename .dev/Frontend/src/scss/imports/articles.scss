@@ -127,4 +127,9 @@
     a {
         @extend .govuk-link;
     }
+
+    ol {
+        @extend .govuk-list;
+        @extend .govuk-list--number;
+    }
 }

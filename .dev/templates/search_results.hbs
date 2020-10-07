@@ -40,6 +40,36 @@
         </section>
         <section id="tl-search--results">
             <div class="govuk-grid-row">
+                {{#if help_center.community_enabled}}
+                <div class="govuk-grid-column-one-third">
+                    <div class="govuk-form-group govuk-!-margin-top-6 tl-search--filters">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                <h1 class="govuk-fieldset__heading">
+                                    Filter results
+                                </h1>
+                            </legend>
+                            <div class="govuk-radios--small">
+                                {{#each filters}}
+                                {{#if selected}}
+                                <a class="tl-search--filter--radio tl-search--filter--radio--checked" href="{{url}}"><span></span>{{name}}</a>
+
+                                {{else}}
+                                <a class="tl-search--filter--radio" href="{{url}}"><span></span>{{name}}</a>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+                <script>
+                    $(".tl-search--filter-radio").click(function () {
+                        location.href = $(this).attr("value");
+                    });
+                </script>
+
+                {{/if}}
                 <div class="govuk-grid-column-two-thirds">
                     {{#if results}}
                     {{#is results_count 1}}
@@ -82,12 +112,9 @@
                     {{/if}}
 
                 </div>
+
             </div>
         </section>
 
     </div>
 </main>
-
-
-
-

@@ -1,73 +1,135 @@
-<div class="container-divider"></div>
-<div class="container">
-  <nav class="sub-nav">
-    {{breadcrumbs}}
-    <div class="search-container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
-      </svg>
-      {{search submit=false}}
+<div class="govuk-width-container ">
+    <!-- Phase banner -->
+    <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
+        <p class="govuk-phase-banner__content">
+            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    Give feedback
+                </strong>
+            </a>
+            <span class="govuk-phase-banner__text">
+                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback">help us to improve it</a>
+            </span>
+        </p>
     </div>
-  </nav>
-
-  <h1 class="form-header">
-    {{t 'what_is_your_post_about'}}
-  </h1>
-
-  <div id="main-content" class="form">
-    {{#form 'post' class='new_community_post'}}
-      <div class="form-field">
-        {{#required 'title'}}
-          {{label 'title'}}
-        {{else}}
-          {{#label 'title'}}
-            {{t 'title_label'}}<span class="optional">({{t 'optional'}})</span>
-          {{/label}}
-        {{/required}}
-        {{input 'title' autofocus=true}}
-        {{#validate 'title'}}
-          <div class="notification notification-error notification-inline">
-            {{error 'title'}}
-          </div>
-        {{/validate}}
-      </div>
-
-      {{suggestion_list class='suggestion-list'}}
-
-      <div class="form-field">
-        {{#required 'details'}}
-          {{label 'details'}}
-        {{else}}
-          {{#label 'details'}}
-            {{t 'details_label'}}<span class="optional">({{t 'optional'}})</span>
-          {{/label}}
-        {{/required}}
-        {{wysiwyg 'details'}}
-        {{#validate 'details'}}
-          <div class="notification notification-error notification-inline">
-            {{error 'details'}}
-          </div>
-        {{/validate}}
-      </div>
-
-      <div class="form-field">
-        {{#required 'topic'}}
-          {{label 'topic'}}
-        {{else}}
-          {{#label 'topic'}}
-            {{t 'topic_label'}}<span class="optional">({{t 'optional'}})</span>
-          {{/label}}
-        {{/required}}
-        {{select 'topic'}}
-        {{#validate 'topic'}}
-          <div class="notification notification-error notification-inline">
-            {{error 'topic'}}
-          </div>
-        {{/validate}}
-      </div>
-
-      <footer>{{input type='submit'}}</footer>
-    {{/form}}
-  </div>
 </div>
+
+
+
+<!-- Main content -->
+<main id="main-content" role="main">
+    <!-- Hero Banner -->
+    <div class="tl-hero--community--minimal">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-third">
+
+                    <div class="govuk-width-container" id="tl-breadcrumbs--community--post">
+                        <div class="tl-breadcrumbs">
+                            {{breadcrumbs}}
+                        </div>
+
+                        <script>
+                            $(document).ready(function breadcrumbChangelink() {
+                                var link = document.querySelector(".tl-breadcrumbs a[href='/hc/en-gb/community/topics']");
+                                link.setAttribute('href', "/hc/en-gb/community/posts");
+                                link.innerHTML = "Discussion forum";
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-two-thirds tl-text--right govuk-!-margin-top-1">
+                    <div class="tl-form-group tl-search--container tl-search--community tl-search--community--minimal">
+                        <div class="tl-search--error tl-hidden">
+                            <span class="tl-error--message"></span>
+                        </div>
+                        {{search placeholder="Search all forum posts" submit=true class='tl-search' scoped=settings.scoped_community_search}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page cotnent -->
+    <div class="govuk-width-container govuk-!-margin-top-7 govuk-!-margin-bottom-7">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-l">Post a question</h1>
+                <p class="govuk-body">Before you do, check to see if someone else has already asked your question.</p>
+            </div>
+            {{#form 'post'}}
+            <div class="govuk-grid-column-two-thirds govuk-!-margin-top-4">
+
+                <div class="govuk-form-group {{#validate 'title'}}govuk-form-group--error{{/validate}}">
+                    <h2 class="govuk-label-wrapper">
+                        {{#required 'title'}}
+                        {{#label 'title' class="govuk-label govuk-label--m"}}
+                        What is your question?
+                        {{/label}}
+                        {{else}}
+                        {{#label 'title' class="govuk-label govuk-label--m"}}
+                        What is your question? <span class="optional">({{t 'optional'}})</span>
+                        {{/label}}
+                        {{/required}}
+                    </h2>
+                    {{#validate 'title'}}
+                    <span id="event-name-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> You must enter a post title
+                    </span>
+                    {{/validate}}
+                    <div class="govuk-hint">
+                        Phrase your question as clearly as possible, so anyonce can understand it.
+                    </div>
+                    {{input 'title' autofocus=true class="govuk-input tl-community--post-title"}}
+
+                    <div id="event-name-hint" class="govuk-hint govuk-!-margin-top-2">
+                        You have <span class="tl-community--post-title--char">64</span> characters remaining
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $(".tl-community--post-title").attr('maxlength', '64');
+
+                            var maxLength = 64;
+                            $('.tl-community--post-title').keyup(function () {
+                                var length = $(this).val().length;
+                                var length = maxLength - length;
+                                $('.tl-community--post-title--char').text(length);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            {{select 'topic' class="tl-community--post-topic"}}
+            <script>
+                $(function () {
+                    $(".tl-community--post-topic option:last").attr("selected", "selected");
+                });
+            </script>
+
+            <div class="govuk-grid-column-full">
+
+                <div class="govuk-form-group {{#validate 'details'}}govuk-form-group--error{{/validate}}">
+                    <h2 class="govuk-label-wrapper">
+                        {{#label 'details' class="govuk-label govuk-label--m"}}
+                        Add some extra detail <span class="optional">({{t 'optional'}})</span>
+                        {{/label}}
+                    </h2>
+                    {{#validate 'details'}}
+                    <span id="event-name-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> You must enter something below
+                    </span>
+                    {{/validate}}
+                    <div class="tl-wysiwyg">
+                        {{wysiwyg 'details' autofocus=true class="govuk-textarea"}}
+                    </div>
+                </div>
+
+
+                <input value="Post your question" type='submit' class="govuk-button" />
+
+            </div>
+            {{/form}}
+        </div>
+    </div>
+</main>

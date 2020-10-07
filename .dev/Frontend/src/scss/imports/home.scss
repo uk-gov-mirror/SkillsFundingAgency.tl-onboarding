@@ -25,4 +25,14 @@
     * {
         color: govuk-colour("white");
     }
+
+    .govuk-link {
+        color: govuk-colour("white");
+    }
+
+    .govuk-details__summary:focus {
+        .govuk-details__summary-text {
+            color: govuk-colour("black");
+        }
+    }
 }

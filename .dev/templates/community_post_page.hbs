@@ -1,4 +1,4 @@
-<div class="govuk-width-container ">
+﻿<div class="govuk-width-container ">
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
         <p class="govuk-phase-banner__content">
@@ -14,328 +14,239 @@
     </div>
 </div>
 
-<div class="govuk-width-container" id="tl-breadcrumbs">
-    <div class="tl-breadcrumbs">
-        {{breadcrumbs}}
-    </div>
-</div>
+
 
 <!-- Main content -->
 <main id="main-content" role="main">
+    <!-- Hero Banner -->
+    <div class="tl-hero--community--minimal">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-third">
 
-    <!-- Post cotnent -->
-    <div class="govuk-width-container govuk-!-margin-top-7">
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-                <h1 class="govuk-heading-m">
-                    {{post.title}}
-                </h1>
-
-                <p class="govuk-body">
-                    <img src="{{post.author.avatar_url}}" alt="" class="tl-community-post--avatar" />
-                    <span class="govuk-!-font-weight-bold">{{post.author.name}}</span>
-                    <br /><span class="tl-text--grey">Education and Skills Funding Agency</span>
-                </p>
-
-
-                <div class="tl-community-post--content govuk-!-margin-top-7">
-                    {{post.details}}
+                    <div class="govuk-width-container" id="tl-breadcrumbs--community--post">
+                        <div class="tl-breadcrumbs">
+                            {{breadcrumbs}}
+                        </div>
+                        <script>
+                            $(document).ready(function breadcrumbChangelink() {
+                                var link = document.querySelector(".tl-breadcrumbs a[href='/hc/en-gb/community/topics']");
+                                link.setAttribute('href', "/hc/en-gb/community/posts");
+                                link.innerHTML = "Discussion forum";
+                            });
+                        </script>
+                    </div>
                 </div>
+                <div class="govuk-grid-column-two-thirds tl-text--right govuk-!-margin-top-1">
+                    <div class="tl-form-group tl-search--container tl-search--community tl-search--community--minimal">
 
-                <p class="govuk-body-s tl-text--grey">
-                    {{#if post.editor}}
-                    Edited on: {{date post.edited_at format='medium'}}
+                        <div class="tl-search--error tl-hidden">
+                            <span class="tl-error--message"></span>
+                        </div>
+                        <form role="search" class="tl-search" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get">
+                            <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search all forum posts" aria-label="Search all forum posts">
+                            <input type="hidden" name="filter_by" value="community" />
+                            <input type="submit" name="commit" value="Search">
+                        </form>
+
+                    </div>
+                    {{#if signed_in}}
+                    <a href="#" class="govuk-button govuk-!-margin-bottom-0 tl-approved--hidden">Post a new question</a>
+                    {{#link 'new_post' class='govuk-button govuk-!-margin-bottom-0 tl-approved--visible'}}
+                    Post a new question
+                    {{/link}}
+
                     {{else}}
-                    Posted on: {{date post.created_at format='medium'}}
+                    {{#link "new_post" class="govuk-button govuk-!-margin-bottom-0"}}Sign in to post a new question{{/link}}
                     {{/if}}
-                </p>
-                <hr class="govuk-section-break govuk-section-break--visible">
-            </div>
-            <div class="govuk-grid-column-one-third">
-                <button type="button" class="govuk-button govuk-button--secondary">Subscribe</button>
 
-                <button type="button" class="govuk-button">New post</button>
+
+                    <script>
+                        $(document).ready(function () {
+                            var userRole = HelpCenter.user.role;
+                            var userOrgsCount = HelpCenter.user.organizations.length;
+
+                            if (userRole != "anonymous" && userOrgsCount > 0) {
+                                var userTags = HelpCenter.user.organizations[0].tags;
+
+
+                                if (userRole != "end_user" || userTags.includes('tlevels_approved')) {
+                                    console.log("Approved user")
+                                    $(".tl-approved--visible").css('display', 'inline-block');
+                                }
+                            }
+
+                            else {
+                                console.log("Not approved user")
+                                $(".tl-approved--hidden").css('display', 'inline-block');;
+                            }
+                        });
+
+                    </script>
+                </div>
             </div>
         </div>
     </div>
-</main>
 
+    <!-- Post cotnent -->
+    <div class="govuk-width-container govuk-!-margin-top-7 govuk-!-margin-bottom-7">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+                        <p class="govuk-body-s">
+                            <img src="{{post.author.avatar_url}}" alt="" class="tl-community-post--avatar" />
+                            {{#link 'user_profile' id=post.author.id class="govuk-link"}}{{post.author.name}}{{/link}},
+                            <span class="{{post.author.id}}org  tl-text--grey"></span>
+                        </p>
+                        <script>
+                                $.getJSON('/api/v2/users/{{post.author.id}}.json', function (organisationID) {
+                                    var orgid = organisationID.user.organization_id;
 
+                                    $.getJSON('/api/v2/organizations/' + orgid +'.json', function(organisation) {
+                                          $('.{{post.author.id}}org').html(organisation.organization.name);
+                                      });
+                                });
+                        </script>
+                    </div>
+                    <div class="govuk-grid-column-one-third tl-text--right">
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0">Subscribe</button>
 
+                    </div>
+                </div>
+                <div class="tl-community-post--main--content">
+                    <h1 class="govuk-heading-l">
+                        {{post.title}}
+                    </h1>
 
+                    <div class="tl-community-post--content govuk-!-margin-top-7">
+                        {{post.details}}
+                    </div>
 
-
-
-
-
-<!-- LEGACY -->
-
-
-
-
-
-<div class="container-divider"></div>
-<div class="container">
-    <nav class="sub-nav">
-        {{breadcrumbs}}
-        <div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
-                <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor" />
-                <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5" />
-            </svg>
-            {{search scoped=settings.scoped_community_search submit=false}}
-        </div>
-    </nav>
-
-    <div class="post-container">
-        <div class="post">
-            <article id="main-content">
-                <header class="post-header">
-                    <div class="post-title">
-                        <h1 title="{{post.title}}">
-                            {{post.title}}
-                            {{#if post.internal}}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
-                                <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1" />
-                                <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5" />
-                            </svg>
-                            {{/if}}
-                        </h1>
-                        {{#if post.pinned}}
-                        <span class="status-label status-label-pinned">{{t 'pinned'}}</span>
-                        {{/if}}
-
-                        {{#if post.featured}}
-                        <span class="status-label status-label-featured">{{t 'featured'}}</span>
-                        {{/if}}
-
-                        {{#is post.status 'none'}}
+                    <p class="govuk-body-s tl-text--grey">
+                        {{#if post.editor}}
+                        Edited on: {{date post.edited_at format='medium'}}
                         {{else}}
-                        <span class="status-label-{{post.status_dasherized}} status-label">{{post.status_name}}</span>
-                        {{/is}}
-                    </div>
-                    {{#if settings.show_follow_post}}
-                    <div class="community-follow">
-                        {{subscribe}}
-                    </div>
-                    {{/if}}
-                </header>
+                        Posted on: {{date post.created_at format='medium'}}
+                        {{/if}}
+                    </p>
 
-                <section class="post-info-container">
-                    <div class="post-info">
-                        <div class="post-author">
-                            <div class="avatar post-avatar">
-                                {{#if post.author.agent}}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent">
-                                    <path fill="currentColor" d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2.3 7H3.7c-.3 0-.4-.3-.3-.5C3.9 7.6 4.9 7 6 7s2.1.6 2.6 1.5c.1.2 0 .5-.3.5z" />
-                                </svg>
-                                {{/if}}
-                                <img src="{{post.author.avatar_url}}" alt="" class="user-avatar" />
-                            </div>
-                            <div class="post-meta">
-                                <span title="{{post.author.name}}">
-                                    {{#link 'user_profile' id=post.author.id}}
-                                    {{post.author.name}}
-                                    {{/link}}
-                                </span>
+                </div>
+                <div class="tl-community--post--actions">
+                    {{#post.actions class="govuk-button"}}
+                    Manage post
+                    {{/post.actions}}
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                <ul class="meta-group">
-                                    {{#if post.editor}}
-                                    <li class="meta-data">{{date post.edited_at timeago=true}}</li>
-                                    <li class="meta-data">{{t 'edited'}}</li>
-                                    {{else}}
-                                    <li class="meta-data">{{date post.created_at timeago=true}}</li>
-                                    {{/if}}
-                                </ul>
-                            </div>
+    <!-- Post replies -->
+    {{#if comments}}
+    <div class="govuk-width-container ">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
 
-                            {{#if post.pending}}
-                            <span class="status-label status-label-pending-moderation">{{t 'pending_approval'}}</span>
-                            {{/if}}
-
-                            {{#with post.ticket}}
-                            <a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
-                                {{t 'request'}}{{id}}
-                            </a>
-                            {{/with}}
-                        </div>
-
-
-                        <div class="post-content">
-                            <div class="post-body">{{post.details}}</div>
-                        </div>
-                    </div>
-
-                    <div class="post-actions-wrapper">
-                        <div class="post-vote vote" role="group">
-                            {{#with post}}
-                            {{#vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5" />
-                            </svg>
-                            {{/vote}}
-                            {{vote 'sum' class='vote-sum'}}
-                            {{#vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5" />
-                            </svg>
-                            {{/vote}}
-                            {{/with}}
-                        </div>
-
-                        <div class="post-actions actions">
-                            {{#post.actions}}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-                                <path fill="none" stroke="currentColor" d="M13.17 3.07l-1.64.71c-.48-.4-1.03-.72-1.63-.94l-.22-1.79a.511.511 0 00-.4-.44C8.86.54 8.44.5 8 .5c-.44 0-.86.04-1.28.11-.22.04-.38.22-.4.44l-.21 1.79c-.6.22-1.15.54-1.63.94l-1.65-.71a.491.491 0 00-.58.13c-.55.65-.99 1.4-1.29 2.21-.08.21 0 .44.18.58l1.45 1.08a4.91 4.91 0 000 1.87l-1.45 1.08c-.18.13-.25.37-.18.58.3.81.74 1.55 1.28 2.2.14.17.38.22.58.13l1.65-.71c.48.4 1.03.72 1.63.94l.21 1.79c.03.22.19.4.4.44.43.07.85.11 1.29.11.44 0 .86-.04 1.28-.11.22-.04.38-.22.4-.44l.21-1.79c.6-.22 1.15-.54 1.63-.94l1.65.71c.2.09.44.04.58-.13.54-.65.98-1.39 1.28-2.2.08-.21 0-.44-.18-.57L13.4 8.95c.07-.32.1-.63.1-.95s-.03-.63-.09-.94l1.45-1.08c.18-.13.25-.37.18-.58-.3-.81-.74-1.55-1.28-2.2a.51.51 0 00-.59-.13z" />
-                                <circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor" />
-                            </svg>
-                            {{/post.actions}}
-                        </div>
-                    </div>
-                </section>
-
-                {{#if settings.show_post_sharing}}
-                <footer class="post-footer">
-                    <div class="post-share">{{share}}</div>
-                    {{#if comments}}
-                    <a href="#comment-overview" class="post-comment-count">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-comments">
-                            <path fill="none" stroke="currentColor" d="M1 .5h14c.3 0 .5.2.5.5v10c0 .3-.2.5-.5.5H8l-3.6 3.6c-.3.3-.9.1-.9-.4v-3.3H1c-.3 0-.5-.2-.5-.5V1C.5.7.7.5 1 .5z" />
-                        </svg>
-                        {{post.comment_count}}
-                    </a>
-                    {{/if}}
-                </footer>
-                {{/if}}
-            </article>
-
-            <section class="comment-overview" id="comment-overview">
-                <h2 class="comment-heading">
-                    {{t 'comments'}}
+                <h2 class="govuk-heading-m">
+                    {{post.comment_count}}
+                    {{#is post.comment_count 1}}
+                    reply
+                    {{else}}
+                    replies
+                    {{/is}}
                 </h2>
-                <p class="comment-callout">{{t 'comments_count' count=post.comment_count}}</p>
-                {{#if comments}}
-                <div class="dropdown comment-sorter">
-                    <button class="dropdown-toggle" aria-haspopup="true">
-                        {{t 'sort_by'}}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5" />
-                        </svg>
-                    </button>
-                    <span class="dropdown-menu" role="menu">
-                        {{#each comment_sorters}}
-                        <a aria-selected="{{selected}}" href="{{url}}" role="menuitem">{{name}}</a>
-                        {{/each}}
-                    </span>
-                </div>
-                {{/if}}
-            </section>
-
-            <ul id="comments" class="comment-list">
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                 {{#each comments}}
-                <li id="{{anchor}}" class="comment">
-                    <div class="comment-wrapper {{#if official}} comment-official {{/if}}">
-                        <div class="comment-info">
-                            {{#if official}}
-                            <span class="comment-official status-label status-label-official">{{t 'official_comment'}}</span>
-                            {{/if}}
+                <div class="tl-community-comment--main {{#if official}} tl-community-comment--main--official {{/if}}  {{#if pending}}tl-community-comment--main--pending{{/if}}">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-two-thirds">
+                            <p class="govuk-body-s">
+                                <img src="{{author.avatar_url}}" alt="" class="tl-community-post--avatar" />
+                                {{#link 'user_profile' id=author.id class="govuk-link"}}{{author.name}}{{/link}},
 
-                            <div class="comment-author">
-                                <div class="avatar comment-avatar">
-                                    {{#if author.agent}}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent">
-                                        <path fill="currentColor" d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2.3 7H3.7c-.3 0-.4-.3-.3-.5C3.9 7.6 4.9 7 6 7s2.1.6 2.6 1.5c.1.2 0 .5-.3.5z" />
-                                    </svg>
-                                    {{/if}}
-                                    <img src="{{author.avatar_url}}" alt="" class="user-avatar" />
-                                </div>
-                                <div class="comment-meta">
-                                    <span title="{{author.name}}">
-                                        {{#link 'user_profile' id=author.id}}
-                                        {{author.name}}
-                                        {{/link}}
-                                    </span>
+                                <script>
+                                $.getJSON('/api/v2/users/{{author.id}}.json', function (organisationID) {
+                                    var orgid = organisationID.user.organization_id;
 
-                                    <ul class="meta-group">
-                                        {{#if editor}}
-                                        <li class="meta-data">{{date edited_at timeago=true}}</li>
-                                        <li class="meta-data">{{t 'edited'}}</li>
-                                        {{else}}
-                                        <li class="meta-data">{{date created_at timeago=true}}</li>
-                                        {{/if}}
-                                    </ul>
-                                </div>
-                                <div class="comment-labels">
-                                    {{#with ticket}}
-                                    <a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
-                                        {{t 'request'}} {{id}}
-                                    </a>
-                                    {{/with}}
-                                    {{#if pending}}
-                                    <span class="comment-pending status-label status-label-pending-moderation">{{t 'pending_approval'}}</span>
-                                    {{/if}}
-                                </div>
-                            </div>
+                                    $.getJSON('/api/v2/organizations/' + orgid +'.json', function(organisation) {
+                                          $('.{{author.id}}org').html(organisation.organization.name);
+                                      });
+                                });
+                                </script>
+                                <span class="{{author.id}}org tl-text--grey"></span>
+                            </p>
 
-                            <section class="comment-body">{{body}}</section>
-                        </div>
-
-                        <div class="comment-actions-container">
-                            {{#unless official}}
-                            <div class="comment-vote vote" role="group">
-                                {{#vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5" />
-                                </svg>
-                                {{/vote}}
-                                {{vote 'sum' class='vote-sum'}}
-                                {{#vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5" />
-                                </svg>
-                                {{/vote}}
-                            </div>
-                            {{/unless}}
-                            <div class="comment-actions actions">
-                                {{#actions}}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-                                    <path fill="none" stroke="currentColor" d="M13.17 3.07l-1.64.71c-.48-.4-1.03-.72-1.63-.94l-.22-1.79a.511.511 0 00-.4-.44C8.86.54 8.44.5 8 .5c-.44 0-.86.04-1.28.11-.22.04-.38.22-.4.44l-.21 1.79c-.6.22-1.15.54-1.63.94l-1.65-.71a.491.491 0 00-.58.13c-.55.65-.99 1.4-1.29 2.21-.08.21 0 .44.18.58l1.45 1.08a4.91 4.91 0 000 1.87l-1.45 1.08c-.18.13-.25.37-.18.58.3.81.74 1.55 1.28 2.2.14.17.38.22.58.13l1.65-.71c.48.4 1.03.72 1.63.94l.21 1.79c.03.22.19.4.4.44.43.07.85.11 1.29.11.44 0 .86-.04 1.28-.11.22-.04.38-.22.4-.44l.21-1.79c.6-.22 1.15-.54 1.63-.94l1.65.71c.2.09.44.04.58-.13.54-.65.98-1.39 1.28-2.2.08-.21 0-.44-.18-.57L13.4 8.95c.07-.32.1-.63.1-.95s-.03-.63-.09-.94l1.45-1.08c.18-.13.25-.37.18-.58-.3-.81-.74-1.55-1.28-2.2a.51.51 0 00-.59-.13z" />
-                                    <circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor" />
-                                </svg>
-                                {{/actions}}
-                            </div>
                         </div>
                     </div>
-                </li>
+                    <div class="tl-community-comment--main--content">
+
+                        <div class="tl-community-post--content">
+                            {{body}}
+                        </div>
+                        {{#if pending}}
+                        <p class="govuk-body-s tl-text--red">
+                            Post pending approval
+                        </p>
+                        {{/if}}
+                        <p class="govuk-body-s tl-text--grey">
+                            {{#if editor}}
+                            Edited on: {{date edited_at format='medium'}}
+                            {{else}}
+                            Posted on: {{date created_at format='medium'}}
+                            {{/if}}
+                        </p>
+
+                    </div>
+                    <div class="tl-community--comment--actions">
+                        {{#actions class="govuk-button"}}
+                        Manage comment
+                        {{/actions}}
+                    </div>
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                </div>Assum
                 {{/each}}
-            </ul>
 
+
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    <div class="govuk-width-container">
+        <div class="tl-community--pagination">
             {{pagination}}
+        </div>
+    </div>
+    <div class="govuk-width-container ">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                {{#if signed_in}}
+                <h2 class="govuk-heading-m">Post a reply</h2>
+                {{else}}
+                {{/if}}
 
-            <section class="post-comments">
-                {{#form 'comment' class='comment-form'}}
-                <div class="avatar comment-avatar">
-                    {{user_avatar class='user-avatar'}}
-                </div>
+                {{#form 'comment' class='govuk-form-group'}}
+
                 <div class="comment-container">
-                    {{wysiwyg 'body'}}
+                    {{textarea 'body' rows='4'  class='govuk-textarea'}}
                     <div class="comment-form-controls">
-                        {{checkbox 'official'}}
-                        {{label 'official'}}
-                        {{input type='submit' class="button button-large"}}
+
+                        <div class="govuk-checkboxes govuk-!-margin-bottom-3">
+                            <div class="govuk-checkboxes__item">
+                                {{checkbox 'official' class="govuk-checkboxes__input"}}
+                                {{label 'official' class="govuk-label govuk-checkboxes__label"}}
+                            </div>
+
+                        </div>
+                        <input value="Post reply" type='submit' class="govuk-button" />
+
                     </div>
                 </div>
                 {{/form}}
-            </section>
-
-            <p class="comment-callout">{{comment_callout}}</p>
+            </div>
         </div>
-
-        <section class="post-sidebar">
-            <h2 class="post-sidebar-title">{{t 'suggest_new_post'}}</h2>
-            <span class="post-to-community">
-                {{link 'new_post' class='button button-large'}}
-            </span>
-        </section>
     </div>
-</div>
+
+</main>
+
+

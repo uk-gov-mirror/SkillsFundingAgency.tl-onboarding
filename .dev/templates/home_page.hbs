@@ -65,6 +65,32 @@
         </div>
 
         <div class="govuk-grid-row">
+
+
+            {{#if help_center.community_enabled}}
+            <div class="govuk-grid-column-one-half">
+                <div class="tl-card">
+                    <h3 class="govuk-heading-m">T Level discussion forum</h3>
+                    <p class="govuk-body">
+                        Check out the forum to:
+                    </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>get answers to all your T Level queries</li>
+                        <li>find out how other colleges and schools are delivering T Levels</li>
+                    </ul>
+                    <p class="govuk-body govuk-!-margin-bottom-0">
+                        {{#link 'posts' class='govuk-button'}}
+                        Join the discussion
+                        {{/link}}
+
+                    </p>
+
+                </div>
+            </div>
+            {{/if}}
+
+
+
             <div class="govuk-grid-column-one-half">
                 <div class="tl-card">
                     <h3 class="govuk-heading-m">Contact us</h3>
@@ -82,25 +108,7 @@
             </div>
 
 
-        {{#if help_center.community_enabled}}
-            <div class="govuk-grid-column-one-half">
-                <div class="tl-card">
-                    <h3 class="govuk-heading-m">T Level provider community</h3>
-                    <p class="govuk-body">
-                        Text
-                    </p>
-                    <p class="govuk-body govuk-!-margin-bottom-0">
-                        {{#link 'community' class='govuk-link'}}
-                        {{t 'join_conversation'}}
-                        {{/link}}
-
-                    </p>
-
-                </div>
-            </div>
         </div>
-        {{/if}}
+
     </div>
-
-
 </main>
