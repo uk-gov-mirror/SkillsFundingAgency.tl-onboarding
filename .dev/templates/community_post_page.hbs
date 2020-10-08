@@ -62,26 +62,31 @@
 
 
                     <script>
-                        $(document).ready(function () {
-                            var userRole = HelpCenter.user.role;
-                            var userOrgsCount = HelpCenter.user.organizations.length;
-
-                            if (userRole != "anonymous" && userOrgsCount > 0) {
-                                var userTags = HelpCenter.user.organizations[0].tags;
-
-
-                                if (userRole != "end_user" || userTags.includes('tlevels_approved')) {
-                                    console.log("Approved user")
-                                    $(".tl-approved--visible").css('display', 'inline-block');
+                        function isApprovedUser()
+                        {
+                            if (HelpCenter.user.role != "anonymous" && 
+                                HelpCenter.user.organizations.length > 0) {
+                                for (var idx in HelpCenter.user.organizations) {
+                                    if (HelpCenter.user.role != "end_user" || 
+                                        HelpCenter.user.organizations[idx].tags.includes('tlevels_approved')) {
+                                        return true;
+                                    }
                                 }
                             }
 
+                            return false;
+                        }
+
+                        $(document).ready(function () {
+                            if(isApprovedUser()) {
+                                console.log("Approved user");
+                                $(".tl-approved--visible").css('display', 'inline-block');
+                            }
                             else {
-                                console.log("Not approved user")
-                                $(".tl-approved--hidden").css('display', 'inline-block');;
+                                console.log("Not approved user");
+                                $(".tl-approved--hidden").css('display', 'inline-block');
                             }
                         });
-
                     </script>
                 </div>
             </div>
