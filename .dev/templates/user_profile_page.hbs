@@ -13,21 +13,28 @@
         </p>
     </div>
 </div>
-
-
+<div class="govuk-width-container" id="tl-breadcrumbs--profile">
+    <div class="tl-breadcrumbs">
+        {{#link 'help_center' class='govuk-link'}}Home{{/link}}
+    </div>
+</div>
 
 <!-- Main content -->
 <main id="main-content" role="main">
 
-    <!-- Hero Banner -->
-    <div class="tl-hero">
-        <div class="govuk-width-container">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half tl-profile--left">
-                    <img src="{{user.avatar_url}}" alt="" class="tl-profile--avatar govuk-!-margin-bottom-9" />
-                    <h1 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-1">{{user.name}}</h1>
-                    <p class="govuk-body {{user.id}}org"></p>
-                    <script>
+
+    <div class="govuk-width-container">
+            <h1 class="govuk-heading-xl tl-profile-user--only govuk-!-margin-top-7 govuk-!-margin-bottom-7">Your profile</h1>
+    </div>
+            <!-- Hero Banner -->
+            <div class="tl-hero">
+                <div class="govuk-width-container">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-half tl-profile--left">
+                            <img src="{{user.avatar_url}}" alt="" class="tl-profile--avatar govuk-!-margin-bottom-9" />
+                            <h1 class="govuk-heading-m govuk-!-margin-top-3 govuk-!-margin-bottom-1">{{user.name}}</h1>
+                            <p class="govuk-body {{user.id}}org"></p>
+                            <script>
                         $.getJSON('/api/v2/users/{{user.id}}.json', function (organisationID) {
                             var orgid = organisationID.user.organization_id;
 
@@ -48,54 +55,54 @@
                         });
 
 
-                    </script>
-                    <p class="govuk-body tl-profile-user--only"><a href="#" data-action="change-password">Change password</a></p>
-                </div>
-                <div class="govuk-grid-column-one-half tl-profile--right govuk-!-margin-top-3">
-                    <div class="govuk-grid-row">
-                        <div class="govuk-grid-column-one-half">
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Last activity</h3>
-                            <p class="govuk-body">
-                                {{#if last_activity_at}}
-                                {{date last_activity_at format='medium'}}
-                                {{else}}
-                                {{t 'no_activity_yet'}}
-                                {{/if}}
-                            </p>
+                            </script>
+                            <p class="govuk-body tl-profile-user--only"><a href="#" data-action="change-password">Change password</a></p>
                         </div>
-                        <div class="govuk-grid-column-one-half">
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Member since</h3>
-                            <p class="govuk-body">
-                                {{#if member_since}}
-                                {{date member_since format='medium'}}
-                                {{else}}
-                                {{t 'no_activity_yet'}}
-                                {{/if}}
-                            </p>
+                        <div class="govuk-grid-column-one-half tl-profile--right govuk-!-margin-top-3">
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-one-half">
+                                    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Last activity</h3>
+                                    <p class="govuk-body">
+                                        {{#if last_activity_at}}
+                                        {{date last_activity_at format='medium'}}
+                                        {{else}}
+                                        {{t 'no_activity_yet'}}
+                                        {{/if}}
+                                    </p>
+                                </div>
+                                <div class="govuk-grid-column-one-half">
+                                    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Member since</h3>
+                                    <p class="govuk-body">
+                                        {{#if member_since}}
+                                        {{date member_since format='medium'}}
+                                        {{else}}
+                                        {{t 'no_activity_yet'}}
+                                        {{/if}}
+                                    </p>
+                                </div>
+                            </div>
+                            <details class="govuk-details tl-profile--delete tl-profile-user--only" data-module="govuk-details">
+                                <summary class="govuk-details__summary">
+                                    <span class="govuk-details__summary-text">
+                                        Delete my account
+                                    </span>
+                                </summary>
+                                <div class="govuk-details__text">
+                                    To delete your account you need to email <a href="mailto:support.tlevels@education.gov.uk" class="govuk-link tl-profile--delete--link">support@education.gov.uk</a><p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-1">Remember to include your full name and organisation.</p><p class="govuk-body-s govuk-!-margin-top-0">For security, please make sure that your request comes from the same email address as the one you use to log in to this account.</p>
+                                </div>
+                            </details>
                         </div>
                     </div>
-                    <details class="govuk-details tl-profile--delete tl-profile-user--only" data-module="govuk-details">
-                        <summary class="govuk-details__summary">
-                            <span class="govuk-details__summary-text">
-                                Delete my account
-                            </span>
-                        </summary>
-                        <div class="govuk-details__text">
-                            To delete your account you need to email <a href="mailto:support.tlevels@education.gov.uk" class="govuk-link tl-profile--delete--link">support@education.gov.uk</a><p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-1">Remember to include your full name and organisation.</p><p class="govuk-body-s govuk-!-margin-top-0">For security, please make sure that your request comes from the same email address as the one you use to log in to this account.</p>
-</div>
-                    </details>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Lower Content -->
-    <div class="govuk-width-container govuk-main-wrapper">
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-one-half">
+            <!-- Lower Content -->
+            <div class="govuk-width-container govuk-main-wrapper">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-half">
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 </main>
 
 

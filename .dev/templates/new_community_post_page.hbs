@@ -1,3 +1,28 @@
+<script>
+    $(document).ready(function () {
+        var userRole = HelpCenter.user.role;
+        var userOrgsCount = HelpCenter.user.organizations.length;
+
+        if (userRole != "anonymous" && userOrgsCount > 0) {
+            var userTags = HelpCenter.user.organizations[0].tags;
+
+
+            if (userRole != "end_user" || userTags.includes('tlevels_approved')) {
+            }
+
+            else {
+                window.location.href = "/hc/en-gb/articles/360016899780";
+            }
+        }
+
+        else {
+            window.location.href = "/hc/en-gb/articles/360016899780";
+        }
+    });
+
+</script>
+
+
 <div class="govuk-width-container ">
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">

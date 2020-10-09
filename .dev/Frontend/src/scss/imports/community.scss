@@ -138,9 +138,32 @@
 }
 
 .tl-community--comment--actions, .tl-community--post--actions {
+    @extend .govuk-body-s;
+    text-align: right;
+
     button {
-        @extend .govuk-button;
-        @extend .govuk-button--secondary;
+        @extend .govuk-link;
+        background: none;
+        border: none;
         margin-bottom: 0;
+        font-size: unset;
+        text-decoration: underline;
+        color: $govuk-link-colour;
+        cursor: pointer;
+    }
+}
+
+.tl-comment--container {
+    textarea#community_comment_body {
+        width: 100%;
+        min-height: 150px;
+        border: 2px solid black;
+        border-radius: 0;
+    }
+
+    #hc-wysiwyg {
+        border: 2px solid black;
+        border-radius: 0;
+        margin-bottom: 10px;
     }
 }

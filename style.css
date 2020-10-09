@@ -1,4 +1,4 @@
-.govuk-link, .tl-search--pagination ul li a, .tl-community--pagination ul li a, .tl-article--vote .tl-article--vote--button, .tl-article--content a, .tl-community-post--content a {
+.govuk-link, .tl-search--pagination ul li a, .tl-community--pagination ul li a, .tl-article--vote .tl-article--vote--button, .tl-article--content a, .tl-community-post--content a, .tl-community--comment--actions button, .tl-community--post--actions button {
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -18,26 +18,26 @@
   font-style: normal;
   font-display: fallback; }
   @media print {
-    .govuk-link, .tl-search--pagination ul li a, .tl-community--pagination ul li a, .tl-article--vote .tl-article--vote--button, .tl-article--content a, .tl-community-post--content a {
+    .govuk-link, .tl-search--pagination ul li a, .tl-community--pagination ul li a, .tl-article--vote .tl-article--vote--button, .tl-article--content a, .tl-community-post--content a, .tl-community--comment--actions button, .tl-community--post--actions button {
       font-family: sans-serif; } }
-  .govuk-link:focus, .tl-search--pagination ul li a:focus, .tl-community--pagination ul li a:focus, .tl-article--vote .tl-article--vote--button:focus, .tl-article--content a:focus, .tl-community-post--content a:focus {
+  .govuk-link:focus, .tl-search--pagination ul li a:focus, .tl-community--pagination ul li a:focus, .tl-article--vote .tl-article--vote--button:focus, .tl-article--content a:focus, .tl-community-post--content a:focus, .tl-community--comment--actions button:focus, .tl-community--post--actions button:focus {
     outline: 3px solid transparent;
     color: #0b0c0c;
     background-color: #ffdd00;
     box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
     text-decoration: none; }
-  .govuk-link:link, .tl-search--pagination ul li a:link, .tl-community--pagination ul li a:link, .tl-article--vote .tl-article--vote--button:link, .tl-article--content a:link, .tl-community-post--content a:link {
+  .govuk-link:link, .tl-search--pagination ul li a:link, .tl-community--pagination ul li a:link, .tl-article--vote .tl-article--vote--button:link, .tl-article--content a:link, .tl-community-post--content a:link, .tl-community--comment--actions button:link, .tl-community--post--actions button:link {
     color: #1d70b8; }
-  .govuk-link:visited, .tl-search--pagination ul li a:visited, .tl-community--pagination ul li a:visited, .tl-article--vote .tl-article--vote--button:visited, .tl-article--content a:visited, .tl-community-post--content a:visited {
+  .govuk-link:visited, .tl-search--pagination ul li a:visited, .tl-community--pagination ul li a:visited, .tl-article--vote .tl-article--vote--button:visited, .tl-article--content a:visited, .tl-community-post--content a:visited, .tl-community--comment--actions button:visited, .tl-community--post--actions button:visited {
     color: #4c2c92; }
-  .govuk-link:hover, .tl-search--pagination ul li a:hover, .tl-community--pagination ul li a:hover, .tl-article--vote .tl-article--vote--button:hover, .tl-article--content a:hover, .tl-community-post--content a:hover {
+  .govuk-link:hover, .tl-search--pagination ul li a:hover, .tl-community--pagination ul li a:hover, .tl-article--vote .tl-article--vote--button:hover, .tl-article--content a:hover, .tl-community-post--content a:hover, .tl-community--comment--actions button:hover, .tl-community--post--actions button:hover {
     color: #003078; }
-  .govuk-link:active, .tl-search--pagination ul li a:active, .tl-community--pagination ul li a:active, .tl-article--vote .tl-article--vote--button:active, .tl-article--content a:active, .tl-community-post--content a:active {
+  .govuk-link:active, .tl-search--pagination ul li a:active, .tl-community--pagination ul li a:active, .tl-article--vote .tl-article--vote--button:active, .tl-article--content a:active, .tl-community-post--content a:active, .tl-community--comment--actions button:active, .tl-community--post--actions button:active {
     color: #0b0c0c; }
-  .govuk-link:focus, .tl-search--pagination ul li a:focus, .tl-community--pagination ul li a:focus, .tl-article--vote .tl-article--vote--button:focus, .tl-article--content a:focus, .tl-community-post--content a:focus {
+  .govuk-link:focus, .tl-search--pagination ul li a:focus, .tl-community--pagination ul li a:focus, .tl-article--vote .tl-article--vote--button:focus, .tl-article--content a:focus, .tl-community-post--content a:focus, .tl-community--comment--actions button:focus, .tl-community--post--actions button:focus {
     color: #0b0c0c; }
   @media print {
-    .govuk-link[href^="/"]::after, .tl-search--pagination ul li a[href^="/"]::after, .tl-community--pagination ul li a[href^="/"]::after, .tl-article--vote .tl-article--vote--button[href^="/"]::after, .tl-article--content a[href^="/"]::after, .tl-community-post--content a[href^="/"]::after, .govuk-link[href^="http://"]::after, .tl-search--pagination ul li a[href^="http://"]::after, .tl-community--pagination ul li a[href^="http://"]::after, .tl-article--vote .tl-article--vote--button[href^="http://"]::after, .tl-article--content a[href^="http://"]::after, .tl-community-post--content a[href^="http://"]::after, .govuk-link[href^="https://"]::after, .tl-search--pagination ul li a[href^="https://"]::after, .tl-community--pagination ul li a[href^="https://"]::after, .tl-article--vote .tl-article--vote--button[href^="https://"]::after, .tl-article--content a[href^="https://"]::after, .tl-community-post--content a[href^="https://"]::after {
+    .govuk-link[href^="/"]::after, .tl-search--pagination ul li a[href^="/"]::after, .tl-community--pagination ul li a[href^="/"]::after, .tl-article--vote .tl-article--vote--button[href^="/"]::after, .tl-article--content a[href^="/"]::after, .tl-community-post--content a[href^="/"]::after, .tl-community--comment--actions button[href^="/"]::after, .tl-community--post--actions button[href^="/"]::after, .govuk-link[href^="http://"]::after, .tl-search--pagination ul li a[href^="http://"]::after, .tl-community--pagination ul li a[href^="http://"]::after, .tl-article--vote .tl-article--vote--button[href^="http://"]::after, .tl-article--content a[href^="http://"]::after, .tl-community-post--content a[href^="http://"]::after, .tl-community--comment--actions button[href^="http://"]::after, .tl-community--post--actions button[href^="http://"]::after, .govuk-link[href^="https://"]::after, .tl-search--pagination ul li a[href^="https://"]::after, .tl-community--pagination ul li a[href^="https://"]::after, .tl-article--vote .tl-article--vote--button[href^="https://"]::after, .tl-article--content a[href^="https://"]::after, .tl-community-post--content a[href^="https://"]::after, .tl-community--comment--actions button[href^="https://"]::after, .tl-community--post--actions button[href^="https://"]::after {
       content: " (" attr(href) ")";
       font-size: 90%;
       word-wrap: break-word; } }
@@ -396,7 +396,7 @@
     .govuk-body-m, .govuk-body, .tl-search--filters .tl-search--filter--radio, .tl-article--content p, .tl-community-table-post--description, .tl-community-post--content p {
       margin-bottom: 20px; } }
 
-.govuk-body-s {
+.govuk-body-s, .tl-community--comment--actions, .tl-community--post--actions {
   color: #0b0c0c;
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -408,22 +408,22 @@
   margin-top: 0;
   margin-bottom: 15px; }
   @media print {
-    .govuk-body-s {
+    .govuk-body-s, .tl-community--comment--actions, .tl-community--post--actions {
       color: #000000; } }
   @media print {
-    .govuk-body-s {
+    .govuk-body-s, .tl-community--comment--actions, .tl-community--post--actions {
       font-family: sans-serif; } }
   @media (min-width: 40.0625em) {
-    .govuk-body-s {
+    .govuk-body-s, .tl-community--comment--actions, .tl-community--post--actions {
       font-size: 16px;
       font-size: 1rem;
       line-height: 1.25; } }
   @media print {
-    .govuk-body-s {
+    .govuk-body-s, .tl-community--comment--actions, .tl-community--post--actions {
       font-size: 14pt;
       line-height: 1.2; } }
   @media (min-width: 40.0625em) {
-    .govuk-body-s {
+    .govuk-body-s, .tl-community--comment--actions, .tl-community--post--actions {
       margin-bottom: 20px; } }
 
 .govuk-body-xs {
@@ -464,8 +464,14 @@
 
 .govuk-body-m + .govuk-heading-l, .govuk-body + .govuk-heading-l, .tl-search--filters .tl-search--filter--radio + .govuk-heading-l, .tl-article--content p + .govuk-heading-l, .tl-community-table-post--description + .govuk-heading-l, .tl-community-post--content p + .govuk-heading-l, .tl-article--content .govuk-body-m + h2, .tl-article--content .govuk-body + h2, .tl-search--filters .tl-article--content .tl-search--filter--radio + h2, .tl-article--content .tl-search--filters .tl-search--filter--radio + h2, .tl-article--content p + h2, .tl-article--content .tl-community-table-post--description + h2, .tl-community-post--content .govuk-body-m + h2, .tl-community-post--content .govuk-body + h2, .tl-search--filters .tl-community-post--content .tl-search--filter--radio + h2, .tl-community-post--content .tl-search--filters .tl-search--filter--radio + h2, .tl-community-post--content .tl-community-table-post--description + h2, .tl-community-post--content p + h2,
 .govuk-body-s + .govuk-heading-l,
+.tl-community--comment--actions + .govuk-heading-l,
+.tl-community--post--actions + .govuk-heading-l,
 .tl-article--content .govuk-body-s + h2,
+.tl-article--content .tl-community--comment--actions + h2,
+.tl-article--content .tl-community--post--actions + h2,
 .tl-community-post--content .govuk-body-s + h2,
+.tl-community-post--content .tl-community--comment--actions + h2,
+.tl-community-post--content .tl-community--post--actions + h2,
 .govuk-list + .govuk-heading-l,
 .tl-article--content ul + .govuk-heading-l,
 .tl-article--content ol + .govuk-heading-l,
@@ -480,8 +486,14 @@
   @media (min-width: 40.0625em) {
     .govuk-body-m + .govuk-heading-l, .govuk-body + .govuk-heading-l, .tl-search--filters .tl-search--filter--radio + .govuk-heading-l, .tl-article--content p + .govuk-heading-l, .tl-community-table-post--description + .govuk-heading-l, .tl-community-post--content p + .govuk-heading-l, .tl-article--content .govuk-body-m + h2, .tl-article--content .govuk-body + h2, .tl-search--filters .tl-article--content .tl-search--filter--radio + h2, .tl-article--content .tl-search--filters .tl-search--filter--radio + h2, .tl-article--content p + h2, .tl-article--content .tl-community-table-post--description + h2, .tl-community-post--content .govuk-body-m + h2, .tl-community-post--content .govuk-body + h2, .tl-search--filters .tl-community-post--content .tl-search--filter--radio + h2, .tl-community-post--content .tl-search--filters .tl-search--filter--radio + h2, .tl-community-post--content .tl-community-table-post--description + h2, .tl-community-post--content p + h2,
     .govuk-body-s + .govuk-heading-l,
+    .tl-community--comment--actions + .govuk-heading-l,
+    .tl-community--post--actions + .govuk-heading-l,
     .tl-article--content .govuk-body-s + h2,
+    .tl-article--content .tl-community--comment--actions + h2,
+    .tl-article--content .tl-community--post--actions + h2,
     .tl-community-post--content .govuk-body-s + h2,
+    .tl-community-post--content .tl-community--comment--actions + h2,
+    .tl-community-post--content .tl-community--post--actions + h2,
     .govuk-list + .govuk-heading-l,
     .tl-article--content ul + .govuk-heading-l,
     .tl-article--content ol + .govuk-heading-l,
@@ -496,8 +508,14 @@
 
 .govuk-body-m + .govuk-heading-m, .govuk-body + .govuk-heading-m, .tl-search--filters .tl-search--filter--radio + .govuk-heading-m, .tl-article--content p + .govuk-heading-m, .tl-community-table-post--description + .govuk-heading-m, .tl-community-post--content p + .govuk-heading-m, .tl-article--content .govuk-body-m + h3, .tl-article--content .govuk-body + h3, .tl-search--filters .tl-article--content .tl-search--filter--radio + h3, .tl-article--content .tl-search--filters .tl-search--filter--radio + h3, .tl-article--content p + h3, .tl-article--content .tl-community-table-post--description + h3, .tl-community-post--content .govuk-body-m + h3, .tl-community-post--content .govuk-body + h3, .tl-search--filters .tl-community-post--content .tl-search--filter--radio + h3, .tl-community-post--content .tl-search--filters .tl-search--filter--radio + h3, .tl-community-post--content .tl-community-table-post--description + h3, .tl-community-post--content p + h3,
 .govuk-body-s + .govuk-heading-m,
+.tl-community--comment--actions + .govuk-heading-m,
+.tl-community--post--actions + .govuk-heading-m,
 .tl-article--content .govuk-body-s + h3,
+.tl-article--content .tl-community--comment--actions + h3,
+.tl-article--content .tl-community--post--actions + h3,
 .tl-community-post--content .govuk-body-s + h3,
+.tl-community-post--content .tl-community--comment--actions + h3,
+.tl-community-post--content .tl-community--post--actions + h3,
 .govuk-list + .govuk-heading-m,
 .tl-article--content ul + .govuk-heading-m,
 .tl-article--content ol + .govuk-heading-m,
@@ -536,9 +554,17 @@
 .tl-community-post--content .tl-dropdown p + label,
 .tl-dropdown .tl-community-post--content p + label,
 .govuk-body-s + .govuk-heading-s,
+.tl-community--comment--actions + .govuk-heading-s,
+.tl-community--post--actions + .govuk-heading-s,
 .tl-article--content .govuk-body-s + h4,
+.tl-article--content .tl-community--comment--actions + h4,
+.tl-article--content .tl-community--post--actions + h4,
 .tl-community-post--content .govuk-body-s + h4,
+.tl-community-post--content .tl-community--comment--actions + h4,
+.tl-community-post--content .tl-community--post--actions + h4,
 .tl-dropdown .govuk-body-s + label,
+.tl-dropdown .tl-community--comment--actions + label,
+.tl-dropdown .tl-community--post--actions + label,
 .govuk-list + .govuk-heading-s,
 .tl-article--content ul + .govuk-heading-s,
 .tl-article--content ol + .govuk-heading-s,
@@ -560,8 +586,14 @@
   @media (min-width: 40.0625em) {
     .govuk-body-m + .govuk-heading-m, .govuk-body + .govuk-heading-m, .tl-search--filters .tl-search--filter--radio + .govuk-heading-m, .tl-article--content p + .govuk-heading-m, .tl-community-table-post--description + .govuk-heading-m, .tl-community-post--content p + .govuk-heading-m, .tl-article--content .govuk-body-m + h3, .tl-article--content .govuk-body + h3, .tl-search--filters .tl-article--content .tl-search--filter--radio + h3, .tl-article--content .tl-search--filters .tl-search--filter--radio + h3, .tl-article--content p + h3, .tl-article--content .tl-community-table-post--description + h3, .tl-community-post--content .govuk-body-m + h3, .tl-community-post--content .govuk-body + h3, .tl-search--filters .tl-community-post--content .tl-search--filter--radio + h3, .tl-community-post--content .tl-search--filters .tl-search--filter--radio + h3, .tl-community-post--content .tl-community-table-post--description + h3, .tl-community-post--content p + h3,
     .govuk-body-s + .govuk-heading-m,
+    .tl-community--comment--actions + .govuk-heading-m,
+    .tl-community--post--actions + .govuk-heading-m,
     .tl-article--content .govuk-body-s + h3,
+    .tl-article--content .tl-community--comment--actions + h3,
+    .tl-article--content .tl-community--post--actions + h3,
     .tl-community-post--content .govuk-body-s + h3,
+    .tl-community-post--content .tl-community--comment--actions + h3,
+    .tl-community-post--content .tl-community--post--actions + h3,
     .govuk-list + .govuk-heading-m,
     .tl-article--content ul + .govuk-heading-m,
     .tl-article--content ol + .govuk-heading-m,
@@ -600,9 +632,17 @@
     .tl-community-post--content .tl-dropdown p + label,
     .tl-dropdown .tl-community-post--content p + label,
     .govuk-body-s + .govuk-heading-s,
+    .tl-community--comment--actions + .govuk-heading-s,
+    .tl-community--post--actions + .govuk-heading-s,
     .tl-article--content .govuk-body-s + h4,
+    .tl-article--content .tl-community--comment--actions + h4,
+    .tl-article--content .tl-community--post--actions + h4,
     .tl-community-post--content .govuk-body-s + h4,
+    .tl-community-post--content .tl-community--comment--actions + h4,
+    .tl-community-post--content .tl-community--post--actions + h4,
     .tl-dropdown .govuk-body-s + label,
+    .tl-dropdown .tl-community--comment--actions + label,
+    .tl-dropdown .tl-community--post--actions + label,
     .govuk-list + .govuk-heading-s,
     .tl-article--content ul + .govuk-heading-s,
     .tl-article--content ol + .govuk-heading-s,
@@ -1187,7 +1227,7 @@
       .govuk-breadcrumbs__link:link, .tl-breadcrumbs a:link, .govuk-breadcrumbs__link:visited, .tl-breadcrumbs a:visited, .govuk-breadcrumbs__link:hover, .tl-breadcrumbs a:hover, .govuk-breadcrumbs__link:active, .tl-breadcrumbs a:active, .govuk-breadcrumbs__link:focus, .tl-breadcrumbs a:focus {
         color: #000000; } }
 
-.govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+.govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1212,43 +1252,43 @@
   cursor: pointer;
   -webkit-appearance: none; }
   @media print {
-    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
       font-family: sans-serif; } }
   @media (min-width: 40.0625em) {
-    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
       font-size: 19px;
       font-size: 1.1875rem;
       line-height: 1; } }
   @media print {
-    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
       font-size: 14pt;
       line-height: 19px; } }
   @media (min-width: 40.0625em) {
-    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
       margin-bottom: 32px; } }
   @media (min-width: 40.0625em) {
-    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+    .govuk-button, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
       width: auto; } }
-  .govuk-button:link, .tl-article--subscribe button:link, .tl-article--subscribe--signedin button:link, .tl-section--subscribe button:link, .tl-community--comment--actions button:link, .tl-community--post--actions button:link, .govuk-button:visited, .tl-article--subscribe button:visited, .tl-article--subscribe--signedin button:visited, .tl-section--subscribe button:visited, .tl-community--comment--actions button:visited, .tl-community--post--actions button:visited, .govuk-button:active, .tl-article--subscribe button:active, .tl-article--subscribe--signedin button:active, .tl-section--subscribe button:active, .tl-community--comment--actions button:active, .tl-community--post--actions button:active, .govuk-button:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover, .tl-community--comment--actions button:hover, .tl-community--post--actions button:hover {
+  .govuk-button:link, .tl-article--subscribe button:link, .tl-article--subscribe--signedin button:link, .tl-section--subscribe button:link, .govuk-button:visited, .tl-article--subscribe button:visited, .tl-article--subscribe--signedin button:visited, .tl-section--subscribe button:visited, .govuk-button:active, .tl-article--subscribe button:active, .tl-article--subscribe--signedin button:active, .tl-section--subscribe button:active, .govuk-button:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover {
     color: #ffffff;
     text-decoration: none; }
-  .govuk-button::-moz-focus-inner, .tl-article--subscribe button::-moz-focus-inner, .tl-article--subscribe--signedin button::-moz-focus-inner, .tl-section--subscribe button::-moz-focus-inner, .tl-community--comment--actions button::-moz-focus-inner, .tl-community--post--actions button::-moz-focus-inner {
+  .govuk-button::-moz-focus-inner, .tl-article--subscribe button::-moz-focus-inner, .tl-article--subscribe--signedin button::-moz-focus-inner, .tl-section--subscribe button::-moz-focus-inner {
     padding: 0;
     border: 0; }
-  .govuk-button:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover, .tl-community--comment--actions button:hover, .tl-community--post--actions button:hover {
+  .govuk-button:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover {
     background-color: #005a30; }
-  .govuk-button:active, .tl-article--subscribe button:active, .tl-article--subscribe--signedin button:active, .tl-section--subscribe button:active, .tl-community--comment--actions button:active, .tl-community--post--actions button:active {
+  .govuk-button:active, .tl-article--subscribe button:active, .tl-article--subscribe--signedin button:active, .tl-section--subscribe button:active {
     top: 2px; }
-  .govuk-button:focus, .tl-article--subscribe button:focus, .tl-article--subscribe--signedin button:focus, .tl-section--subscribe button:focus, .tl-community--comment--actions button:focus, .tl-community--post--actions button:focus {
+  .govuk-button:focus, .tl-article--subscribe button:focus, .tl-article--subscribe--signedin button:focus, .tl-section--subscribe button:focus {
     border-color: #ffdd00;
     outline: 3px solid transparent;
     box-shadow: inset 0 0 0 1px #ffdd00; }
-  .govuk-button:focus:not(:active):not(:hover), .tl-article--subscribe button:focus:not(:active):not(:hover), .tl-article--subscribe--signedin button:focus:not(:active):not(:hover), .tl-section--subscribe button:focus:not(:active):not(:hover), .tl-community--comment--actions button:focus:not(:active):not(:hover), .tl-community--post--actions button:focus:not(:active):not(:hover) {
+  .govuk-button:focus:not(:active):not(:hover), .tl-article--subscribe button:focus:not(:active):not(:hover), .tl-article--subscribe--signedin button:focus:not(:active):not(:hover), .tl-section--subscribe button:focus:not(:active):not(:hover) {
     border-color: #ffdd00;
     color: #0b0c0c;
     background-color: #ffdd00;
     box-shadow: 0 2px 0 #0b0c0c; }
-  .govuk-button::before, .tl-article--subscribe button::before, .tl-article--subscribe--signedin button::before, .tl-section--subscribe button::before, .tl-community--comment--actions button::before, .tl-community--post--actions button::before {
+  .govuk-button::before, .tl-article--subscribe button::before, .tl-article--subscribe--signedin button::before, .tl-section--subscribe button::before {
     content: "";
     display: block;
     position: absolute;
@@ -1257,7 +1297,7 @@
     bottom: -4px;
     left: -2px;
     background: transparent; }
-  .govuk-button:active::before, .tl-article--subscribe button:active::before, .tl-article--subscribe--signedin button:active::before, .tl-section--subscribe button:active::before, .tl-community--comment--actions button:active::before, .tl-community--post--actions button:active::before {
+  .govuk-button:active::before, .tl-article--subscribe button:active::before, .tl-article--subscribe--signedin button:active::before, .tl-section--subscribe button:active::before {
     top: -4px; }
 
 .govuk-button--disabled,
@@ -1265,28 +1305,20 @@
 .tl-article--subscribe button[disabled="disabled"],
 .tl-article--subscribe--signedin button[disabled="disabled"],
 .tl-section--subscribe button[disabled="disabled"],
-.tl-community--comment--actions button[disabled="disabled"],
-.tl-community--post--actions button[disabled="disabled"],
 .govuk-button[disabled],
 .tl-article--subscribe button[disabled],
 .tl-article--subscribe--signedin button[disabled],
-.tl-section--subscribe button[disabled],
-.tl-community--comment--actions button[disabled],
-.tl-community--post--actions button[disabled] {
+.tl-section--subscribe button[disabled] {
   opacity: 0.5; }
   .govuk-button--disabled:hover,
   .govuk-button[disabled="disabled"]:hover,
   .tl-article--subscribe button[disabled="disabled"]:hover,
   .tl-article--subscribe--signedin button[disabled="disabled"]:hover,
   .tl-section--subscribe button[disabled="disabled"]:hover,
-  .tl-community--comment--actions button[disabled="disabled"]:hover,
-  .tl-community--post--actions button[disabled="disabled"]:hover,
   .govuk-button[disabled]:hover,
   .tl-article--subscribe button[disabled]:hover,
   .tl-article--subscribe--signedin button[disabled]:hover,
-  .tl-section--subscribe button[disabled]:hover,
-  .tl-community--comment--actions button[disabled]:hover,
-  .tl-community--post--actions button[disabled]:hover {
+  .tl-section--subscribe button[disabled]:hover {
     background-color: #00703c;
     cursor: default; }
   .govuk-button--disabled:focus,
@@ -1294,39 +1326,31 @@
   .tl-article--subscribe button[disabled="disabled"]:focus,
   .tl-article--subscribe--signedin button[disabled="disabled"]:focus,
   .tl-section--subscribe button[disabled="disabled"]:focus,
-  .tl-community--comment--actions button[disabled="disabled"]:focus,
-  .tl-community--post--actions button[disabled="disabled"]:focus,
   .govuk-button[disabled]:focus,
   .tl-article--subscribe button[disabled]:focus,
   .tl-article--subscribe--signedin button[disabled]:focus,
-  .tl-section--subscribe button[disabled]:focus,
-  .tl-community--comment--actions button[disabled]:focus,
-  .tl-community--post--actions button[disabled]:focus {
+  .tl-section--subscribe button[disabled]:focus {
     outline: none; }
   .govuk-button--disabled:active,
   .govuk-button[disabled="disabled"]:active,
   .tl-article--subscribe button[disabled="disabled"]:active,
   .tl-article--subscribe--signedin button[disabled="disabled"]:active,
   .tl-section--subscribe button[disabled="disabled"]:active,
-  .tl-community--comment--actions button[disabled="disabled"]:active,
-  .tl-community--post--actions button[disabled="disabled"]:active,
   .govuk-button[disabled]:active,
   .tl-article--subscribe button[disabled]:active,
   .tl-article--subscribe--signedin button[disabled]:active,
-  .tl-section--subscribe button[disabled]:active,
-  .tl-community--comment--actions button[disabled]:active,
-  .tl-community--post--actions button[disabled]:active {
+  .tl-section--subscribe button[disabled]:active {
     top: 0;
     box-shadow: 0 2px 0 #002d18; }
 
-.govuk-button--secondary, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button {
+.govuk-button--secondary, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button {
   background-color: #f3f2f1;
   box-shadow: 0 2px 0 #929191; }
-  .govuk-button--secondary, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .tl-community--comment--actions button, .tl-community--post--actions button, .govuk-button--secondary:link, .tl-article--subscribe button:link, .tl-article--subscribe--signedin button:link, .tl-section--subscribe button:link, .tl-community--comment--actions button:link, .tl-community--post--actions button:link, .govuk-button--secondary:visited, .tl-article--subscribe button:visited, .tl-article--subscribe--signedin button:visited, .tl-section--subscribe button:visited, .tl-community--comment--actions button:visited, .tl-community--post--actions button:visited, .govuk-button--secondary:active, .tl-article--subscribe button:active, .tl-article--subscribe--signedin button:active, .tl-section--subscribe button:active, .tl-community--comment--actions button:active, .tl-community--post--actions button:active, .govuk-button--secondary:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover, .tl-community--comment--actions button:hover, .tl-community--post--actions button:hover {
+  .govuk-button--secondary, .tl-article--subscribe button, .tl-article--subscribe--signedin button, .tl-section--subscribe button, .govuk-button--secondary:link, .tl-article--subscribe button:link, .tl-article--subscribe--signedin button:link, .tl-section--subscribe button:link, .govuk-button--secondary:visited, .tl-article--subscribe button:visited, .tl-article--subscribe--signedin button:visited, .tl-section--subscribe button:visited, .govuk-button--secondary:active, .tl-article--subscribe button:active, .tl-article--subscribe--signedin button:active, .tl-section--subscribe button:active, .govuk-button--secondary:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover {
     color: #0b0c0c; }
-  .govuk-button--secondary:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover, .tl-community--comment--actions button:hover, .tl-community--post--actions button:hover {
+  .govuk-button--secondary:hover, .tl-article--subscribe button:hover, .tl-article--subscribe--signedin button:hover, .tl-section--subscribe button:hover {
     background-color: #dbdad9; }
-    .govuk-button--secondary:hover[disabled], .tl-article--subscribe button:hover[disabled], .tl-article--subscribe--signedin button:hover[disabled], .tl-section--subscribe button:hover[disabled], .tl-community--comment--actions button:hover[disabled], .tl-community--post--actions button:hover[disabled] {
+    .govuk-button--secondary:hover[disabled], .tl-article--subscribe button:hover[disabled], .tl-article--subscribe--signedin button:hover[disabled], .tl-section--subscribe button:hover[disabled] {
       background-color: #f3f2f1; }
 
 .govuk-button--warning {
@@ -4721,7 +4745,7 @@
     margin-bottom: 10px; }
     .tl-search--filters .tl-search--filter--radio:focus span {
       box-shadow: 0 0 3pt 2pt #ffdd00; }
-    .tl-search--filters .tl-search--filter--radio span {
+    .tl-search--filters .tl-search--filter--radio .tl-search--filter--radio--button {
       background: white;
       width: 20px;
       height: 20px;
@@ -4735,7 +4759,7 @@
       top: 5px;
       display: inline-block;
       position: relative; }
-    .tl-search--filters .tl-search--filter--radio--checked span:after {
+    .tl-search--filters .tl-search--filter--radio--checked .tl-search--filter--radio--button:after {
       content: "";
       border-radius: 61px;
       border: 6px solid black;
@@ -4911,7 +4935,7 @@
       padding-bottom: 40px; } }
   .tl-hero * {
     color: #ffffff; }
-  .tl-hero .govuk-link, .tl-hero .tl-search--pagination ul li a, .tl-search--pagination ul li .tl-hero a, .tl-hero .tl-community--pagination ul li a, .tl-community--pagination ul li .tl-hero a, .tl-hero .tl-article--vote .tl-article--vote--button, .tl-article--vote .tl-hero .tl-article--vote--button, .tl-hero .tl-article--content a, .tl-article--content .tl-hero a, .tl-hero .tl-community-post--content a, .tl-community-post--content .tl-hero a {
+  .tl-hero .govuk-link, .tl-hero .tl-search--pagination ul li a, .tl-search--pagination ul li .tl-hero a, .tl-hero .tl-community--pagination ul li a, .tl-community--pagination ul li .tl-hero a, .tl-hero .tl-article--vote .tl-article--vote--button, .tl-article--vote .tl-hero .tl-article--vote--button, .tl-hero .tl-article--content a, .tl-article--content .tl-hero a, .tl-hero .tl-community-post--content a, .tl-community-post--content .tl-hero a, .tl-hero .tl-community--comment--actions button, .tl-community--comment--actions .tl-hero button, .tl-hero .tl-community--post--actions button, .tl-community--post--actions .tl-hero button {
     color: #ffffff; }
   .tl-hero .govuk-details__summary:focus .govuk-details__summary-text {
     color: #0b0c0c; }
@@ -5024,14 +5048,14 @@
   display: none;
   padding: 20px 0; }
 
-div.gem-c-cookie-banner__buttons .govuk-button, div.gem-c-cookie-banner__buttons .tl-article--subscribe button, .tl-article--subscribe div.gem-c-cookie-banner__buttons button, div.gem-c-cookie-banner__buttons .tl-article--subscribe--signedin button, .tl-article--subscribe--signedin div.gem-c-cookie-banner__buttons button, div.gem-c-cookie-banner__buttons .tl-section--subscribe button, .tl-section--subscribe div.gem-c-cookie-banner__buttons button, div.gem-c-cookie-banner__buttons .tl-community--comment--actions button, .tl-community--comment--actions div.gem-c-cookie-banner__buttons button, div.gem-c-cookie-banner__buttons .tl-community--post--actions button, .tl-community--post--actions div.gem-c-cookie-banner__buttons button {
+div.gem-c-cookie-banner__buttons .govuk-button, div.gem-c-cookie-banner__buttons .tl-article--subscribe button, .tl-article--subscribe div.gem-c-cookie-banner__buttons button, div.gem-c-cookie-banner__buttons .tl-article--subscribe--signedin button, .tl-article--subscribe--signedin div.gem-c-cookie-banner__buttons button, div.gem-c-cookie-banner__buttons .tl-section--subscribe button, .tl-section--subscribe div.gem-c-cookie-banner__buttons button {
   padding: 8px 10px;
   border-color: #00823b;
   color: #00823b;
   background-color: #ffffff;
   box-shadow: none; }
 
-div.gem-c-cookie-banner__buttons .govuk-button:hover, div.gem-c-cookie-banner__buttons .tl-article--subscribe button:hover, .tl-article--subscribe div.gem-c-cookie-banner__buttons button:hover, div.gem-c-cookie-banner__buttons .tl-article--subscribe--signedin button:hover, .tl-article--subscribe--signedin div.gem-c-cookie-banner__buttons button:hover, div.gem-c-cookie-banner__buttons .tl-section--subscribe button:hover, .tl-section--subscribe div.gem-c-cookie-banner__buttons button:hover, div.gem-c-cookie-banner__buttons .tl-community--comment--actions button:hover, .tl-community--comment--actions div.gem-c-cookie-banner__buttons button:hover, div.gem-c-cookie-banner__buttons .tl-community--post--actions button:hover, .tl-community--post--actions div.gem-c-cookie-banner__buttons button:hover {
+div.gem-c-cookie-banner__buttons .govuk-button:hover, div.gem-c-cookie-banner__buttons .tl-article--subscribe button:hover, .tl-article--subscribe div.gem-c-cookie-banner__buttons button:hover, div.gem-c-cookie-banner__buttons .tl-article--subscribe--signedin button:hover, .tl-article--subscribe--signedin div.gem-c-cookie-banner__buttons button:hover, div.gem-c-cookie-banner__buttons .tl-section--subscribe button:hover, .tl-section--subscribe div.gem-c-cookie-banner__buttons button:hover {
   border-color: #00692f;
   color: #00692f;
   background-color: #f8f8f8;
@@ -5306,8 +5330,27 @@ ul.govuk-radios label .gem-radios__input {
 .tl-community--post-topic {
   display: none; }
 
-.tl-community--comment--actions button, .tl-community--post--actions button {
-  margin-bottom: 0; }
+.tl-community--comment--actions, .tl-community--post--actions {
+  text-align: right; }
+  .tl-community--comment--actions button, .tl-community--post--actions button {
+    background: none;
+    border: none;
+    margin-bottom: 0;
+    font-size: unset;
+    text-decoration: underline;
+    color: #1d70b8;
+    cursor: pointer; }
+
+.tl-comment--container textarea#community_comment_body {
+  width: 100%;
+  min-height: 150px;
+  border: 2px solid black;
+  border-radius: 0; }
+
+.tl-comment--container #hc-wysiwyg {
+  border: 2px solid black;
+  border-radius: 0;
+  margin-bottom: 10px; }
 
 .tl-text--grey {
   color: #626a6e; }

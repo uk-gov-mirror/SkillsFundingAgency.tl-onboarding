@@ -176,7 +176,7 @@
             }
         }
 
-        span {
+        .tl-search--filter--radio--button {
             background: white;
             width: 20px;
             height: 20px;
@@ -193,7 +193,7 @@
         }
 
         &--checked {
-            span:after {
+            .tl-search--filter--radio--button:after {
                 content: "";
                 border-radius: 61px;
                 border: 6px solid black;

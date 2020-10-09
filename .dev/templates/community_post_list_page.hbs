@@ -41,7 +41,7 @@
                             <span class="tl-error--message"></span>
                         </div>
                     <form role="search" class="tl-search govuk-!-margin-top-2" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get">
-                        <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search discussions" aria-label="Search discussions">
+                        <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search all discussions" aria-label="Search all discussions">
                         <input type="hidden" name="filter_by" value="community" />
                         <input type="submit" name="commit" value="Search">
                     </form>
@@ -59,7 +59,24 @@
 
                     <select name="sortby" class="govuk-select" id="tl-community-sortby" onchange="if (this.value) window.location.href=this.value">
                         {{#each sorters}}
-                        <option value="{{url}}" {{#if selected}} selected {{/if}}>{{name}}</option>
+                        {{#is name 'Votes'}}
+                        {{else}}
+                        <option value="{{url}}" {{#if selected}} selected {{/if}}>
+                            {{#is name 'Newest post'}}
+                            Newest questions
+                            {{else}}
+                            {{#is name 'Recent activity'}}
+                            Newest replies
+                            {{else}}
+                            {{#is name 'Comments'}}
+                            Most replies
+                            {{else}}
+                            {{name}}
+                            {{/is}}
+                            {{/is}}
+                            {{/is}}
+                        </option>
+                        {{/is}}
                         {{/each}}
                     </select>
                 </div>
@@ -70,7 +87,7 @@
                 Post a new question
                 {{/link}}
                 {{else}}
-                {{#link "sign_in" class="govuk-button"}}Sign in to post a new question{{/link}}</li>
+                {{#link 'new_post' class="govuk-button"}}Sign in to post a new question{{/link}}</li>
                 {{/if}}
             </div>
         </div>

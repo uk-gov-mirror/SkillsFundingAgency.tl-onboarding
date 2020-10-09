@@ -46,72 +46,117 @@
                         <fieldset class="govuk-fieldset">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                                 <h1 class="govuk-fieldset__heading">
-                                    Filter results
+                                    Show me
                                 </h1>
                             </legend>
                             <div class="govuk-radios--small">
                                 {{#each filters}}
                                 {{#if selected}}
-                                <a class="tl-search--filter--radio tl-search--filter--radio--checked" href="{{url}}"><span></span>{{name}}</a>
+                                <a class="tl-search--filter--radio tl-search--filter--radio--checked" href="{{url}}">
+                                    <span class="tl-search--filter--radio--button"></span>
+                                    {{#is name 'All types'}}
+                                    All results
+                                    {{else}}
+                                    {{#is name 'Articles'}}
+                                    Articles only
+                                    {{else}}
+                                    {{#is name 'Community'}}
+                                    Discussions only
+                                    {{else}}
+                                    {{name}}
+                                    {{/is}}
+                                    {{/is}}
+                                    {{/is}}
+                                </a>
 
                                 {{else}}
-                                <a class="tl-search--filter--radio" href="{{url}}"><span></span>{{name}}</a>
+                            <a class="tl-search--filter--radio" href="{{url}}">
+                                <span class="tl-search--filter--radio--button"></span>
+                                {{#is name 'All types'}}
+                                All results
+                                {{else}}
+                                {{#is name 'Articles'}}
+                                Articles only
+                                {{else}}
+                                {{#is name 'Community'}}
+                                Discussions only
+                                {{else}}
+                                {{name}}
+                                {{/is}}
+                                {{/is}}
+                                {{/is}}
+                            </a>
                                 {{/if}}
                                 {{/each}}
+
                             </div>
 
                         </fieldset>
                     </div>
                 </div>
+
                 <script>
                     $(".tl-search--filter-radio").click(function () {
                         location.href = $(this).attr("value");
-                    });
+                    });  
                 </script>
 
                 {{/if}}
-                <div class="govuk-grid-column-two-thirds">
-                    {{#if results}}
-                    {{#is results_count 1}}
-                    <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        There is <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> result for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
-                    </h2>
-                    {{else}}
-                    <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        There are <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
-                    </h2>
-                    {{/is}}
-                    <ul class="tl-search--results--list">
-                        {{#each results}}
-                        <li>
-                            {{#each path_steps}}
-                            {{#is @index 1}}
-                            <span class="tl-search--results--category">{{name}}</span>
-                            {{/is}}
-                            {{/each}}
+            <div class="govuk-grid-column-two-thirds">
+                {{#if results}}
+                {{#is results_count 1}}
+                <h2 class="govuk-body-m govuk-!-margin-top-6">
+                    There is <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> result for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
+                </h2>
+                <p class="govuk-body">If you can’t find what you’re looking for, why don’t you {{#link 'new_post' class='govuk-link'}}ask a question on our forum{{/link}}</p>
+                {{else}}
+                <h2 class="govuk-body-m govuk-!-margin-top-6">
+                    There are <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
+                </h2>
+                <p class="govuk-body">If you can’t find what you’re looking for, why don’t you {{#link 'new_post' class='govuk-link'}}ask a question on our forum{{/link}}</p>
 
-                            <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a class="govuk-link tl-search--results--link" href="{{url}}">{{title}}</a></h3>
-                            <p class="govuk-body tl-search--results--body">{{text}}</p>
-                        </li>
+                {{/is}}
+                <ul class="tl-search--results--list">
+                    {{#each results}}
+                    <li>
+                        {{#each path_steps}}
+                        {{#is @index 1}}
+
+                        {{#is name 'Community'}}
+                        <span class="tl-search--results--category">Discussion</span>
+                        {{else}}
+                        <span class="tl-search--results--category">Article</span>
+                        {{/is}}
+
+                        {{/is}}
                         {{/each}}
-                    </ul>
-                    <div class="tl-search--pagination">
-                        {{pagination}}
-                    </div>
-                    {{else}}
-                    <h2 class="govuk-body-m govuk-!-margin-top-6">
-                        No results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
-                        <span class="tl-hidden" id="tl-search--results-count">0</span>
-                    </h2>
-                    <p class="govuk-body">Improve your search results by:</p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>double-checking your spelling</li>
-                        <li>using fewer keywords</li>
-                        <li>searching for something less specific</li>
-                    </ul>
-                    {{/if}}
 
+                        <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a class="govuk-link tl-search--results--link" href="{{url}}">{{title}}</a></h3>
+                        <p class="govuk-body tl-search--results--body">{{text}}</p>
+                    </li>
+                    {{/each}}
+                </ul>
+                <div class="tl-search--pagination">
+                    {{pagination}}
                 </div>
+                {{else}}
+                <h2 class="govuk-body-m govuk-!-margin-top-6">
+                    No results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
+                    <span class="tl-hidden" id="tl-search--results-count">0</span>
+                </h2>
+                <p class="govuk-body">Improve your search results by:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>making sure your filter is set to show all results</li>
+                    <li>double-checking your spelling</li>
+                    <li>using fewer keywords</li>
+                    <li>searching for something less specific</li>
+                </ul>
+
+                <p class="govuk-body">Alternatively, why don’t you {{#link 'new_post' class='govuk-link'}}ask a question on our forum{{/link}}</p>
+
+                {{/if}}
+
+            </div>
 
             </div>
         </section>

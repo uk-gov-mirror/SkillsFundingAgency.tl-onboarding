@@ -133,8 +133,8 @@
 
                 </div>
                 <div class="tl-community--post--actions">
-                    {{#post.actions class="govuk-button"}}
-                    Manage post
+                    {{#post.actions class="govuk-link"}}
+                    Manage post &#709;
                     {{/post.actions}}
                 </div>
             </div>
@@ -198,13 +198,13 @@
 
                     </div>
                     <div class="tl-community--comment--actions">
-                        {{#actions class="govuk-button"}}
-                        Manage comment
+                        {{#actions class="govuk-link"}}
+                        Manage reply &#709;
                         {{/actions}}
                     </div>
                     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-                </div>Assum
+                </div>
                 {{/each}}
 
 
@@ -220,15 +220,13 @@
     <div class="govuk-width-container ">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-                {{#if signed_in}}
                 <h2 class="govuk-heading-m">Post a reply</h2>
-                {{else}}
-                {{/if}}
+                {{#if signed_in}}
 
                 {{#form 'comment' class='govuk-form-group'}}
 
-                <div class="comment-container">
-                    {{textarea 'body' rows='4'  class='govuk-textarea'}}
+                <div class="tl-comment--container">
+                    {{wysiwyg 'body' rows='4'  class='govuk-textarea'}}
                     <div class="comment-form-controls">
 
                         <div class="govuk-checkboxes govuk-!-margin-bottom-3">
@@ -243,6 +241,11 @@
                     </div>
                 </div>
                 {{/form}}
+                {{else}}
+                {{#link "sign_in" class="govuk-button govuk-!-margin-bottom-9"}}Sign in to post a reply{{/link}}
+                {{/if}}
+
+
             </div>
         </div>
     </div>
