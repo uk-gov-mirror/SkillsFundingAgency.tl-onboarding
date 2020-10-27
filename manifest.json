@@ -257,7 +257,7 @@
           "description": "Sitewide",
           "label": "Guide",
           "value": "360015583140"
-        }
+        },
         {
           "identifier": "survey_link",
           "type": "text",
