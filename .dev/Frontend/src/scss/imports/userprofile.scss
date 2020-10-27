@@ -1,23 +1,41 @@
 .tl-profile {
+
     &--avatar {
         border-radius: 50%;
-        float: left;
-        max-width: 50px;
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+        text-align: center;
+        display: inline-block;
         margin-right: 20px;
-        position: relative;
-        top: 5px;
-    }
+        float: left;
 
+        span {
+            @include govuk-font($size: 19);
+            color: govuk-colour("white");
+        }
+    }
 }
 
 .tl-profile--left {
-    border-right: 2px solid white;
-    @include govuk-responsive-padding(7, "right");
+
+    @include govuk-media-query ($from: tablet) {
+        border-right: 2px solid white;
+        @include govuk-responsive-padding(7, "right");
+    }
+
     @include govuk-responsive-padding(2, "top");
+
+    &--upper, &--lower {
+        display: inline-block;
+    }
 }
 
 .tl-profile--right {
-    @include govuk-responsive-padding(7, "left");
+    @include govuk-media-query ($from: tablet) {
+        @include govuk-responsive-padding(7, "left");
+    }
+
     @include govuk-responsive-padding(2, "top");
 }
 
@@ -36,4 +54,9 @@
     .tl-profile-user--only {
         display: block;
     }
+}
+
+.tl-profile--userdetails {
+    padding-left: 80px;
+    max-width: 100%;
 }

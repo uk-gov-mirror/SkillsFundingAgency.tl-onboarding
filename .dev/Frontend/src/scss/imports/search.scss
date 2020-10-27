@@ -57,6 +57,17 @@
                 z-index: 1;
             }
         }
+
+        &--minimal {
+            @include govuk-media-query ($from: tablet) {
+                display: inline-block;
+                min-width: 300px;
+            }
+
+            input[type=search] {
+                @include govuk-font($size: 16, $weight: normal);
+            }
+        }
     }
 
     &--community {
@@ -77,8 +88,14 @@
         }
 
         &--minimal {
-            display: inline-block;
-            min-width: 300px;
+            @include govuk-media-query ($from: tablet) {
+                display: inline-block;
+                min-width: 300px;
+            }
+
+            input[type=search] {
+                @include govuk-font($size: 16, $weight: normal);
+            }
         }
     }
 }
@@ -102,10 +119,30 @@
         }
     }
 
-    .tl-search--results--category {
+    .tl-search--results--section {
         @extend .govuk-caption-m;
         @include govuk-responsive-margin(1, "bottom");
+        @include govuk-responsive-margin(2, "right");
         @include govuk-font($size: 16, $weight: normal);
+        display: inline-block;
+    }
+
+    .tl-search--results--category {
+        @extend .govuk-tag;
+        @include govuk-responsive-margin(1, "bottom");
+        @include govuk-font($size: 14, $weight: normal);
+        padding: 1px 5px;
+        text-transform: uppercase;
+        display: inline-block;
+
+
+        &--article {
+            @extend .govuk-tag--blue;
+        }
+
+        &--discussion {
+            @extend .govuk-tag--yellow;
+        }
     }
 
     .tl-search--results--link {

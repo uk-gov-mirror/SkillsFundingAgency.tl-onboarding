@@ -24,12 +24,12 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-one-third">
 
-                    <div class="govuk-width-container" id="tl-breadcrumbs--community--post">
+                    <div id="tl-breadcrumbs--community--post">
                         <div class="tl-breadcrumbs">
                             {{breadcrumbs}}
                         </div>
                         <script>
-                            $(document).ready(function breadcrumbChangelink() {
+                            document.addEventListener('DOMContentLoaded', function breadcrumbChangelink() {
                                 var link = document.querySelector(".tl-breadcrumbs a[href='/hc/en-gb/community/topics']");
                                 link.setAttribute('href', "/hc/en-gb/community/posts");
                                 link.innerHTML = "Discussion forum";
@@ -38,56 +38,36 @@
                     </div>
                 </div>
                 <div class="govuk-grid-column-two-thirds tl-text--right govuk-!-margin-top-1">
-                    <div class="tl-form-group tl-search--container tl-search--community tl-search--community--minimal">
+                    <div class="tl-form-group tl-search--container tl-search--community tl-search--community--minimal govuk-!-margin-bottom-1">
 
                         <div class="tl-search--error tl-hidden">
                             <span class="tl-error--message"></span>
                         </div>
                         <form role="search" class="tl-search" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get">
-                            <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search all forum posts" aria-label="Search all forum posts">
+                            <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search all discussions" aria-label="Search discussions">
                             <input type="hidden" name="filter_by" value="community" />
-                            <input type="submit" name="commit" value="Search">
+                            <input type="submit" name="commit" value="Search all discussions">
                         </form>
 
                     </div>
                     {{#if signed_in}}
-                    <a href="#" class="govuk-button govuk-!-margin-bottom-0 tl-approved--hidden">Post a new question</a>
-                    {{#link 'new_post' class='govuk-button govuk-!-margin-bottom-0 tl-approved--visible'}}
-                    Post a new question
-                    {{/link}}
+                    <a href="/hc/en-gb/community/posts/new" class="govuk-button govuk-!-margin-bottom-0" id="tl-community--newpost">Post a new question</a>
 
+                    <script>
+                        $(document).ready(function () {
+                            if (isApprovedUser()) {
+                            }
+                            else {
+                                $("#tl-community--newpost").attr('href', "/hc/en-gb/articles/360016899780");
+                            }
+                        });
+                    </script>
                     {{else}}
                     {{#link "new_post" class="govuk-button govuk-!-margin-bottom-0"}}Sign in to post a new question{{/link}}
                     {{/if}}
 
 
-                    <script>
-                        function isApprovedUser()
-                        {
-                            if (HelpCenter.user.role != "anonymous" && 
-                                HelpCenter.user.organizations.length > 0) {
-                                for (var idx in HelpCenter.user.organizations) {
-                                    if (HelpCenter.user.role != "end_user" || 
-                                        HelpCenter.user.organizations[idx].tags.includes('tlevels_approved')) {
-                                        return true;
-                                    }
-                                }
-                            }
 
-                            return false;
-                        }
-
-                        $(document).ready(function () {
-                            if(isApprovedUser()) {
-                                console.log("Approved user");
-                                $(".tl-approved--visible").css('display', 'inline-block');
-                            }
-                            else {
-                                console.log("Not approved user");
-                                $(".tl-approved--hidden").css('display', 'inline-block');
-                            }
-                        });
-                    </script>
                 </div>
             </div>
         </div>
@@ -97,50 +77,121 @@
     <div class="govuk-width-container govuk-!-margin-top-7 govuk-!-margin-bottom-7">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-two-thirds">
-                        <p class="govuk-body-s">
-                            <img src="{{post.author.avatar_url}}" alt="" class="tl-community-post--avatar" />
-                            {{#link 'user_profile' id=post.author.id class="govuk-link"}}{{post.author.name}}{{/link}},
-                            <span class="{{post.author.id}}org  tl-text--grey"></span>
-                        </p>
-                        <script>
-                                $.getJSON('/api/v2/users/{{post.author.id}}.json', function (organisationID) {
-                                    var orgid = organisationID.user.organization_id;
-
-                                    $.getJSON('/api/v2/organizations/' + orgid +'.json', function(organisation) {
-                                          $('.{{post.author.id}}org').html(organisation.organization.name);
-                                      });
+                <div class="tl-ordering">
+                    <div class="tl-order-m-1">
+                        <div class="govuk-body-s">
+                            <div id="backcolor" class="tl-community--post--avatar">
+                                <span id=Initials class="posts_list"></span>
+                                <script>
+								document.addEventListener('DOMContentLoaded', function() {
+                    	            var name = '{{post.author.name}}';
+                    	            $("#Initials").html(convertNameToInitials(name));
+                    	            $("#backcolor").css("background-color",stringToHslColor(convertNameToInitials(name),70, 70));
                                 });
-                        </script>
+                                </script>
+                            </div>
+                            {{#link 'user_profile' id=post.author.id class="govuk-link tl-community--userlink"}}{{post.author.name}}{{/link}}<span class="{{post.author.id}}org  tl-text--grey"></span>
+
+                            <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        if (isAgent()) {
+                                    $.getJSON('/api/v2/users/{{post.author.id}}.json', function (organisationID) {
+                                        var orgid = organisationID.user.organization_id;
+
+                                        $.getJSON('/api/v2/organizations/' + orgid + '.json', function (organisation) {
+                                            $('.{{post.author.id}}org').html(", " + organisation.organization.name);
+                                        });
+                                    });
+                                    };
+                                });
+                            </script>
+                        </div>
                     </div>
-                    <div class="govuk-grid-column-one-third tl-text--right">
-                        <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0">Subscribe</button>
+                    <div class="tl-order-m-3">
+                        <div class="tl-community--post--subscribe">
+                            {{#if signed_in}}
+                            <button id="subscribebutton" class="govuk-button govuk-button--secondary tl-js-hidden"></button>
+
+                            <script type="text/javascript">
+                                document.addEventListener('DOMContentLoaded', function() {
+
+                                helpers.getUserPostSubcribeStatus({{post.id}})
+  	                            .done(
+  	                            function(s){
+                                            $("button#subscribebutton").show();
+                                            if (typeof subscriptionsStatus !== "undefined") {
+                                            $('button#subscribebutton').text("Stop getting updates on this discussion");
+                                  } else{
+                                            $('button#subscribebutton').text("Get updates on this discussion");
+                                  }
+  	                            })
+  	                            .fail(function(r){
+                                });
+
+                                $('#subscribebutton').click(function(e){
+                                    if ($('#subscribebutton').text() === "Get updates on this discussion"){
+                                    helpers.subscribeToPost({{post.id}})
+  			                            .done(function(){
+                                                $('button#subscribebutton').text("Stop getting updates on this discussion");
+  			                            })
+  			                            .fail(function(){
+  				                            $('button#subscribebutton').attr('disabled', true);
+  			                            })
+                                  } else {
+                                    helpers.deletePostSubscribeStatus({{post.id}})
+                                    .done(function(status){
+                                        $('button#subscribebutton').text("Get updates on this discussion");
+                                    })
+                                    .fail(function(r){
+  				                            $('button#subscribebutton').attr('disabled', true);
+                                    });
+  		                            }
+                                });
+
+                              });
+                            </script>
+
+
+
+                            {{else}}
+                            {{#link "sign_in" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0 "}}Sign in to get updates on this discussion{{/link}}
+                            {{/if}}
+
+
+                        </div>
+                    </div>
+                    <div class="tl-order-m-2">
+                        <div class="tl-community--post--main--content">
+                            <h1 class="govuk-heading-l">
+                                {{post.title}}
+                            </h1>
+
+                            <div class="tl-community--post--content govuk-!-margin-top-7">
+                                {{post.details}}
+                            </div>
+
+                            {{#if post.pending}}
+                            <span class="status-label status-label-pending-moderation">{{t 'pending_approval'}}</span>
+                            {{/if}}
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-one-half">
+                                    <p class="govuk-body-s tl-text--grey">
+                                        {{#if post.editor}}
+                                        Edited on: {{date post.edited_at format='medium'}}
+                                        {{else}}
+                                        Posted on: {{date post.created_at format='medium'}}
+                                        {{/if}}
+                                    </p>
+                                </div>
+                                <div class="govuk-grid-column-one-half tl-community--post--actions">
+                                    {{#post.actions class="govuk-link"}}
+                                    Manage post &#709;
+                                    {{/post.actions}}
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-                </div>
-                <div class="tl-community-post--main--content">
-                    <h1 class="govuk-heading-l">
-                        {{post.title}}
-                    </h1>
-
-                    <div class="tl-community-post--content govuk-!-margin-top-7">
-                        {{post.details}}
-                    </div>
-
-                    <p class="govuk-body-s tl-text--grey">
-                        {{#if post.editor}}
-                        Edited on: {{date post.edited_at format='medium'}}
-                        {{else}}
-                        Posted on: {{date post.created_at format='medium'}}
-                        {{/if}}
-                    </p>
-
-                </div>
-                <div class="tl-community--post--actions">
-                    {{#post.actions class="govuk-link"}}
-                    Manage post &#709;
-                    {{/post.actions}}
                 </div>
             </div>
         </div>
@@ -160,32 +211,51 @@
                     replies
                     {{/is}}
                 </h2>
-                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-bottom-0">
+
+
+                {{#if signed_in}}
                 {{#each comments}}
-                <div class="tl-community-comment--main {{#if official}} tl-community-comment--main--official {{/if}}  {{#if pending}}tl-community-comment--main--pending{{/if}}">
+                <div class="tl-community--comment--main {{#if official}} tl-community--comment--official  govuk-!-margin-bottom-4{{/if}}  {{#if pending}}tl-community--comment--main--pending{{/if}}">
                     <div class="govuk-grid-row">
-                        <div class="govuk-grid-column-two-thirds">
-                            <p class="govuk-body-s">
-                                <img src="{{author.avatar_url}}" alt="" class="tl-community-post--avatar" />
-                                {{#link 'user_profile' id=author.id class="govuk-link"}}{{author.name}}{{/link}},
-
+                        <div class="govuk-grid-column-{{#if official}}full{{else}}two-thirds{{/if}}">
+                            <div class="govuk-body-s">
+                                {{#if official}}
+                                <p class="tl-community--comment--official--label">Official Response</p>
+                                <image src="{{asset 'ESFALogo.png'}}" class="tl-community--comment--official--logo"></image>
+                                {{else}}
+                                <div id="{{id}}backcolor" class="tl-community--post--avatar">
+                                    <span id="{{id}}Initials" class="posts_list"></span>
+                                    <script>
+								            document.addEventListener('DOMContentLoaded', function() {
+                                                var name = '{{author.name}}';
+                                                $("#{{id}}Initials").html(convertNameToInitials(name));
+                                                $("#{{id}}backcolor").css("background-color",stringToHslColor(convertNameToInitials(name),70, 70));
+                                            });
+                                    </script>
+                                </div>
+                                {{#link 'user_profile' id=author.id class="govuk-link tl-community--userlink"}}{{author.name}}{{/link}}<span class="comment{{author.id}}org tl-text--grey"></span>
                                 <script>
-                                $.getJSON('/api/v2/users/{{author.id}}.json', function (organisationID) {
-                                    var orgid = organisationID.user.organization_id;
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        if (isAgent()) {
+                                            $.getJSON('/api/v2/users/{{author.id}}.json', function (commentorganisationID) {
+                                                var commentorgid = commentorganisationID.user.organization_id;
 
-                                    $.getJSON('/api/v2/organizations/' + orgid +'.json', function(organisation) {
-                                          $('.{{author.id}}org').html(organisation.organization.name);
-                                      });
-                                });
+                                                $.getJSON('/api/v2/organizations/' + commentorgid + '.json', function (commentorganisation) {
+                                                    $('.comment{{author.id}}org').html(", " + commentorganisation.organization.name);
+                                                });
+                                            });
+                                            };
+                                        });
                                 </script>
-                                <span class="{{author.id}}org tl-text--grey"></span>
-                            </p>
+                                {{/if}}
+                            </div>
 
                         </div>
                     </div>
-                    <div class="tl-community-comment--main--content">
+                    <div class="tl-community--comment--main--content">
 
-                        <div class="tl-community-post--content">
+                        <div class="tl-community--post--content">
                             {{body}}
                         </div>
                         {{#if pending}}
@@ -193,7 +263,86 @@
                             Post pending approval
                         </p>
                         {{/if}}
-                        <p class="govuk-body-s tl-text--grey">
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-one-half">
+                                <p class="govuk-body-s tl-text--grey">
+                                    {{#if editor}}
+                                    Edited on: {{date edited_at format='medium'}}
+                                    {{else}}
+                                    Posted on: {{date created_at format='medium'}}
+                                    {{/if}}
+                                </p>
+                            </div>
+                            <div class="govuk-grid-column-one-half">
+                                <div class="tl-community--comment--actions">
+                                    {{#actions class="govuk-link"}}
+                                    Manage reply &#709;
+                                    {{/actions}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{#unless official}}<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">{{/unless}}
+
+                </div>
+                {{/each}}
+                {{else}}
+                {{#each comments}}
+                <div class="tl-community--comment--main {{#if official}}tl-community--comment--official govuk-!-margin-bottom-4 {{/if}}  {{#if pending}}tl-community--comment--main--pending{{/if}}">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-{{#if official}}full{{else}}two-thirds{{/if}}">
+                            <div class="govuk-body-s">
+                                {{#if official}}
+                                <p class="tl-community--comment--official--label">Official Response</p>
+                                <image src="{{asset 'ESFALogo.png'}}" class="tl-community--comment--official--logo"></image>
+
+
+                                {{else}}
+                                <div id="{{id}}backcolor" class="tl-community--post--avatar">
+                                    <span id="{{id}}Initials" class="posts_list"></span>
+                                    <script>
+								            document.addEventListener('DOMContentLoaded', function() {
+                                                var name = '{{author.name}}';
+                                                $("#{{id}}Initials").html(convertNameToInitials(name));
+                                                $("#{{id}}backcolor").css("background-color",stringToHslColor(convertNameToInitials(name),70, 70));
+                                            });
+                                    </script>
+                                </div>
+                                {{#link 'user_profile' id=author.id class="govuk-link tl-community--userlink"}}{{author.name}}{{/link}}<span class="comment{{author.id}}org tl-text--grey"></span>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        if (isAgent()) {
+                                            $.getJSON('/api/v2/users/{{author.id}}.json', function (commentorganisationID) {
+                                                var commentorgid = commentorganisationID.user.organization_id;
+
+                                                $.getJSON('/api/v2/organizations/' + commentorgid + '.json', function (commentorganisation) {
+                                                    $('.comment{{author.id}}org').html(", " + commentorganisation.organization.name);
+                                                });
+                                            });
+                                            };
+                                        });
+                                </script>
+                                {{/if}}
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tl-community--comment--main--content">
+
+                        <div class="tl-community--post--content">
+                            {{body}}
+                        </div>
+                        {{#if pending}}
+                        <p class="govuk-body-s tl-text--red">
+                            Post pending approval
+                        </p>
+                        {{/if}}
+                        <p class="govuk-body-s tl-text--grey govuk-!-margin-bottom-5">
                             {{#if editor}}
                             Edited on: {{date edited_at format='medium'}}
                             {{else}}
@@ -202,15 +351,16 @@
                         </p>
 
                     </div>
-                    <div class="tl-community--comment--actions">
-                        {{#actions class="govuk-link"}}
-                        Manage reply &#709;
-                        {{/actions}}
-                    </div>
-                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                    {{#unless official}}<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">{{/unless}}
 
                 </div>
                 {{/each}}
+                {{/if}}
+
+
+
+
 
 
             </div>
@@ -225,30 +375,99 @@
     <div class="govuk-width-container ">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-                <h2 class="govuk-heading-m">Post a reply</h2>
+
                 {{#if signed_in}}
 
-                {{#form 'comment' class='govuk-form-group'}}
+                {{#form 'comment' class='govuk-form-group tl-community--comment--form--wrapper'}}
+                <div class="tl-community--comment--form tl-js-hidden">
+                    <h2 class="govuk-heading-m">Post a reply</h2>
+                    <div class="tl-comment--container">
+                        <span id="comment-body-error" class="govuk-error-message tl-js-hidden">
+                            <span class="govuk-visually-hidden">Error:</span> You must write a reply
+                        </span>
+                        {{wysiwyg 'body' rows='4'  class='govuk-textarea'}}
 
-                <div class="tl-comment--container">
-                    {{wysiwyg 'body' rows='4'  class='govuk-textarea'}}
-                    <div class="comment-form-controls">
 
-                        <div class="govuk-checkboxes govuk-!-margin-bottom-3">
-                            <div class="govuk-checkboxes__item">
-                                {{checkbox 'official' class="govuk-checkboxes__input"}}
-                                {{label 'official' class="govuk-label govuk-checkboxes__label"}}
+
+                        <div class="comment-form-controls">
+
+                            <div class="govuk-checkboxes tl-community-comment--form--official tl-js-hidden govuk-!-margin-top-2">
+                                <div class="govuk-checkboxes__item">
+                                    {{checkbox 'official' class="govuk-checkboxes__input"}}
+                                    {{label 'official' class="govuk-label govuk-checkboxes__label"}}
+                                </div>
+
                             </div>
 
-                        </div>
-                        <input value="Post reply" type='submit' class="govuk-button" />
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    if (isAgent()) {
+                                        $(".tl-community-comment--form--official").show();
 
+                                    }
+                                });
+                            </script>
+
+                            <button id="submitcomment" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0">Post reply</button>
+
+                            <script>
+                                $(document).ready(function () {
+                                    $('button#submitcomment').click(function () {
+                                        var commenttext = $("#community_comment_body_ifr").contents().find("body").html()
+                                        if ((!commenttext) || (commenttext.contains('<p><br data-mce-bogus="1"></p>'))) {
+                                            console.log(commenttext)
+                                            event.preventDefault();
+                                            $(".tl-community--comment--form--wrapper").addClass("govuk-form-group--error");
+                                            $("#comment-body-error").css('display', 'inline-block');
+                                        }
+                                    });
+
+                                });
+                            </script>
+
+                            <script>
+                                window.addEventListener("pageshow", function () {
+                                    $("textarea#community_comment_body").val("");
+                                    $("#community_comment_body_ifr").contents().find("body").html("");
+                                });
+                            </script>
+                        </div>
                     </div>
                 </div>
+
+                <div class="tl-community--comment--message govuk-!-margin-bottom-8 tl-js-hidden">
+                    <h2 class="govuk-heading-m">Post a reply</h2>
+                    <p class="govuk-body">
+                        Make sure the email on your account is linked to a T Level college or school, for example joe.bloggs@horsgreen-academy.ac.uk.
+                    </p>
+                    <p class="govuk-body">You may need to create a new account using your work email.</p>
+                    {{#link 'sign_out' class="govuk-button"}}Sign out and try again{{/link}}
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        if (isApprovedUser()) {
+                            $(".tl-community--comment--form").show();
+                        }
+                        else {
+                            $(".tl-community--comment--message").show();
+
+                        }
+                    });
+                </script>
                 {{/form}}
+
+
+
                 {{else}}
+                <h2 class="govuk-heading-m">Post a reply</h2>
+
                 {{#link "sign_in" class="govuk-button govuk-!-margin-bottom-9"}}Sign in to post a reply{{/link}}
                 {{/if}}
+
+
+
+
+
 
 
             </div>
@@ -256,5 +475,18 @@
     </div>
 
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

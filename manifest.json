@@ -219,6 +219,40 @@
           "value": true
         }
       ]
+    },
+    {
+      "label": "Custom article IDs",
+      "variables": [
+        {
+          "identifier": "article_id_cookies",
+          "type": "text",
+          "description": "Footer section",
+          "label": "Cookies",
+          "value": "360008941440"
+        },
+        {
+          "identifier": "article_id_accessibility",
+          "type": "text",
+          "description": "Footer section",
+          "label": "Accesibility",
+          "value": "360008997820"
+        },
+        {
+          "identifier": "article_id_tcs",
+          "type": "text",
+          "description": "Articles section",
+          "label": "COVID-19 Guidance",
+          "value": "360003793119"
+        },
+        {
+          "identifier": "article_id_guide",
+          "type": "text",
+          "description": "Articles section",
+          "label": "COVID-19 Apprentice",
+          "value": "360003798540"
+        },
+
+      ]
     }
   ]
 }

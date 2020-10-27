@@ -1,3 +1,28 @@
+<script>
+    $(document).ready(function () {
+        var userRole = HelpCenter.user.role;
+        var userOrgsCount = HelpCenter.user.organizations.length;
+
+        if (userRole != "anonymous" && userOrgsCount > 0) {
+            var userTags = HelpCenter.user.organizations[0].tags;
+
+
+            if (userRole != "end_user" || userTags.includes('tlevels_approved')) {
+            }
+
+            else {
+                window.location.href = "/hc/en-gb/articles/360016899780";
+            }
+        }
+
+        else {
+            window.location.href = "/hc/en-gb/articles/360016899780";
+        }
+    });
+
+</script>
+
+
 <div class="govuk-width-container ">
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
@@ -18,19 +43,20 @@
 
 <!-- Main content -->
 <main id="main-content" role="main">
+
+
     <!-- Hero Banner -->
     <div class="tl-hero--community--minimal">
         <div class="govuk-width-container">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-one-third">
 
-                    <div class="govuk-width-container" id="tl-breadcrumbs--community--post">
+                    <div id="tl-breadcrumbs--community--post">
                         <div class="tl-breadcrumbs">
                             {{breadcrumbs}}
                         </div>
-
                         <script>
-                            $(document).ready(function breadcrumbChangelink() {
+                            document.addEventListener('DOMContentLoaded', function breadcrumbChangelink() {
                                 var link = document.querySelector(".tl-breadcrumbs a[href='/hc/en-gb/community/topics']");
                                 link.setAttribute('href', "/hc/en-gb/community/posts");
                                 link.innerHTML = "Discussion forum";
@@ -39,23 +65,34 @@
                     </div>
                 </div>
                 <div class="govuk-grid-column-two-thirds tl-text--right govuk-!-margin-top-1">
-                    <div class="tl-form-group tl-search--container tl-search--community tl-search--community--minimal">
+                    <div class="tl-form-group tl-search--container tl-search--community tl-search--community--minimal govuk-!-margin-bottom-1">
+
                         <div class="tl-search--error tl-hidden">
                             <span class="tl-error--message"></span>
                         </div>
-                        {{search placeholder="Search all forum posts" submit=true class='tl-search' scoped=settings.scoped_community_search}}
+                        <form role="search" class="tl-search" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get">
+                            <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search all discussions" aria-label="Search discussions">
+                            <input type="hidden" name="filter_by" value="community" />
+                            <input type="submit" name="commit" value="Search all discussions">
+                        </form>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Page cotnent -->
+
+    <!-- Page content -->
     <div class="govuk-width-container govuk-!-margin-top-7 govuk-!-margin-bottom-7">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <h1 class="govuk-heading-l">Post a question</h1>
-                <p class="govuk-body">Before you do, check to see if someone else has already asked your question.</p>
+                <p class="govuk-body">Before you do make sure you’ve:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>checked the forum to see if someone else has already asked your question</li>
+                    <li>read our <a href="/hc/en-gb/articles/360015583140" target="_blank" class="govuk-link">discussion forum guidelines (opens in a new window or tab)</a></li>
+                </ul>
             </div>
             {{#form 'post'}}
             <div class="govuk-grid-column-two-thirds govuk-!-margin-top-4">
@@ -74,11 +111,11 @@
                     </h2>
                     {{#validate 'title'}}
                     <span id="event-name-error" class="govuk-error-message">
-                        <span class="govuk-visually-hidden">Error:</span> You must enter a post title
+                        <span class="govuk-visually-hidden">Error:</span> You must tell us what your question is
                     </span>
                     {{/validate}}
                     <div class="govuk-hint">
-                        Phrase your question as clearly as possible, so anyonce can understand it.
+                        Summarise the issue as clearly as possible, so anyone can understand it
                     </div>
                     {{input 'title' autofocus=true class="govuk-input tl-community--post-title"}}
 
@@ -100,10 +137,10 @@
                 </div>
             </div>
 
-            {{select 'topic' class="tl-community--post-topic"}}
+            {{select 'topic' class="tl-community--post--topic"}}
             <script>
                 $(function () {
-                    $(".tl-community--post-topic option:last").attr("selected", "selected");
+                    $(".tl-community--post--topic option:last").attr("selected", "selected");
                 });
             </script>
 
@@ -112,7 +149,7 @@
                 <div class="govuk-form-group {{#validate 'details'}}govuk-form-group--error{{/validate}}">
                     <h2 class="govuk-label-wrapper">
                         {{#label 'details' class="govuk-label govuk-label--m"}}
-                        Add some extra detail <span class="optional">({{t 'optional'}})</span>
+                        Add some extra detail (optional)
                         {{/label}}
                     </h2>
                     {{#validate 'details'}}

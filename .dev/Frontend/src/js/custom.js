@@ -247,3 +247,82 @@ if (cookieConsent.length) {
     $('#cookie-consent-No').change(function() {writeCookie('AnalyticsConsent','false',365); writeCookie('seen_cookie_message_help','cookie_policy',365); });*/
 }
 /* Cookie Article, with consent ends */
+
+
+/* APPROVED USER CHECK */
+
+function isApprovedUser() {
+    if (HelpCenter.user.role != "anonymous" && HelpCenter.user.organizations.length > 0) {
+        for (var idx in HelpCenter.user.organizations) {
+            if (HelpCenter.user.role != "end_user" || HelpCenter.user.organizations[idx].tags.includes('tlevels_approved')) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
+
+
+/* Agent USER CHECK */
+function isAgent() {
+    if (HelpCenter.user.role == "agent" || HelpCenter.user.role == "manager") {
+        return true;
+    }
+    return false;
+};
+
+
+// ***************Function stringToHslColor*****************t**
+// To convert the initials to a hash string. these functions take the parameters as the name initials 
+// convert the string into a hash string to give a unique colour to each name initial with also putting in control over the brightness and contrast as parameters
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+function convertNameToInitials(name) {
+    var parts = name.split(' ');
+    var initials = '';
+    for (var i = 0; i < parts.length; i++) {
+        if (parts[i].length > 0) {
+            initials += parts[i][0];
+        }
+    }
+    return initials;
+};
+
+function stringToHslColorLog(str, s, l) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var h = hash % 360;
+    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+}
+
+
+//  Function to convert the intials to a hash string.
+function stringToHslColor(str, s, l) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var h = hash % 360;
+    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+}
+
+$(function () {
+    $('html').addClass("govuk-template");
+    $('body').addClass("govuk-template__body");
+});
+
+
+

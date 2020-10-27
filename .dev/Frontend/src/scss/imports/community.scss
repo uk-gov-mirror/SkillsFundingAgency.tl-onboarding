@@ -1,5 +1,5 @@
 .tl-hero--community, .tl-hero--community--minimal {
-    background-color: mix(white, govuk-colour("light-grey"), 50%);
+    background-color: govuk-colour("light-grey");
     color: $govuk-text-colour;
     @include govuk-responsive-padding(2, "top");
     @include govuk-responsive-padding(9, "bottom");
@@ -15,6 +15,10 @@
 
 .tl-hero--community--minimal {
     @include govuk-responsive-padding(2, "bottom");
+
+    .tl-search--error {
+        text-align: left;
+    }
 }
 
 .tl-community--table__row {
@@ -58,39 +62,62 @@
     }
 }
 
-.tl-community-post--main {
-    background-color: govuk-colour("light-grey");
-    padding: 30px;
 
-    &--content {
-        padding: 10px 0 0 30px;
-    }
-}
-
-.tl-cmmunity-post--commentbox {
-    width: 100%;
-    border-radius: 0;
-    border: 2px solid $govuk-secondary-text-colour;
-}
-
-.tl-community-comment--main {
+.tl-community--comment--main {
     &--official {
         background: govuk-colour("light-grey");
         padding-left: 20px;
         padding-top: 10px;
     }
+
+    &--content {
+        padding: 10px 0 0 0;
+
+        @include govuk-media-query ($from: tablet) {
+            padding: 10px 0 0 40px;
+        }
+    }
 }
 
-.tl-community-post {
-    &--avatar {
-        border-radius: 50%;
-        float: left;
-        max-width: 30px;
-        margin-right: 10px;
-        top: -5px;
-        position: relative;
+.tl-community--post {
+    &--main {
+        padding: 30px;
+
+        &--content {
+            padding: 20px 0 0 0;
+
+            @include govuk-media-query ($from: tablet) {
+                padding: 10px 0 0 40px;
+            }
+        }
     }
 
+    &--subscribe {
+        @include govuk-media-query ($from: tablet) {
+            float: right;
+            top: -40px;
+            position: relative;
+        }
+
+        button {
+            margin-bottom: 0;
+        }
+    }
+
+    &--avatar {
+        border-radius: 50%;
+        height: 33px;
+        width: 33px;
+        line-height: 33px;
+        text-align: center;
+        display: inline-block;
+        margin-right: 7px;
+
+        span {
+            @include govuk-font($size: 14);
+            color: govuk-colour("white");
+        }
+    }
 
 
     &--content {
@@ -124,46 +151,86 @@
             @extend .govuk-link;
         }
     }
-}
 
-.tl-wysiwyg {
-    div[role="application"] {
-        border: 2px solid black !important;
-        border-radius: 0 !important;
+    &--topic {
+        display: none;
     }
 }
 
-.tl-community--post-topic {
-    display: none;
-}
-
-.tl-community--comment--actions, .tl-community--post--actions {
-    @extend .govuk-body-s;
-    text-align: right;
-
-    button {
-        @extend .govuk-link;
-        background: none;
-        border: none;
-        margin-bottom: 0;
-        font-size: unset;
-        text-decoration: underline;
-        color: $govuk-link-colour;
-        cursor: pointer;
-    }
-}
-
-.tl-comment--container {
-    textarea#community_comment_body {
-        width: 100%;
-        min-height: 150px;
-        border: 2px solid black;
-        border-radius: 0;
+    .tl-wysiwyg {
+        div[role="application"] {
+            border: 2px solid black !important;
+            border-radius: 0 !important;
+        }
     }
 
-    #hc-wysiwyg {
-        border: 2px solid black;
-        border-radius: 0;
-        margin-bottom: 10px;
+
+
+    .tl-community--comment--actions, .tl-community--post--actions {
+        @extend .govuk-body-s;
+        text-align: right;
+
+        button {
+            @extend .govuk-link;
+            background: none;
+            border: none;
+            margin-bottom: 0;
+            font-size: unset;
+            text-decoration: underline;
+            color: $govuk-link-colour;
+            cursor: pointer;
+        }
+    }
+
+    .tl-comment--container {
+        textarea#community_comment_body {
+            width: 100%;
+            min-height: 150px;
+            border: 2px solid black;
+            border-radius: 0;
+        }
+
+        #hc-wysiwyg {
+            border: 2px solid black;
+            border-radius: 0;
+            margin-bottom: 10px;
+        }
+    }
+
+    .tl-community--userlink {
+        color: $govuk-secondary-text-colour !important;
+    }
+
+
+.tl-community--comment--official {
+    background-color: govuk-tint(govuk-organisation-colour("department-for-education"), 90%);
+    padding: 20px 30px 10px 30px;
+    position: relative;
+    top: -1px;
+
+        &--label {
+            margin: 0;
+            background-color: govuk-organisation-colour("department-for-education", false);
+            color: govuk-colour("white");
+            display: inline-block;
+            padding: 5px 7px 3px 7px;
+            text-transform: uppercase;
+            @include govuk-font($size: 16, $weight: bold);
+        }
+
+        &--logo {
+            float: right;
+            max-height: 50px;
+        }
+
+    .tl-community--comment--main {
+
+        &--content {
+            padding: 10px 0 0 0;
+
+            @include govuk-media-query ($from: tablet) {
+                padding: 10px 0 0 0;
+            }
+        }
     }
 }

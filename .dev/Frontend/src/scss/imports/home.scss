@@ -35,4 +35,24 @@
             color: govuk-colour("black");
         }
     }
+
+    .tl-breadcrumbs {
+
+        li:before {
+            border-color: govuk-colour("white");
+        }
+
+        * {
+            color: govuk-colour("white") !important;
+        }
+    }
+
+    &--minimal {
+        @include govuk-responsive-padding(2, "bottom");
+        @include govuk-responsive-padding(2, "top");
+
+        .tl-search--error {
+            text-align: left;
+        }
+    }
 }
