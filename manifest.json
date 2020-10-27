@@ -1,9 +1,9 @@
 {
   "name": "GDS Style",
   "author": "Ash Anderton",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "api_version": 2,
-  "default_locale": "en-us",
+  "default_locale": "en-gb",
   "settings": [
     {
       "label": "colors_group_label",
@@ -250,8 +250,7 @@
           "description": "Articles section",
           "label": "COVID-19 Apprentice",
           "value": "360003798540"
-        },
-
+        }
       ]
     }
   ]
