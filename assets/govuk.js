@@ -1882,7 +1882,7 @@ ErrorSummary.prototype.getAssociatedLegendOrLabel = function ($input) {
         return $candidateLegend
       }
 
-      // For other input types, only scroll to the fieldset's legend (instead of
+      // For other input types, only scroll to the fieldset’s legend (instead of
       // the label associated with the input) if the input would end up in the
       // top half of the screen.
       //
