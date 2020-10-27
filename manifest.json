@@ -228,28 +228,35 @@
           "type": "text",
           "description": "Footer section",
           "label": "Cookies",
-          "value": "360008941440"
+          "value": "360015340619"
         },
         {
           "identifier": "article_id_accessibility",
           "type": "text",
           "description": "Footer section",
           "label": "Accesibility",
-          "value": "360008997820"
+          "value": "360015324220"
         },
         {
-          "identifier": "article_id_tcs",
+          "identifier": "article_id_terms",
           "type": "text",
           "description": "Articles section",
-          "label": "COVID-19 Guidance",
-          "value": "360003793119"
+          "label": "Terms",
+          "value": "360017220759"
+        },
+        {
+          "identifier": "article_id_interrupt",
+          "type": "text",
+          "description": "Articles section",
+          "label": "Interrupt",
+          "value": "{{settings.article_id_interrupt}}"
         },
         {
           "identifier": "article_id_guide",
           "type": "text",
           "description": "Articles section",
-          "label": "COVID-19 Apprentice",
-          "value": "360003798540"
+          "label": "Guide",
+          "value": "360015583140"
         }
       ]
     }

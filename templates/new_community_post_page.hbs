@@ -11,12 +11,12 @@
             }
 
             else {
-                window.location.href = "/hc/en-gb/articles/360016899780";
+                window.location.href = "/hc/en-gb/articles/{{settings.article_id_interrupt}}";
             }
         }
 
         else {
-            window.location.href = "/hc/en-gb/articles/360016899780";
+            window.location.href = "/hc/en-gb/articles/{{settings.article_id_interrupt}}";
         }
     });
 
@@ -91,7 +91,7 @@
                 <p class="govuk-body">Before you do make sure you've:</p>
                 <ul class="govuk-list govuk-list--bullet">
                     <li>checked the forum to see if someone else has already asked your question</li>
-                    <li>read our <a href="/hc/en-gb/articles/360015583140" target="_blank" class="govuk-link">discussion forum guidelines (opens in a new window or tab)</a></li>
+                    <li>read our <a href="/hc/en-gb/articles/{{settings.article_id_guide}}" target="_blank" class="govuk-link">discussion forum guidelines (opens in a new window or tab)</a></li>
                 </ul>
             </div>
             {{#form 'post'}}
