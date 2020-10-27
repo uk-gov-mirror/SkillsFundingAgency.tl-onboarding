@@ -1,7 +1,7 @@
 {
   "name": "GDS Style",
   "author": "Ash Anderton",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "api_version": 2,
   "default_locale": "en-gb",
   "settings": [
@@ -240,23 +240,30 @@
         {
           "identifier": "article_id_terms",
           "type": "text",
-          "description": "Articles section",
+          "description": "Footer section",
           "label": "Terms",
           "value": "360017220759"
         },
         {
           "identifier": "article_id_interrupt",
           "type": "text",
-          "description": "Articles section",
+          "description": "Sitewide",
           "label": "Interrupt",
-          "value": "{{settings.article_id_interrupt}}"
+          "value": "360016899780"
         },
         {
           "identifier": "article_id_guide",
           "type": "text",
-          "description": "Articles section",
+          "description": "Sitewide",
           "label": "Guide",
           "value": "360015583140"
+        }
+        {
+          "identifier": "survey_link",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Feedback survey",
+          "value": "https://www.smartsurvey.co.uk/s/XXECG8/"
         }
       ]
     }
