@@ -50,9 +50,17 @@
     display: none;
 }
 
+.tl-profile-user--hidden {
+    display: block;
+}
+
 .tl-profile--me {
     .tl-profile-user--only {
         display: block;
+    }
+
+    .tl-profile-user--hidden {
+        display: none;
     }
 }
 

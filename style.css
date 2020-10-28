@@ -5637,8 +5637,14 @@ ul.govuk-radios label .gem-radios__input {
 .tl-profile-user--only {
   display: none; }
 
+.tl-profile-user--hidden {
+  display: block; }
+
 .tl-profile--me .tl-profile-user--only {
   display: block; }
+
+.tl-profile--me .tl-profile-user--hidden {
+  display: none; }
 
 .tl-profile--userdetails {
   padding-left: 80px;

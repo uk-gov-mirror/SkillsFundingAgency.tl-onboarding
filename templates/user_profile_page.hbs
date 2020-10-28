@@ -24,13 +24,13 @@
 
 
     <div class="govuk-width-container">
-        <h1 class="govuk-heading-xl tl-profile-user--only govuk-!-margin-top-7 govuk-!-margin-bottom-7">Your profile</h1>
+        <h1 class="govuk-heading-xl govuk-!-margin-top-7 govuk-!-margin-bottom-7"><span class=" tl-profile-user--hidden">User</span><span class=" tl-profile-user--only">Your</span> profile</h1>
     </div>
     <!-- Hero Banner -->
     <div class="tl-hero">
         <div class="govuk-width-container">
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half tl-profile--left">
+                <div class="govuk-grid-column-one-half tl-profile--left govuk-!-padding-bottom-5">
                     <div class="govuk-grid-row">
                         <div class="govuk-grid-column-full">
                             <div id="backcolor" class="tl-profile--avatar">
@@ -71,7 +71,7 @@
                     <div class="govuk-grid-row">
                         <div class="govuk-grid-column-full">
                             <p class="govuk-body tl-profile-user--only govuk-!-margin-top-4 govuk-!-margin-bottom-0"><a href="#" data-action="change-password">Change password</a></p>
-                            <p class="govuk-body-s tl-profile-user--only">(This will also change the password if you need to log in to the <a href="https://esfahelp.education.gov.uk/hc/en-gb" class="govuk-link">"Get help with ESFA services"</a> help centre.)</p>
+                            <p class="govuk-body-s tl-profile-user--only">(This will also change the password if you need to log in to the <a href="https://esfahelp.education.gov.uk/hc/en-gb" class="govuk-link">'Get help with ESFA services'</a> help centre.)</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                             </span>
                         </summary>
                         <div class="govuk-details__text">
-                            To delete your account, email <a href="mailto:support.tlevels@education.gov.uk" class="govuk-link tl-profile--delete--link">support@education.gov.uk</a>
+                            To delete your account, email <a href="mailto:support.tlevels@digital.education.gov.uk?subject=Remove%20{{user.name}}&body=Please%20delete%20my%20account%20on%20the%20Support%20with%20delivering%20T%20Levels%20website%0D%0A%0D%0A" class="govuk-link tl-profile--delete--link">support.tlevels@digital.education.gov.uk</a>
                             <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-1">Remember to include your full name and organisation.</p>
                             <p class="govuk-body-s govuk-!-margin-top-0">For security, please make sure that your request comes from the same email address as the one you use to log in to this account.</p>
                         </div>
