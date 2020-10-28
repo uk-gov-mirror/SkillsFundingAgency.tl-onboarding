@@ -51,12 +51,12 @@
 }
 
 .tl-profile-user--hidden {
-    display: block;
+    display: inline-block;
 }
 
 .tl-profile--me {
     .tl-profile-user--only {
-        display: block;
+        display: inline-block;
     }
 
     .tl-profile-user--hidden {
