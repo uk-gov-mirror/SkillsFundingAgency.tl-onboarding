@@ -389,54 +389,52 @@
 
 
 
-                        <div class="comment-form-controls">
+                    <div class="comment-form-controls">
 
-                            <div class="govuk-checkboxes tl-community-comment--form--official tl-js-hidden govuk-!-margin-top-2">
-                                <div class="govuk-checkboxes__item">
-                                    {{checkbox 'official' class="govuk-checkboxes__input"}}
-                                    {{label 'official' class="govuk-label govuk-checkboxes__label"}}
-                                </div>
-
+                        <div class="govuk-checkboxes tl-community-comment--form--official tl-js-hidden govuk-!-margin-top-2">
+                            <div class="govuk-checkboxes__item">
+                                {{checkbox 'official' class="govuk-checkboxes__input"}}
+                                {{label 'official' class="govuk-label govuk-checkboxes__label"}}
                             </div>
 
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    if (isAgent()) {
-                                        $(".tl-community-comment--form--official").show();
+                        </div>
 
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                if (isAgent()) {
+                                    $(".tl-community-comment--form--official").show();
+
+                                }
+                            });
+                        </script>
+
+                        <button id="submitcomment" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0">Post reply</button>
+                        <script>
+                            $(document).ready(function () {
+                                $('button#submitcomment').click(function () {
+                                    if ($("#community_comment_body").val().length > 0) {
+                                    }
+
+                                    else {
+                                        var commenttext = $("#community_comment_body_ifr").contents().find("body").html()
+                                        if ((!commenttext) || (commenttext.contains('<p><br data-mce-bogus="1"></p>'))) {
+                                            event.preventDefault();
+                                            $(".tl-community--comment--form--wrapper").addClass("govuk-form-group--error");
+                                            $("#comment-body-error").css('display', 'inline-block');
+                                        }
                                     }
                                 });
-                            </script>
 
-                            <button id="submitcomment" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0">Post reply</button>
+                            });
+                        </script>
 
-                            <script>
-                                $(document).ready(function () {
-                                    $('button#submitcomment').click(function () {
-                                        var commenttext = $("#community_comment_body_ifr").contents().find("body").html();
-    
-                                        if ($("#community_comment_body").val().length > 0) {
-                                        }
-
-                                        else {
-                                            if ((!commenttext) || (commenttext.contains('<p><br data-mce-bogus="1"></p>'))) {
-                                                event.preventDefault();
-                                                $(".tl-community--comment--form--wrapper").addClass("govuk-form-group--error");
-                                                $("#comment-body-error").css('display', 'inline-block');
-                                            }
-                                        }
-                                    });
-
-                                });
-                            </script>
-
-                            <script>
-                                window.addEventListener("pageshow", function () {
-                                    $("textarea#community_comment_body").val("");
-                                    $("#community_comment_body_ifr").contents().find("body").html("");
-                                });
-                            </script>
-                        </div>
+                        <script>
+                            window.addEventListener("pageshow", function () {
+                                $("textarea#community_comment_body").val("");
+                                $("#community_comment_body_ifr").contents().find("body").html("");
+                            });
+                        </script>
+                    </div>
                     </div>
                 </div>
 
