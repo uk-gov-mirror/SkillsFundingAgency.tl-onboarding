@@ -207,21 +207,22 @@
     padding: 20px 30px 10px 30px;
     position: relative;
     top: -1px;
+    margin-top: -20px;
 
-        &--label {
-            margin: 0;
-            background-color: govuk-organisation-colour("department-for-education", false);
-            color: govuk-colour("white");
-            display: inline-block;
-            padding: 5px 7px 3px 7px;
-            text-transform: uppercase;
-            @include govuk-font($size: 16, $weight: bold);
-        }
+    &--label {
+        margin: 0;
+        background-color: govuk-organisation-colour("department-for-education", false);
+        color: govuk-colour("white");
+        display: inline-block;
+        padding: 5px 7px 3px 7px;
+        text-transform: uppercase;
+        @include govuk-font($size: 16, $weight: bold);
+    }
 
-        &--logo {
-            float: right;
-            max-height: 50px;
-        }
+    &--logo {
+        float: right;
+        max-height: 50px;
+    }
 
     .tl-community--comment--main {
 
