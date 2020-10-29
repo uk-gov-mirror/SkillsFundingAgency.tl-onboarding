@@ -70,3 +70,10 @@
     padding-left: 80px;
     max-width: 100%;
 }
+
+.tl-profile--password {
+    @include govuk-media-query ($from: tablet) {
+        padding-left: 80px;
+    }
+    max-width: 100%;
+}
