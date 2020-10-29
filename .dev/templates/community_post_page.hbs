@@ -413,12 +413,18 @@
                             <script>
                                 $(document).ready(function () {
                                     $('button#submitcomment').click(function () {
-                                        var commenttext = $("#community_comment_body_ifr").contents().find("body").html()
-                                        if ((!commenttext) || (commenttext.contains('<p><br data-mce-bogus="1"></p>'))) {
-                                            console.log(commenttext)
-                                            event.preventDefault();
-                                            $(".tl-community--comment--form--wrapper").addClass("govuk-form-group--error");
-                                            $("#comment-body-error").css('display', 'inline-block');
+                                        var commenttext = $("#community_comment_body_ifr").contents().find("body").html();
+                                        var commentareatext = $("#community_comment_body").val().length();
+
+                                        if ((!commentareatext == 0)) {
+                                        }
+
+                                        else {
+                                            if ((!commenttext) || (commenttext.contains('<p><br data-mce-bogus="1"></p>'))) {
+                                                event.preventDefault();
+                                                $(".tl-community--comment--form--wrapper").addClass("govuk-form-group--error");
+                                                $("#comment-body-error").css('display', 'inline-block');
+                                            }
                                         }
                                     });
 
