@@ -418,6 +418,7 @@
                                     else {
                                         var commenttext = $("#community_comment_body_ifr").contents().find("body").html()
                                         if ((!commenttext) || (commenttext.contains('<p><br data-mce-bogus="1"></p>'))) {
+                                            console.log(commenttext)
                                             event.preventDefault();
                                             $(".tl-community--comment--form--wrapper").addClass("govuk-form-group--error");
                                             $("#comment-body-error").css('display', 'inline-block');
