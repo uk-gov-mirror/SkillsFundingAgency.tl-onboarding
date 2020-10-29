@@ -51,16 +51,18 @@
 }
 
 .tl-profile-user--hidden {
-    display: inline-block;
+    display: none;
 }
 
 .tl-profile--me {
     .tl-profile-user--only {
         display: inline-block;
     }
+}
 
+.tl-profile--notme {
     .tl-profile-user--hidden {
-        display: none;
+        display: inline-block;
     }
 }
 

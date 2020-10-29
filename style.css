@@ -5638,13 +5638,13 @@ ul.govuk-radios label .gem-radios__input {
   display: none; }
 
 .tl-profile-user--hidden {
-  display: inline-block; }
+  display: none; }
 
 .tl-profile--me .tl-profile-user--only {
   display: inline-block; }
 
-.tl-profile--me .tl-profile-user--hidden {
-  display: none; }
+.tl-profile--notme .tl-profile-user--hidden {
+  display: inline-block; }
 
 .tl-profile--userdetails {
   padding-left: 80px;

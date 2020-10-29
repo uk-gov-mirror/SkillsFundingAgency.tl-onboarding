@@ -289,14 +289,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 function convertNameToInitials(name) {
-    var parts = name.split(' ');
-    var initials = '';
-    for (var i = 0; i < parts.length; i++) {
-        if (parts[i].length > 0) {
-            initials += parts[i][0];
-        }
-    }
-    return initials;
+    if (!name) return '';
+    const cleanName = name.replace(/[`~!@@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    const parts = cleanName.split(' ');
+    var initials = parts.length > 0 ? parts[0][0] : '';
+    if (parts.length > 1) initials += parts[parts.length - 1][0];
+    return initials.toUpperCase();
 };
 
 function stringToHslColorLog(str, s, l) {
