@@ -414,9 +414,8 @@
                                 $(document).ready(function () {
                                     $('button#submitcomment').click(function () {
                                         var commenttext = $("#community_comment_body_ifr").contents().find("body").html();
-                                        var commentareatext = $("#community_comment_body").val().length();
-
-                                        if ((!commentareatext == 0)) {
+    
+                                        if ($("#community_comment_body").val().length > 0) {
                                         }
 
                                         else {
