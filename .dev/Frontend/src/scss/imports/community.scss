@@ -211,19 +211,18 @@
 
 .tl-community--comment--official {
     background-color: govuk-tint(govuk-organisation-colour("department-for-education"), 90%);
-    padding: 20px 30px 10px 30px;
+    padding: 30px 30px 10px 30px;
     position: relative;
     top: -1px;
     margin-top: -20px;
 
     &--label {
+        @extend .govuk-tag;
         margin: 0;
         background-color: govuk-organisation-colour("department-for-education", false);
         color: govuk-colour("white");
         display: inline-block;
-        padding: 5px 7px 3px 7px;
-        text-transform: uppercase;
-        @include govuk-font($size: 16, $weight: bold);
+        @include govuk-font($size: 14, $weight: bold);
     }
 
     &--logo {
