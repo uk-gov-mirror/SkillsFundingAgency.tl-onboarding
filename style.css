@@ -5470,7 +5470,8 @@ ul.govuk-radios label .gem-radios__input {
 .tl-community--post--main {
   padding: 30px; }
   .tl-community--post--main--content {
-    padding: 20px 0 0 0; }
+    padding: 20px 0 0 0;
+    word-break: break-word; }
     @media (min-width: 40.0625em) {
       .tl-community--post--main--content {
         padding: 10px 0 0 40px; } }

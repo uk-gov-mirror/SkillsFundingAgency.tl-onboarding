@@ -91,6 +91,7 @@
 
         &--content {
             padding: 20px 0 0 0;
+            word-break: break-word;
 
             @include govuk-media-query ($from: tablet) {
                 padding: 10px 0 0 40px;
