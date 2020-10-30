@@ -5446,7 +5446,26 @@ ul.govuk-radios label .gem-radios__input {
       padding: 10px 0 0 40px; } }
 
 .tl-community--comment--main--pending {
-  display: inline-block; }
+  display: inline-block;
+  margin-left: 10px;
+  font-family: "GDS Transport", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 12px;
+  font-size: 0.75rem;
+  line-height: 1.25; }
+  @media print {
+    .tl-community--comment--main--pending {
+      font-family: sans-serif; } }
+  @media (min-width: 40.0625em) {
+    .tl-community--comment--main--pending {
+      font-size: 14px;
+      font-size: 0.875rem;
+      line-height: 1.42857; } }
+  @media print {
+    .tl-community--comment--main--pending {
+      font-size: 12pt;
+      line-height: 1.2; } }
 
 .tl-community--post--main {
   padding: 30px; }

@@ -80,6 +80,8 @@
 
     &--pending {
         display: inline-block;
+        margin-left: 10px;
+        @include govuk-font($size: 14, $weight: normal);
     }
 }
 
