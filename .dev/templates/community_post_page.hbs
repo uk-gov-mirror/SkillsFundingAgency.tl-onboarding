@@ -51,7 +51,7 @@
 
                     </div>
                     {{#if signed_in}}
-                    <a href="/hc/en-gb/community/posts/new" class="govuk-button govuk-!-margin-bottom-0" id="tl-community--newpost">Post a new question</a>
+                    <a href="/hc/en-gb/community/posts/new" class="govuk-button govuk-!-margin-bottom-0" id="tl-community--newpost">Post a question</a>
 
                     <script>
                         $(document).ready(function () {
@@ -63,7 +63,7 @@
                         });
                     </script>
                     {{else}}
-                    {{#link "new_post" class="govuk-button govuk-!-margin-bottom-0"}}Sign in to post a new question{{/link}}
+                    {{#link "new_post" class="govuk-button govuk-!-margin-bottom-0"}}Sign in to post a question{{/link}}
                     {{/if}}
 
 
@@ -337,18 +337,20 @@
                         <div class="tl-community--post--content">
                             {{body}}
                         </div>
-                        {{#if pending}}
-                        <p class="govuk-body-s tl-text--red">
-                            Post pending approval
-                        </p>
-                        {{/if}}
+
                         <p class="govuk-body-s tl-text--grey govuk-!-margin-bottom-5">
                             {{#if editor}}
                             Edited on: {{date edited_at format='medium'}}
                             {{else}}
                             Posted on: {{date created_at format='medium'}}
                             {{/if}}
+                            {{#if pending}}
+                            <span class="tl-community--comment--main--pending govuk-tag govuk-tag--red">
+                                Post pending approval
+                            </span>
+                            {{/if}}
                         </p>
+
 
                     </div>
 
