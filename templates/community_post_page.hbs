@@ -256,11 +256,7 @@
                         <div class="tl-community--post--content">
                             {{body}}
                         </div>
-                        {{#if pending}}
-                        <p class="govuk-body-s tl-text--red">
-                            Post pending approval
-                        </p>
-                        {{/if}}
+
 
                         <div class="govuk-grid-row">
                             <div class="govuk-grid-column-one-half">
@@ -269,6 +265,11 @@
                                     Edited on: {{date edited_at format='medium'}}
                                     {{else}}
                                     Posted on: {{date created_at format='medium'}}
+                                    {{/if}}
+                                    {{#if pending}}
+                                    <span class="tl-community--comment--main--pending govuk-tag govuk-tag--red">
+                                        Post pending approval
+                                    </span>
                                     {{/if}}
                                 </p>
                             </div>
@@ -341,11 +342,6 @@
                             Edited on: {{date edited_at format='medium'}}
                             {{else}}
                             Posted on: {{date created_at format='medium'}}
-                            {{/if}}
-                            {{#if pending}}
-                            <span class="tl-community--comment--main--pending govuk-tag govuk-tag--red">
-                                Post pending approval
-                            </span>
                             {{/if}}
                         </p>
 
