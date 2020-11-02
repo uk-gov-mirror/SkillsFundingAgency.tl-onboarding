@@ -6,9 +6,24 @@
     display: none !important;
 }
 
+.js-enabled {
+    .tl-js-hidden {
+        display: none;
+    }
+
+    .tl-js-visible {
+        display: inline-block;
+    }
+}
+
 .tl-js-hidden {
+    display: inline-block;
+}
+
+.tl-js-visible {
     display: none;
 }
+
 
 .tl-inline {
     display: inline;

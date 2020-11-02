@@ -4557,7 +4557,16 @@
 .tl-hidden {
   display: none !important; }
 
+.js-enabled .tl-js-hidden {
+  display: none; }
+
+.js-enabled .tl-js-visible {
+  display: inline-block; }
+
 .tl-js-hidden {
+  display: inline-block; }
+
+.tl-js-visible {
   display: none; }
 
 .tl-inline {
