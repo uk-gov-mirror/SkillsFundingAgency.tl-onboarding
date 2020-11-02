@@ -375,10 +375,10 @@
                 {{#if signed_in}}
 
                 {{#form 'comment' class='govuk-form-group tl-community--comment--form--wrapper'}}
-                <div class="tl-community--comment--form tl-js-hidden">
+                <div class="tl-community--comment--form tl-hide">
                     <h2 class="govuk-heading-m">Post a reply</h2>
                     <div class="tl-comment--container">
-                        <span id="comment-body-error" class="govuk-error-message tl-js-hidden">
+                        <span id="comment-body-error" class="govuk-error-message tl-hide">
                             <span class="govuk-visually-hidden">Error:</span> You must write a reply
                         </span>
                         {{wysiwyg 'body' rows='4'  class='govuk-textarea'}}
@@ -435,7 +435,7 @@
                     </div>
                 </div>
 
-                <div class="tl-community--comment--message govuk-!-margin-bottom-8 tl-js-hidden">
+                <div class="tl-community--comment--message govuk-!-margin-bottom-8 tl-hide">
                     <h2 class="govuk-heading-m">Post a reply</h2>
                     <p class="govuk-body">
                         Make sure the email on your account is linked to a T Level college or school, for example joe.bloggs@horsgreen-academy.ac.uk.

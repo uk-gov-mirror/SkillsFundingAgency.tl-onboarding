@@ -4554,6 +4554,9 @@
 .tl-nowrap {
   white-space: nowrap; }
 
+.tl-hide {
+  display: none; }
+
 .tl-hidden {
   display: none !important; }
 
