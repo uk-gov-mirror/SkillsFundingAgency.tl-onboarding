@@ -129,30 +129,24 @@
                                 });
 
                                 $('#subscribebutton').click(function(e){
-                                    if (isApprovedUser()) {
-                                        if ($('#subscribebutton').text() === "Get updates on this discussion") {
-                                            helpers.subscribeToPost({{ post.id }})
-                                            .done(function () {
-                                                $('button#subscribebutton').text("Stop getting updates on this discussion");
-                                            })
-                                            .fail(function () {
-                                                $('button#subscribebutton').attr('disabled', true);
-                                            })
-                                        } 
-                                        else {
-                                        helpers.deletePostSubscribeStatus({{ post.id }})
-                                            .done(function (status) {
-                                                $('button#subscribebutton').text("Get updates on this discussion");
-                                            })
-                                            .fail(function (r) {
-                                                $('button#subscribebutton').attr('disabled', true);
-                                            });
-  		                                    }
-                                        }
-
+                                    if ($('#subscribebutton').text() === "Get updates on this discussion") {
+                                        helpers.subscribeToPost({{ post.id }})
+                                        .done(function () {
+                                            $('button#subscribebutton').text("Stop getting updates on this discussion");
+                                        })
+                                        .fail(function () {
+                                            $('button#subscribebutton').attr('disabled', true);
+                                        })
+                                    } 
                                     else {
-                                    window.location.href = "/hc/en-gb/articles/{{settings.article_id_interrupt}}";
-                                    }
+                                    helpers.deletePostSubscribeStatus({{ post.id }})
+                                        .done(function (status) {
+                                            $('button#subscribebutton').text("Get updates on this discussion");
+                                        })
+                                        .fail(function (r) {
+                                            $('button#subscribebutton').attr('disabled', true);
+                                        });
+  		                            }
                                 });
 
                               });
