@@ -3,6 +3,8 @@
         if (isApprovedUser()) {
             window.location.href = "/hc/en-gb/";
         }
+
+        document.title = "Sign in with a different email | Support with delivering T Levels"
     });
 </script>
 
@@ -43,16 +45,6 @@
                 <div class="tl-article--content">{{article.body}}</div>
 
                 {{#link 'sign_out' class="govuk-button"}}Sign out and try again{{/link}}
-
-
-                <p class="govuk-body-s tl-article--date">
-                    {{#is article.created_at article.edited_at}}
-                    Created: {{date article.created_at format='medium'}}
-                    {{else}}
-                    Last updated: {{date article.edited_at format='medium'}}
-                    {{/is}}
-                </p>
-
 
 
             </div>
