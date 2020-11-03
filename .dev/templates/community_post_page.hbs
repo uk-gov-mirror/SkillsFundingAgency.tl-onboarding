@@ -129,7 +129,7 @@
                                 });
 
                                 $('#subscribebutton').click(function(e){
-                                    if (isApproved()) {
+                                    if (isApprovedUser()) {
                                         if ($('#subscribebutton').text() === "Get updates on this discussion") {
                                             helpers.subscribeToPost({{ post.id }})
                                             .done(function () {
