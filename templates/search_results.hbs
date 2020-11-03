@@ -167,10 +167,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        if (isApprovedUser()) {
-        }
-        else {
-            $(".tl-search--results--question").attr("href", "/hc/en-gb/articles/{{settings.article_id_interrupt}}");
+        if (isLoggedIn()) {
+            if (isApprovedUser()) {
+            }
+            else {
+                $(".tl-search--results--question").attr("href", "/hc/en-gb/articles/{{settings.article_id_interrupt}}");
+            }
         }
     });
 </script>

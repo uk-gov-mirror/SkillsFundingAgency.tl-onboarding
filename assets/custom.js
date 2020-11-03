@@ -271,6 +271,14 @@ function isAgent() {
     return false;
 };
 
+/* Logged in USER CHECK */
+function isLoggedIn() {
+    if (HelpCenter.user.role != "anonymous") {
+        return true;
+    }
+    return false;
+};
+
 
 // ***************Function stringToHslColor*****************t**
 // To convert the initials to a hash string. these functions take the parameters as the name initials 
