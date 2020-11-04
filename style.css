@@ -5535,7 +5535,8 @@ ul.govuk-radios label .gem-radios__input {
   border-radius: 0 !important; }
 
 .tl-community--comment--actions, .tl-community--post--actions {
-  text-align: right; }
+  text-align: right;
+  float: right; }
   .tl-community--comment--actions button, .tl-community--post--actions button {
     background: none;
     border: none;
@@ -5563,7 +5564,7 @@ ul.govuk-radios label .gem-radios__input {
   background-color: #ebf2f6;
   padding: 30px 30px 10px 30px;
   position: relative;
-  top: -1px;
+  top: -2x;
   margin-top: -20px; }
   .tl-community--comment--official--label {
     margin: 0;

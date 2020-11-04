@@ -176,6 +176,7 @@
     .tl-community--comment--actions, .tl-community--post--actions {
         @extend .govuk-body-s;
         text-align: right;
+        float: right;
 
         button {
             @extend .govuk-link;
@@ -213,7 +214,7 @@
     background-color: govuk-tint(govuk-organisation-colour("department-for-education"), 90%);
     padding: 30px 30px 10px 30px;
     position: relative;
-    top: -1px;
+    top: -2x;
     margin-top: -20px;
 
     &--label {
