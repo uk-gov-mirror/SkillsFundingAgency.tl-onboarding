@@ -274,7 +274,7 @@
                                     {{/if}}
                                 </p>
                             </div>
-                            <div class="govuk-grid-column-one-third tl-comunnity--comment--actions--{{id}}">
+                            <div class="govuk-grid-column-one-third tl-comunnity--comment--actions--{{id}} tl-hidden">
                                 <div class="tl-community--comment--actions tl-js-visible">
                                     {{#actions class="govuk-link"}}
                                     Manage reply &#709;
@@ -284,16 +284,16 @@
 
                             <script>
 
-                                $.getJSON('/api/v2/users/me.json', function (data) {
-                                    console.log(data.user.id);
-                                    if (data.user.id == '{{author.id}}') {
-                                    }
-                                    else {
-                                        $(".tl-comunnity--comment--actions--{{id}}").addClass('tl-hidden');
-                                    }
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    if (!isAgent()) {
+                                        $.getJSON('/api/v2/users/me.json', function (data) {
+                                            console.log(data.user.id);
+                                            if (data.user.id == '{{author.id}}') {
+                                                $(".tl-comunnity--comment--actions--{{id}}").removeClass('tl-hidden');
+                                            }
+                                        }
+                                    };
                                 });
-
-
                             </script>
                         </div>
                     </div>
