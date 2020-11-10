@@ -284,13 +284,14 @@
 
                             <script>
 
-                            $.getJSON('/api/v2/users/me.json', function (data) {
-                            if (data.user.id == '{{author.id}}') {
-                            }
-                            else {
-                                $(".tl-comunnity--comment--actions--{{id}}").addClass('tl-hidden');
-                            }
-                            });
+                                $.getJSON('/api/v2/users/me.json', function (data) {
+                                    console.log(data.user.id);
+                                    if (data.user.id == '{{author.id}}') {
+                                    }
+                                    else {
+                                        $(".tl-comunnity--comment--actions--{{id}}").addClass('tl-hidden');
+                                    }
+                                });
 
 
                             </script>
