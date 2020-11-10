@@ -285,7 +285,10 @@
                             <script>
 
                                 document.addEventListener('DOMContentLoaded', function () {
-                                    if (!isAgent()) {
+                                    if (isAgent()) {
+                                        $(".tl-comunnity--comment--actions--{{id}}").removeClass('tl-hidden');
+                                    }
+                                    else {
                                         $.getJSON('/api/v2/users/me.json', function (data) {
                                             console.log(data.user.id);
                                             if (data.user.id == '{{author.id}}') {
