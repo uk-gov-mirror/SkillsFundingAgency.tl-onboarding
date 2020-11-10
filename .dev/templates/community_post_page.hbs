@@ -220,7 +220,7 @@
                         <div class="govuk-grid-column-{{#if official}}full{{else}}two-thirds{{/if}}">
                             <div class="govuk-body-s">
                                 {{#if official}}
-                                <p class="tl-community--comment--official--label">Official Response</p>
+                                <p class="tl-community--comment--official--label">Official Reply</p>
                                 <image src="{{asset 'ESFALogo.png'}}" class="tl-community--comment--official--logo"></image>
                                 {{else}}
                                 <div id="{{id}}backcolor" class="tl-community--post--avatar">
@@ -274,13 +274,26 @@
                                     {{/if}}
                                 </p>
                             </div>
-                            <div class="govuk-grid-column-one-third">
+                            <div class="govuk-grid-column-one-third tl-comunnity--comment--actions--{{id}}">
                                 <div class="tl-community--comment--actions tl-js-visible">
                                     {{#actions class="govuk-link"}}
                                     Manage reply &#709;
                                     {{/actions}}
                                 </div>
                             </div>
+
+                            <script>
+
+                            $.getJSON('/api/v2/users/me.json', function (data) {
+                            if (data.user.id == '{{author.id}}') {
+                            }
+                            else {
+                                $(".tl-comunnity--comment--actions--{{id}}").addClass('tl-hidden');
+                            }
+                            });
+
+
+                            </script>
                         </div>
                     </div>
 
@@ -296,7 +309,7 @@
                         <div class="govuk-grid-column-{{#if official}}full{{else}}two-thirds{{/if}}">
                             <div class="govuk-body-s">
                                 {{#if official}}
-                                <p class="tl-community--comment--official--label">Official Response</p>
+                                <p class="tl-community--comment--official--label">Official Reply</p>
                                 <image src="{{asset 'ESFALogo.png'}}" class="tl-community--comment--official--logo"></image>
 
 
