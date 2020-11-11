@@ -95,9 +95,8 @@ $(document).ready(function () {
             $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
                   function (results) {
                     console.log(JSON.stringify(results, undefined, 2));
-                    console.log('count of subscriptions: ' + results.count);
                     if(results.count > 0) {
-                        console.log(`Already subscribed to section ${sectionId}`);
+                        console.log(`Already subscribed to section ${sectionId} with ${results.count} subscriptions`);
                        $("#follow-btn").html(unfollowButtonText);
                     } else {
                         console.log('Subscribing');
@@ -142,6 +141,29 @@ $(document).ready(function () {
                                     const subId = results.subscriptions[0].id;
                                     console.log("sub id = " + subId);
   
+                                    //New code for testing
+                                    try {
+                                        var promises = [];
+                                        $(results.subscriptions).each(function(index, item) {
+                                            var itemUrl = '/somestuff/' + item.url + '.js';
+                                            var p = $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions/${item.id}`);
+                                            p.then(function(itemData) {
+                                                console.log("got subscription" + itemData);
+                                                item.data = itemData;
+                                                return itemData;
+                                            });
+                                            promises.push(p);
+                                        });
+
+                                        $.when.apply($, promises).then(function() {
+                                            console.log("all promises complete.");
+                                            //TODO: Set button text
+                                        });
+                                    }
+                                    catch(err) {
+                                        console.log('failed to execute promises: ' + err.message);
+                                    }
+
                                     //Delete the subscription
                                     $.ajax({
                                       url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${subId}.json`,
