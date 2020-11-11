@@ -93,10 +93,10 @@
                 <p class="govuk-body">Before you do make sure you've:</p>
                 <ul class="govuk-list govuk-list--bullet">
                     <li>checked the forum to see if someone else has already asked your question</li>
-                    <li>read our <a href="/hc/en-gb/articles/{{settings.article_id_terms}}" target="_blank" class="govuk-link">discussion forum guidelines (opens in a new window or tab)</a></li>
+                    <li>read our <a href="/hc/en-gb/articles/{{settings.article_id_terms}}" id="tl-community-newpost--guidelines" target="_blank" class="govuk-link">discussion forum guidelines (opens in a new window or tab)</a></li>
                 </ul>
             </div>
-            {{#form 'post'}}
+            {{#form 'post' class="tl-community--newpost--form"}}
             <div class="govuk-grid-column-two-thirds govuk-!-margin-top-4">
 
                 <div class="govuk-form-group {{#validate 'title'}}govuk-form-group--error{{/validate}}">
