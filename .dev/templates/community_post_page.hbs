@@ -110,7 +110,7 @@
                     <div class="tl-order-m-3">
                         <div class="tl-community--post--subscribe">
                             {{#if signed_in}}
-                            <button id="subscribebutton" class="govuk-button govuk-button--secondary tl-js-hidden"></button>
+                            <button id="tl-community--post--subscribe" class="govuk-button govuk-button--secondary tl-js-hidden"></button>
 
                             <script type="text/javascript">
                                 document.addEventListener('DOMContentLoaded', function() {
@@ -118,33 +118,33 @@
                                 helpers.getUserPostSubcribeStatus({{post.id}})
   	                            .done(
   	                            function(s){
-                                            $("button#subscribebutton").show();
+                                            $("button#tl-community--post--subscribe").show();
                                             if (typeof subscriptionsStatus !== "undefined") {
-                                            $('button#subscribebutton').text("Stop getting updates on this discussion");
+                                            $('button#tl-community--post--subscribe').text("Stop getting updates on this discussion");
                                   } else{
-                                            $('button#subscribebutton').text("Get updates on this discussion");
+                                            $('button#tl-community--post--subscribe').text("Get updates on this discussion");
                                   }
   	                            })
   	                            .fail(function(r){
                                 });
 
-                                $('#subscribebutton').click(function(e){
-                                    if ($('#subscribebutton').text() === "Get updates on this discussion") {
+                                $('#tl-community--post--subscribe').click(function(e){
+                                    if ($('#tl-community--post--subscribe').text() === "Get updates on this discussion") {
                                         helpers.subscribeToPost({{ post.id }})
                                         .done(function () {
-                                            $('button#subscribebutton').text("Stop getting updates on this discussion");
+                                            $('button#tl-community--post--subscribe').text("Stop getting updates on this discussion");
                                         })
                                         .fail(function () {
-                                            $('button#subscribebutton').attr('disabled', true);
+                                            $('button#tl-community--post--subscribe').attr('disabled', true);
                                         })
                                     } 
                                     else {
                                     helpers.deletePostSubscribeStatus({{ post.id }})
                                         .done(function (status) {
-                                            $('button#subscribebutton').text("Get updates on this discussion");
+                                            $('button#tl-community--post--subscribe').text("Get updates on this discussion");
                                         })
                                         .fail(function (r) {
-                                            $('button#subscribebutton').attr('disabled', true);
+                                            $('button#tl-community--post--subscribe').attr('disabled', true);
                                         });
   		                            }
                                 });
@@ -183,7 +183,7 @@
                                     </p>
                                 </div>
                                 <div class="govuk-grid-column-one-third tl-community--post--actions tl-js-visible">
-                                    {{#post.actions class="govuk-link"}}
+                                    {{#post.actions class="govuk-link tl-community--post--actions"}}
                                     Manage post &#709;
                                     {{/post.actions}}
                                 </div>
@@ -276,7 +276,7 @@
                             </div>
                             <div class="govuk-grid-column-one-third tl-comunnity--comment--actions--{{id}} tl-hidden">
                                 <div class="tl-community--comment--actions tl-js-visible">
-                                    {{#actions class="govuk-link"}}
+                                    {{#actions class="govuk-link tl-community--comment--actions"}}
                                     Manage reply &#709;
                                     {{/actions}}
                                 </div>
@@ -422,10 +422,10 @@
                             });
                         </script>
 
-                        <button id="submitcomment" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0">Post reply</button>
+                        <button id="tl-community-comment--submit" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0">Post reply</button>
                         <script>
                             $(document).ready(function () {
-                                $('button#submitcomment').click(function () {
+                                $('button#tl-community-comment--submit').click(function () {
                                     if ($("#community_comment_body").val().length > 0) {
                                     }
 
