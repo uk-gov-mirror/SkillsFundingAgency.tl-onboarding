@@ -70,7 +70,7 @@ $(document).ready(function () {
         $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
                   function (results) {
                     console.log(JSON.stringify(results, undefined, 2));
-                    console.log('count from api call = ' + results.count);
+                    console.log('count of subscriptions: ' + results.count);
                     if(results.count > 0) {
                        $("#follow-btn").html(unfollowButtonText);
                     } else {
@@ -89,41 +89,43 @@ $(document).ready(function () {
   
         const sectionId = getSectionId();
         const locale = HelpCenter.user.locale; 
-        console.log('locale: ' + locale);
-        console.log('section id: ' + sectionId);
   
         if($('#follow-btn').html() === followButtonText)
         {
-          console.log('Subscribing');
+            $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
+                  function (results) {
+                    console.log(JSON.stringify(results, undefined, 2));
+                    if(results.count > 0) {
+                        console.log(`Already subscribed to section ${sectionId} with ${results.count} subscriptions`);
+                       $("#follow-btn").html(unfollowButtonText);
+                    } else {
+                        console.log('Subscribing');
   
-          // Get the csrf token needed for the api call
-          $.getJSON('/hc/api/internal/csrf_token.json', 
-                    function (response) {
-                    var token = response.current_session.csrf_token;
-                    //console.log("token: " + token);  
-  
-                    const params = {
-                              "subscription": {
-                                 "source_locale": `${locale}`, 
-                                 "include_comments": true
-                              }
-                          };
-                   //console.log("paams: " + params);
-  
-                    $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
-                           type: "POST",
-                           data: jQuery.param(params),
-                            dataType: "application/json",
-                            headers: {
-                               "X-CSRF-Token": token
-                           },
-                           complete: function(){
-                            $('#follow-btn').html(unfollowButtonText);
-                          }
-                        });
-          });
-  
-          //End of subscribe
+                        // Get the csrf token needed for the api call
+                        $.getJSON('/hc/api/internal/csrf_token.json', 
+                                    function (response) {
+                                    var token = response.current_session.csrf_token;
+               
+                                    $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
+                                        type: "POST",
+                                        data: jQuery.param({
+                                            "subscription": {
+                                                "source_locale": `${locale}`, 
+                                                "include_comments": true
+                                            }
+                                        }),
+                                        dataType: "application/json",
+                                        headers: {
+                                            "X-CSRF-Token": token
+                                        },
+                                        complete: function(){
+                                            $('#follow-btn').html(unfollowButtonText);
+                                        }
+                                    });
+                                });
+            }
+        });
+        //End of subscribe
         } else {
           console.log('Unsubscribing');
   
@@ -131,7 +133,6 @@ $(document).ready(function () {
           $.getJSON('/hc/api/internal/csrf_token.json', 
                     function (response) {
                       var token = response.current_session.csrf_token;
-                      //console.log("token: " + token);
   
                       //Get subscription id
                       $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
@@ -140,6 +141,29 @@ $(document).ready(function () {
                                     const subId = results.subscriptions[0].id;
                                     console.log("sub id = " + subId);
   
+                                    //New code for testing
+                                    try {
+                                        var promises = [];
+                                        $(results.subscriptions).each(function(index, item) {
+                                            var itemUrl = '/somestuff/' + item.url + '.js';
+                                            var p = $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions/${item.id}`);
+                                            p.then(function(itemData) {
+                                                console.log("got subscription" + itemData);
+                                                item.data = itemData;
+                                                return itemData;
+                                            });
+                                            promises.push(p);
+                                        });
+
+                                        $.when.apply($, promises).then(function() {
+                                            console.log("all promises complete.");
+                                            //TODO: Set button text
+                                        });
+                                    }
+                                    catch(err) {
+                                        console.log('failed to execute promises: ' + err.message);
+                                    }
+
                                     //Delete the subscription
                                     $.ajax({
                                       url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${subId}.json`,
@@ -150,7 +174,7 @@ $(document).ready(function () {
                                        }
                                     }).then(function(res){
                                          console.log("delete result: " + res);
-                                         //setSubscribeButtonStatus();
+                                         //setFollowButtonStatus();
                                          $('#follow-btn').html(followButtonText);
                                  });
                       });
