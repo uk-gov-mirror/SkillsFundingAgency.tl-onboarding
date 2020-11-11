@@ -43,7 +43,7 @@
         <div class="tl-header--links">
             <ul>
                 {{#if signed_in}}
-                <li><a href="/hc/en-gb/profile" class="tl-header--link">Your profile</a></li>
+                <li><a href="/hc/en-gb/profile" class="tl-header--link" id="tl-header--profile">Your profile</a></li>
                 <li>{{link 'sign_out' class="tl-header--link"}}</li>
                 {{else}}
                 <li>{{#link "sign_in" class="tl-header--link"}}{{t 'sign_in'}}{{/link}}</li>
