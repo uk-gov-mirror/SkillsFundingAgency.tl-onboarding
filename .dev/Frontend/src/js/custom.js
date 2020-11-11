@@ -131,7 +131,7 @@ $(document).ready(function () {
                         type: "DELETE",
                         dataType: "application/json",
                         headers: {
-                            "X-CSRF-Token": .current_session.csrf_token
+                            "X-CSRF-Token": response.current_session.csrf_token
                             }
                         });
                     p.then(function() {
