@@ -3,10 +3,12 @@
         if (isApprovedUser()) {
             window.location.href = "/hc/en-gb/";
         }
+        else {
+            datalayer.push({ 'interrupt': 'true' });
+        }
     });
 
     document.title = "Sign in with a different email | Support with delivering T Levels"
-
 </script>
 
 
