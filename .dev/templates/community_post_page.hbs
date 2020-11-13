@@ -422,7 +422,7 @@
                             });
                         </script>
 
-                        <button id="tl-community-comment--submit" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0">Post reply</button>
+                        <button id="tl-community-comment--submit" type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-0" >Post reply</button>
                         <script>
                             $(document).ready(function () {
                                 $('button#tl-community-comment--submit').click(function () {
@@ -459,7 +459,7 @@
                         Make sure the email on your account is linked to a T Level college or school, for example joe.bloggs@horsgreen-academy.ac.uk.
                     </p>
                     <p class="govuk-body">You may need to create a new account using your work email.</p>
-                    {{#link 'sign_out' class="govuk-button"}}Sign out and try again{{/link}}
+                    {{#link 'sign_out' class="govuk-button tl-community--comment--interrupt"}}Sign out and try again{{/link}}
                 </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -479,7 +479,7 @@
                 {{else}}
                 <h2 class="govuk-heading-m">Post a reply</h2>
 
-                {{#link "sign_in" class="govuk-button govuk-!-margin-bottom-9"}}Sign in to post a reply{{/link}}
+                {{#link "sign_in" class="govuk-button govuk-!-margin-bottom-9 tl-community--comment--signin"}}Sign in to post a reply{{/link}}
                 {{/if}}
 
 
