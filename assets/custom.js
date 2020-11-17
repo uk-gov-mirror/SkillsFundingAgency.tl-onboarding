@@ -118,34 +118,48 @@ $(document).ready(function () {
         } else {
           console.log('Unsubscribing');
           $.getJSON('/hc/api/internal/csrf_token.json', function (response) {
-            //Get subscription id
-            $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
-                console.log(JSON.stringify(results, undefined, 2));
-                const subId = results.subscriptions[0].id;
-                console.log("sub id = " + subId);
+            
+            var openSubscriptions = 0;
 
-                var promises = [];
-                $(results.subscriptions).each(function(index, item) {
-                    var p = $.ajax({
-                        url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${item.id}.json`,
-                        type: "DELETE",
-                        dataType: "application/json",
-                        headers: {
-                            "X-CSRF-Token": response.current_session.csrf_token
-                            }
+            var deleteSubscriptions = function () {
+                $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+                    console.log(JSON.stringify(results, undefined, 2));
+                    const subId = results.subscriptions[0].id;
+                    console.log("sub id = " + subId);
+
+                    openSubscriptions = results.subscriptions.length;
+                    console.log("openSubscriptions = " + openSubscriptions);
+
+                    var promises = [];
+                    $(results.subscriptions).each(function(index, item) {
+                        var p = $.ajax({
+                            url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${item.id}.json`,
+                            type: "DELETE",
+                            dataType: "application/json",
+                            headers: {
+                                "X-CSRF-Token": response.current_session.csrf_token
+                                }
+                            });
+                        p.then(function() {
+                            console.log(`deleted one subscription" + ${item.id}`);
                         });
-                    p.then(function() {
-                        console.log(`deleted one subscription" + ${item.id}`);
+                        promises.push(p);
                     });
-                    promises.push(p);
-                });
 
-                $.when.apply($, promises).then(function() {
-                    console.log("finished deleting all subscriptions.");
+                    $.when.apply($, promises).then(function() {
+                        console.log("finished deleting a batch of subscriptions.");
+                        if(openSubscriptions > 0)
+                        {
+                            deleteSubscriptions();
+                        }
+                        console.log("Done. Setting follow button");
                         //setFollowButtonStatus();
                         $('#follow-btn').html(followButtonText);
                     });
                 });
+            }
+                
+            deleteSubscriptions();
           });
           //End of unsubscribe
         }
