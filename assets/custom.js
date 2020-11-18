@@ -143,8 +143,8 @@ $(document).ready(function () {
                     const subId = results.subscriptions[0].id;
                     console.log("sub id = " + subId);
 
-                    openSubscriptions = results.subscriptions.length;
-                    console.log("openSubscriptions = " + openSubscriptions);
+                    subscriptionsFound = results.subscriptions.length;
+                    console.log("subscriptionsFound = " + subscriptionsFound);
 
                     var promises = [];
                     $(results.subscriptions).each(function(index, item) {
@@ -163,8 +163,8 @@ $(document).ready(function () {
                     });
 
                     $.when.apply($, promises).then(function() {
-                        console.log("finished deleting a batch of subscriptions.");
-                        if(openSubscriptions > 0)
+                        console.log(`finished deleting a batch of ${subscriptionsFound} subscriptions.`);
+                        if(subscriptionsFound > 0)
                         {
                             console.log("Calling deleteSubscriptions again");
                             deleteSubscriptions();
@@ -174,7 +174,7 @@ $(document).ready(function () {
             }
 
             console.log("Calling deleteSubscriptions for the first time");
-            deleteSubscriptions()
+            $.when(deleteSubscriptions())
             .then(function() {
                 console.log("Done. Setting follow button");
                 //setFollowButtonStatus();

@@ -174,7 +174,7 @@ $(document).ready(function () {
             }
 
             console.log("Calling deleteSubscriptions for the first time");
-            deleteSubscriptions()
+            $.when(deleteSubscriptions())
             .then(function() {
                 console.log("Done. Setting follow button");
                 //setFollowButtonStatus();
