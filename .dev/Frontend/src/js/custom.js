@@ -63,8 +63,8 @@ $(document).ready(function () {
                   function (results) {
                     console.log(`Subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
                     $("#follow-btn").html(results.count > 0 ? unfollowButtonText : followButtonText);
-            $('#follow-btn').removeClass("tl-hidden");
-          });
+                    $('#follow-btn').removeClass("tl-hidden");
+                });
         }
   
       //Set initial button state on load
@@ -77,7 +77,7 @@ $(document).ready(function () {
         if($('#follow-btn').html() === followButtonText)
         {
             $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
-                console.log(JSON.stringify(results, undefined, 2));
+                console.log(`Current subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
                 if(results.count > 0) {
                     console.log(`Already subscribed to section ${sectionId} with ${results.count} subscriptions`);
                     $("#follow-btn").html(unfollowButtonText);
@@ -113,17 +113,15 @@ $(document).ready(function () {
                 subscriptionsFound = 0; //Reinitialise on each call
                 subscriptionsRemaining = 0;
                 $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
-                    console.log(JSON.stringify(results, undefined, 2));
+                    console.log(`Subscriptions to be deleted:\n${JSON.stringify(results, undefined, 2)}`);
 
-                    console.log(`results.count = ${results.count}`);
                     if(!results.count) {
-                        console.log("zero results.");
+                        console.log("No subscriptions to delete.");
                         return;
                     }
 
                     subscriptionsFound = results.subscriptions.length;
-                    subscriptionsRemaining = results.count - results.subscriptions.length;
-                    console.log(`Remaining ${subscriptionsRemaining} = ${results.count} - ${results.subscriptions.length}`);
+                    subscriptionsRemaining = results.count - subscriptionsFound;
 
                     var promises = [];
                     $(results.subscriptions).each(function(index, item) {
@@ -142,14 +140,14 @@ $(document).ready(function () {
                     });
 
                     $.when.apply($, promises).then(function() {
-                        console.log(`finished deleting a batch of ${subscriptionsFound} subscriptions. ${subscriptionsRemaining} remaining.`);
+                        console.log(`Finished deleting a batch of ${subscriptionsFound} subscriptions. ${subscriptionsRemaining} remaining.`);
                         if(subscriptionsRemaining > 0)
                         {
                             console.log("Calling deleteSubscriptions again");
                             deleteSubscriptions();
                         }
                         else {
-                            console.log("Done. Setting follow button");
+                            console.log("Unsibscribed; setting follow button");
                             //setFollowButtonStatus();
                             $('#follow-btn').html(followButtonText);                                        
                         }
@@ -157,7 +155,6 @@ $(document).ready(function () {
                 });
             }
 
-            console.log("Calling deleteSubscriptions for the first time");
             deleteSubscriptions();
           });
           //End of unsubscribe
