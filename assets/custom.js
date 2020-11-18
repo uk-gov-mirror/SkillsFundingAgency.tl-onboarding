@@ -107,9 +107,11 @@ $(document).ready(function () {
         } else {
           $.getJSON('/hc/api/internal/csrf_token.json', function (response) {            
             var subscriptionsFound = 0;
+            var subscriptionsRemaining = 0;
 
             var deleteSubscriptions = function () {
                 subscriptionsFound = 0; //Reinitialise on each call
+                subscriptionsRemaining = 0;
                 $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
                     console.log(JSON.stringify(results, undefined, 2));
 
@@ -120,6 +122,8 @@ $(document).ready(function () {
                     }
 
                     subscriptionsFound = results.subscriptions.length;
+                    subscriptionsRemaining = results.count - results.subscriptions.length;
+                    console.log(`Remaining ${subscriptionsRemaining} = ${results.count} - ${results.subscriptions.length}`);
 
                     var promises = [];
                     $(results.subscriptions).each(function(index, item) {
@@ -138,8 +142,8 @@ $(document).ready(function () {
                     });
 
                     $.when.apply($, promises).then(function() {
-                        console.log(`finished deleting a batch of ${subscriptionsFound} subscriptions.`);
-                        if(subscriptionsFound > 0)
+                        console.log(`finished deleting a batch of ${subscriptionsFound} subscriptions. ${subscriptionsRemaining} remaining.`);
+                        if(subscriptionsRemaining > 0)
                         {
                             console.log("Calling deleteSubscriptions again");
                             deleteSubscriptions();
