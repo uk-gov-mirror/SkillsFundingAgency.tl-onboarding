@@ -179,6 +179,7 @@ $(document).ready(function () {
             }
 
             console.log("Calling deleteSubscriptions for the first time");
+            deleteSubscriptions();
           });
           //End of unsubscribe
         }
