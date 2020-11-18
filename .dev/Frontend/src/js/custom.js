@@ -123,6 +123,7 @@ $(document).ready(function () {
 
             var deleteSubscriptions = function () {
                 $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+                subscriptionsFound = 0; //Reinitialise on each call
                     console.log(JSON.stringify(results, undefined, 2));
 
                     console.log('results.count = ' + results.count);
