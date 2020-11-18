@@ -157,7 +157,7 @@ $(document).ready(function () {
                                 }
                             });
                         p.then(function() {
-                            console.log(`deleted one subscription" + ${item.id}`);
+                            console.log(`deleted one subscription ${item.id}`);
                         });
                         promises.push(p);
                     });
