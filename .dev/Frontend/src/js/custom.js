@@ -49,11 +49,7 @@ $(document).ready(function () {
 /* Follow/unfollow section subscription */
 $(document).ready(function () {
     if($('#follow-btn').length) {
-    
-      function getLocale() {
-        return HelpCenter.user.locale; 
-      }
-  
+ 
       function getSectionId() {
         return $(".breadcrumbs li a[href*='/sections/']").attr("href").match(/[0-9]+/);
       }
@@ -62,17 +58,11 @@ $(document).ready(function () {
       const unfollowButtonText = 'Stop getting news updates';
   
       function setFollowButtonStatus() {
-        const locale = getLocale();
         const sectionId = getSectionId();
-        $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
+        $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, 
                   function (results) {
-                    console.log(JSON.stringify(results, undefined, 2));
-                    console.log('count of subscriptions: ' + results.count);
-                    if(results.count > 0) {
-                       $("#follow-btn").html(unfollowButtonText);
-                    } else {
-                       $("#follow-btn").html(followButtonText);
-                    }
+                    console.log(`Subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
+                    $("#follow-btn").html(results.count > 0 ? unfollowButtonText : followButtonText);
             $('#follow-btn').removeClass("tl-hidden");
           });
         }
@@ -83,11 +73,10 @@ $(document).ready(function () {
       //Click handlers  
       $('#follow-btn').click(function () {
         const sectionId = getSectionId();
-        const locale = HelpCenter.user.locale; 
   
         if($('#follow-btn').html() === followButtonText)
         {
-            $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+            $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
                 console.log(JSON.stringify(results, undefined, 2));
                 if(results.count > 0) {
                     console.log(`Already subscribed to section ${sectionId} with ${results.count} subscriptions`);
@@ -99,7 +88,7 @@ $(document).ready(function () {
                             type: "POST",
                             data: jQuery.param({
                                 "subscription": {
-                                    "source_locale": `${locale}`, 
+                                    "source_locale": `${HelpCenter.user.locale}`, 
                                     "include_comments": true
                                 }
                             }),
@@ -116,36 +105,21 @@ $(document).ready(function () {
         });
         //End of subscribe
         } else {
-          console.log('Unsubscribing');
-          $.getJSON('/hc/api/internal/csrf_token.json', function (response) {
-            
+          $.getJSON('/hc/api/internal/csrf_token.json', function (response) {            
             var subscriptionsFound = 0;
 
             var deleteSubscriptions = function () {
-                $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
                 subscriptionsFound = 0; //Reinitialise on each call
+                $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
                     console.log(JSON.stringify(results, undefined, 2));
 
-                    console.log('results.count = ' + results.count);
+                    console.log(`results.count = ${results.count}`);
                     if(!results.count) {
                         console.log("zero results.");
                         return;
                     }
 
-                    if(!results.subscriptions) {
-                        console.log("no subscriptions - returning.");
-                        return;
-                    }
-                    if(results.subscriptions == 0) {
-                        console.log("aero subscriptions - returning.");
-                        return;
-                    }
-
-                    const subId = results.subscriptions[0].id;
-                    console.log("sub id = " + subId);
-
                     subscriptionsFound = results.subscriptions.length;
-                    console.log("subscriptionsFound = " + subscriptionsFound);
 
                     var promises = [];
                     $(results.subscriptions).each(function(index, item) {
