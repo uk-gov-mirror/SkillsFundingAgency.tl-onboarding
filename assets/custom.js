@@ -119,7 +119,7 @@ $(document).ready(function () {
           console.log('Unsubscribing');
           $.getJSON('/hc/api/internal/csrf_token.json', function (response) {
             
-            var openSubscriptions = 0;
+            var subscriptionsFound = 0;
 
             var deleteSubscriptions = function () {
                 $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
@@ -166,17 +166,20 @@ $(document).ready(function () {
                         console.log("finished deleting a batch of subscriptions.");
                         if(openSubscriptions > 0)
                         {
+                            console.log("Calling deleteSubscriptions again");
                             deleteSubscriptions();
                         }
-                        console.log("Done. Setting follow button");
-                        //setFollowButtonStatus();
-                        $('#follow-btn').html(followButtonText);
                     });
                 });
             }
 
             console.log("Calling deleteSubscriptions for the first time");
-            deleteSubscriptions();
+            deleteSubscriptions()
+            .then(function() {
+                console.log("Done. Setting follow button");
+                //setFollowButtonStatus();
+                $('#follow-btn').html(followButtonText);
+            });
           });
           //End of unsubscribe
         }
