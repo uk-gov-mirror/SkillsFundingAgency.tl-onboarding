@@ -49,11 +49,7 @@ $(document).ready(function () {
 /* Follow/unfollow section subscription */
 $(document).ready(function () {
     if($('#follow-btn').length) {
-    
-      function getLocale() {
-        return HelpCenter.user.locale; 
-      }
-  
+ 
       function getSectionId() {
         return $(".breadcrumbs li a[href*='/sections/']").attr("href").match(/[0-9]+/);
       }
@@ -62,19 +58,13 @@ $(document).ready(function () {
       const unfollowButtonText = 'Stop getting news updates';
   
       function setFollowButtonStatus() {
-        const locale = getLocale();
         const sectionId = getSectionId();
-        $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
+        $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, 
                   function (results) {
-                    console.log(JSON.stringify(results, undefined, 2));
-                    console.log('count of subscriptions: ' + results.count);
-                    if(results.count > 0) {
-                       $("#follow-btn").html(unfollowButtonText);
-                    } else {
-                       $("#follow-btn").html(followButtonText);
-                    }
-            $('#follow-btn').removeClass("tl-hidden");
-          });
+                    console.log(`Subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
+                    $("#follow-btn").html(results.count > 0 ? unfollowButtonText : followButtonText);
+                    $('#follow-btn').removeClass("tl-hidden");
+                });
         }
   
       //Set initial button state on load
@@ -83,12 +73,11 @@ $(document).ready(function () {
       //Click handlers  
       $('#follow-btn').click(function () {
         const sectionId = getSectionId();
-        const locale = HelpCenter.user.locale; 
   
         if($('#follow-btn').html() === followButtonText)
         {
-            $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
-                console.log(JSON.stringify(results, undefined, 2));
+            $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+                console.log(`Current subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
                 if(results.count > 0) {
                     console.log(`Already subscribed to section ${sectionId} with ${results.count} subscriptions`);
                     $("#follow-btn").html(unfollowButtonText);
@@ -99,7 +88,7 @@ $(document).ready(function () {
                             type: "POST",
                             data: jQuery.param({
                                 "subscription": {
-                                    "source_locale": `${locale}`, 
+                                    "source_locale": `${HelpCenter.user.locale}`, 
                                     "include_comments": true
                                 }
                             }),
@@ -116,36 +105,57 @@ $(document).ready(function () {
         });
         //End of subscribe
         } else {
-          console.log('Unsubscribing');
-          $.getJSON('/hc/api/internal/csrf_token.json', function (response) {
-            //Get subscription id
-            $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
-                console.log(JSON.stringify(results, undefined, 2));
-                const subId = results.subscriptions[0].id;
-                console.log("sub id = " + subId);
+          $.getJSON('/hc/api/internal/csrf_token.json', function (response) {            
+            var subscriptionsFound = 0;
+            var subscriptionsRemaining = 0;
 
-                var promises = [];
-                $(results.subscriptions).each(function(index, item) {
-                    var p = $.ajax({
-                        url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${item.id}.json`,
-                        type: "DELETE",
-                        dataType: "application/json",
-                        headers: {
-                            "X-CSRF-Token": response.current_session.csrf_token
-                            }
+            var deleteSubscriptions = function () {
+                subscriptionsFound = 0; //Reinitialise on each call
+                subscriptionsRemaining = 0;
+                $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+                    console.log(`Subscriptions to be deleted:\n${JSON.stringify(results, undefined, 2)}`);
+
+                    if(!results.count) {
+                        console.log("No subscriptions to delete.");
+                        return;
+                    }
+
+                    subscriptionsFound = results.subscriptions.length;
+                    subscriptionsRemaining = results.count - subscriptionsFound;
+
+                    var promises = [];
+                    $(results.subscriptions).each(function(index, item) {
+                        var p = $.ajax({
+                            url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${item.id}.json`,
+                            type: "DELETE",
+                            dataType: "application/json",
+                            headers: {
+                                "X-CSRF-Token": response.current_session.csrf_token
+                                }
+                            });
+                        p.then(function() {
+                            console.log(`deleted one subscription ${item.id}`);
                         });
-                    p.then(function() {
-                        console.log(`deleted one subscription" + ${item.id}`);
+                        promises.push(p);
                     });
-                    promises.push(p);
-                });
 
-                $.when.apply($, promises).then(function() {
-                    console.log("finished deleting all subscriptions.");
-                        //setFollowButtonStatus();
-                        $('#follow-btn').html(followButtonText);
+                    $.when.apply($, promises).then(function() {
+                        console.log(`Finished deleting a batch of ${subscriptionsFound} subscriptions. ${subscriptionsRemaining} remaining.`);
+                        if(subscriptionsRemaining > 0)
+                        {
+                            console.log("Calling deleteSubscriptions again");
+                            deleteSubscriptions();
+                        }
+                        else {
+                            console.log("Unsibscribed; setting follow button");
+                            //setFollowButtonStatus();
+                            $('#follow-btn').html(followButtonText);                                        
+                        }
                     });
                 });
+            }
+
+            deleteSubscriptions();
           });
           //End of unsubscribe
         }
