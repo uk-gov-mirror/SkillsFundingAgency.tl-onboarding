@@ -47,7 +47,7 @@ gulp.task('sass', () => {
 gulp.task('sass:watch', () => {
     gulp.watch((paths.src.SCSS), gulp.series('sass'));
     gulp.watch((paths.src.Assets), gulp.series('assets'));
-    gulp.watch((paths.src.JS), gulp.series('js'));
+    gulp.watch((paths.src.JS), gulp.series('js', 'customjs'));
 });
 
 gulp.task('templates', () => {
