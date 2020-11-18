@@ -124,6 +124,22 @@ $(document).ready(function () {
             var deleteSubscriptions = function () {
                 $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, function (results) {
                     console.log(JSON.stringify(results, undefined, 2));
+
+                    console.log('results.count = ' + results.count);
+                    if(!results.count) {
+                        console.log("zero results.");
+                        return;
+                    }
+
+                    if(!results.subscriptions) {
+                        console.log("no subscriptions - returning.");
+                        return;
+                    }
+                    if(results.subscriptions == 0) {
+                        console.log("aero subscriptions - returning.");
+                        return;
+                    }
+
                     const subId = results.subscriptions[0].id;
                     console.log("sub id = " + subId);
 
@@ -158,7 +174,8 @@ $(document).ready(function () {
                     });
                 });
             }
-                
+
+            console.log("Calling deleteSubscriptions for the first time");
             deleteSubscriptions();
           });
           //End of unsubscribe
