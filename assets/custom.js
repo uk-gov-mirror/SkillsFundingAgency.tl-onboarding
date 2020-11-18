@@ -169,16 +169,16 @@ $(document).ready(function () {
                             console.log("Calling deleteSubscriptions again");
                             deleteSubscriptions();
                         }
+                        else {
+                            console.log("Done. Setting follow button");
+                            //setFollowButtonStatus();
+                            $('#follow-btn').html(followButtonText);                                        
+                        }
                     });
                 });
             }
 
             console.log("Calling deleteSubscriptions for the first time");
-            $.when(deleteSubscriptions()).done(function() {
-                console.log("Done. Setting follow button");
-                //setFollowButtonStatus();
-                $('#follow-btn').html(followButtonText);
-            });
           });
           //End of unsubscribe
         }
