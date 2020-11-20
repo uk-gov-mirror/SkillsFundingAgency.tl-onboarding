@@ -1,9 +1,9 @@
 {
   "name": "GDS Style",
   "author": "Ash Anderton",
-  "version": "1.2.0",
+  "version": "2.0.15",
   "api_version": 2,
-  "default_locale": "en-us",
+  "default_locale": "en-gb",
   "settings": [
     {
       "label": "colors_group_label",
@@ -93,7 +93,7 @@
           "type": "checkbox",
           "description": "instant_search_description",
           "label": "instant_search_label",
-          "value": true
+          "value": false
         },
         {
           "identifier": "scoped_kb_search",
@@ -217,6 +217,46 @@
           "description": "follow_topic_description",
           "label": "follow_topic_label",
           "value": true
+        }
+      ]
+    },
+    {
+      "label": "Custom article IDs",
+      "variables": [
+        {
+          "identifier": "article_id_cookies",
+          "type": "text",
+          "description": "Footer section",
+          "label": "Cookies",
+          "value": "360015340619"
+        },
+        {
+          "identifier": "article_id_accessibility",
+          "type": "text",
+          "description": "Footer section",
+          "label": "Accesibility",
+          "value": "360015324220"
+        },
+        {
+          "identifier": "article_id_terms",
+          "type": "text",
+          "description": "Footer section",
+          "label": "Terms",
+          "value": "360017593039"
+        },
+        {
+          "identifier": "article_id_interrupt",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Interrupt",
+          "value": "360017540560"
+        },
+        {
+          "identifier": "survey_link",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Feedback survey",
+          "value": "https://www.smartsurvey.co.uk/s/VXHHIQ/"
         }
       ]
     }

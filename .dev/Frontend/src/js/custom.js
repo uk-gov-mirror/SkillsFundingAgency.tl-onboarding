@@ -45,38 +45,26 @@ $(document).ready(function () {
     });
 });
 
+
 /* Follow/unfollow section subscription */
 $(document).ready(function () {
     if($('#follow-btn').length) {
-    
-      //Helper functions
-      function getLocale() {
-        return HelpCenter.user.locale; 
-        //return window.location.href.split('/hc/')[1].split('/')[0];
-      }
-  
+ 
       function getSectionId() {
-        const sectionId = $(".breadcrumbs li a[href*='/sections/']").attr("href").match(/[0-9]+/);
-        return sectionId;  
+        return $(".breadcrumbs li a[href*='/sections/']").attr("href").match(/[0-9]+/);
       }
   
       const followButtonText = 'Get news updates';
       const unfollowButtonText = 'Stop getting news updates';
   
       function setFollowButtonStatus() {
-        const locale = getLocale(); 
         const sectionId = getSectionId();
-        $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
+        $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, 
                   function (results) {
-                    console.log(JSON.stringify(results, undefined, 2));
-                    console.log('count from api call = ' + results.count);
-                    if(results.count > 0) {
-                       $("#follow-btn").html(unfollowButtonText);
-                    } else {
-                       $("#follow-btn").html(followButtonText);
-                    }
-            $('#follow-btn').removeClass("tl-hidden");
-          });
+                    console.log(`Subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
+                    $("#follow-btn").html(results.count > 0 ? unfollowButtonText : followButtonText);
+                    $('#follow-btn').removeClass("tl-hidden");
+                });
         }
   
       //Set initial button state on load
@@ -84,75 +72,90 @@ $(document).ready(function () {
   
       //Click handlers  
       $('#follow-btn').click(function () {
-        console.log('follow button clicked');
-  
         const sectionId = getSectionId();
-        const locale = HelpCenter.user.locale; 
-        console.log('locale: ' + locale);
-        console.log('section id: ' + sectionId);
   
         if($('#follow-btn').html() === followButtonText)
         {
-          console.log('Subscribing');
-  
-          // Get the csrf token needed for the api call
-          $.getJSON('/hc/api/internal/csrf_token.json', 
-                    function (response) {
-                    var token = response.current_session.csrf_token;
-                    //console.log("token: " + token);  
-  
-                    const params = {
-                              "subscription": {
-                                 "source_locale": `${locale}`, 
-                                 "include_comments": true
-                              }
-                          };
-                   //console.log("paams: " + params);
-  
-                    $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
-                           type: "POST",
-                           data: jQuery.param(params),
+            $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+                console.log(`Current subscriptions:\n${JSON.stringify(results, undefined, 2)}`);
+                if(results.count > 0) {
+                    console.log(`Already subscribed to section ${sectionId} with ${results.count} subscriptions`);
+                    $("#follow-btn").html(unfollowButtonText);
+                } else {
+                    console.log('Subscribing');
+                    $.getJSON('/hc/api/internal/csrf_token.json', function (response) {
+                        $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
+                            type: "POST",
+                            data: jQuery.param({
+                                "subscription": {
+                                    "source_locale": `${HelpCenter.user.locale}`, 
+                                    "include_comments": true
+                                }
+                            }),
                             dataType: "application/json",
                             headers: {
-                               "X-CSRF-Token": token
-                           },
-                           complete: function(){
-                            $('#follow-btn').html(unfollowButtonText);
-                          }
+                                "X-CSRF-Token":  response.current_session.csrf_token
+                            },
+                            complete: function(){
+                                $('#follow-btn').html(unfollowButtonText);
+                            }
                         });
-          });
-  
-          //End of subscribe
+                    });
+            }
+        });
+        //End of subscribe
         } else {
-          console.log('Unsubscribing');
-  
-          // Get the csrf token needed for the api call
-          $.getJSON('/hc/api/internal/csrf_token.json', 
-                    function (response) {
-                      var token = response.current_session.csrf_token;
-                      //console.log("token: " + token);
-  
-                      //Get subscription id
-                      $.getJSON(`/api/v2/help_center/${locale}/sections/${sectionId}/subscriptions.json`, 
-                                function (results) {
-                                    console.log(JSON.stringify(results, undefined, 2));
-                                    const subId = results.subscriptions[0].id;
-                                    console.log("sub id = " + subId);
-  
-                                    //Delete the subscription
-                                    $.ajax({
-                                      url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${subId}.json`,
-                                      type: "DELETE",
-                                      dataType: "application/json",
-                                      headers: {
-                                         "X-CSRF-Token": token
-                                       }
-                                    }).then(function(res){
-                                         console.log("delete result: " + res);
-                                         //setSubscribeButtonStatus();
-                                         $('#follow-btn').html(followButtonText);
-                                 });
-                      });
+          $.getJSON('/hc/api/internal/csrf_token.json', function (response) {            
+            var subscriptionsFound = 0;
+            var subscriptionsRemaining = 0;
+
+            var deleteSubscriptions = function () {
+                subscriptionsFound = 0; //Reinitialise on each call
+                subscriptionsRemaining = 0;
+                $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`, function (results) {
+                    console.log(`Subscriptions to be deleted:\n${JSON.stringify(results, undefined, 2)}`);
+
+                    if(!results.count) {
+                        console.log("No subscriptions to delete.");
+                        return;
+                    }
+
+                    subscriptionsFound = results.subscriptions.length;
+                    subscriptionsRemaining = results.count - subscriptionsFound;
+
+                    var promises = [];
+                    $(results.subscriptions).each(function(index, item) {
+                        var p = $.ajax({
+                            url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${item.id}.json`,
+                            type: "DELETE",
+                            dataType: "application/json",
+                            headers: {
+                                "X-CSRF-Token": response.current_session.csrf_token
+                                }
+                            });
+                        p.then(function() {
+                            console.log(`deleted one subscription ${item.id}`);
+                        });
+                        promises.push(p);
+                    });
+
+                    $.when.apply($, promises).then(function() {
+                        console.log(`Finished deleting a batch of ${subscriptionsFound} subscriptions. ${subscriptionsRemaining} remaining.`);
+                        if(subscriptionsRemaining > 0)
+                        {
+                            console.log("Calling deleteSubscriptions again");
+                            deleteSubscriptions();
+                        }
+                        else {
+                            console.log("Unsibscribed; setting follow button");
+                            //setFollowButtonStatus();
+                            $('#follow-btn').html(followButtonText);                                        
+                        }
+                    });
+                });
+            }
+
+            deleteSubscriptions();
           });
           //End of unsubscribe
         }
@@ -246,3 +249,88 @@ if (cookieConsent.length) {
     $('#cookie-consent-No').change(function() {writeCookie('AnalyticsConsent','false',365); writeCookie('seen_cookie_message_help','cookie_policy',365); });*/
 }
 /* Cookie Article, with consent ends */
+
+
+/* APPROVED USER CHECK */
+
+function isApprovedUser() {
+    if (HelpCenter.user.role != "anonymous" && HelpCenter.user.organizations.length > 0) {
+        for (var idx in HelpCenter.user.organizations) {
+            if (HelpCenter.user.role != "end_user" || HelpCenter.user.organizations[idx].tags.includes('tlevels_approved')) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
+
+
+/* Agent USER CHECK */
+function isAgent() {
+    if (HelpCenter.user.role == "agent" || HelpCenter.user.role == "manager") {
+        return true;
+    }
+    return false;
+};
+
+/* Logged in USER CHECK */
+function isLoggedIn() {
+    if (HelpCenter.user.role != "anonymous") {
+        return true;
+    }
+    return false;
+};
+
+
+// ***************Function stringToHslColor*****************t**
+// To convert the initials to a hash string. these functions take the parameters as the name initials 
+// convert the string into a hash string to give a unique colour to each name initial with also putting in control over the brightness and contrast as parameters
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+function convertNameToInitials(name) {
+    if (!name) return '';
+    const cleanName = name.replace(/[`~!@@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    const parts = cleanName.split(' ');
+    var initials = parts.length > 0 ? parts[0][0] : '';
+    if (parts.length > 1) initials += parts[parts.length - 1][0];
+    return initials.toUpperCase();
+};
+
+function stringToHslColorLog(str, s, l) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var h = hash % 360;
+    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+}
+
+
+//  Function to convert the intials to a hash string.
+function stringToHslColor(str, s, l) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var h = hash % 360;
+    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+}
+
+$(function () {
+    $('html').addClass("govuk-template");
+    $('body').addClass("govuk-template__body");
+});
+
+
+

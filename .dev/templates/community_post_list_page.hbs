@@ -1,157 +1,156 @@
-<h1 class="visibility-hidden">{{ t 'community'}}</h1>
+﻿<script>
+    document.title = "Discussion forum | Support with delivering T Levels"
+</script>
 
-<section class="section hero community-hero">
-  <h2 class="visibility-hidden">{{ t 'search'}}</h2>
-  <div class="hero-inner">
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
-      <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
-      <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
-    </svg>
-    {{search submit=false class='search search-full' scoped=settings.scoped_community_search}}
-  </div>
-</section>
 
-<div class="container">
-  <nav class="sub-nav">
-    {{breadcrumbs}}
-  </nav>
 
-  <header class="page-header community-header">
-      <span class="dropdown">
-        <button class="dropdown-toggle" aria-haspopup="true">
-          <h2 class="title">
-            {{t 'all_posts'}}
-          </h2>
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-          </svg>
-        </button>
-        <span class="dropdown-menu" role="menu">
-          {{#link 'topics' role='menuitem'}}
-            {{t 'show_topics'}}
-          {{/link}}
-          {{#link 'posts' role='menuitem' selected='true'}}
-            {{t 'show_all_posts'}}
-          {{/link}}
-        </span>
-      </span>
-    <span class="post-to-community">
-      {{link 'new_post' class='button button-large'}}
-    </span>
-  </header>
-
-  <div class="topic-header">
-    <span class="topic-filters">
-      <span class="dropdown">
-        <button class="dropdown-toggle" aria-haspopup="true">
-          {{current_filter.label}}
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-          </svg>
-        </button>
-        <span class="dropdown-menu" role="menu">
-          {{#each filters}}
-            <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
-              {{name}}
+<div class="govuk-width-container ">
+    <!-- Phase banner -->
+    <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
+        <p class="govuk-phase-banner__content">
+            <a href="{{settings.survey_link}}" id="tl-header--feedback-button">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    Give feedback
+                </strong>
             </a>
-          {{/each}}
-        </span>
-      </span>
-      <span class="dropdown">
-        <button class="dropdown-toggle" aria-haspopup="true">
-          {{current_sorter.label}}
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-          </svg>
-        </button>
-        <span class="dropdown-menu" role="menu">
-          {{#each sorters}}
-            <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
-              {{name}}
-            </a>
-          {{/each}}
-        </span>
-      </span>
-    </span>
-  </div>
-
-  <div id="main-content" class="posts-list striped-list">
-    {{#unless posts}}
-      <div class="no-posts-with-filter">
-        {{t 'no_posts_with_filter'}}
-      </div>
-    {{/unless}}
-    {{#each posts}}
-      <section role="region" aria-labelledby="title-{{id}}">
-        <div class="striped-list-item {{#if featured}}post-featured{{/if}}">
-          <span class="striped-list-info">
-            <a href="{{url}}" id="title-{{id}}" class="striped-list-title">{{title}}</a>
-            <span class="post-overview-item">
-              {{#if pinned}}
-                <span class="status-label status-label-pinned">{{t 'pinned'}}</span>
-              {{/if}}
-
-              {{#if featured}}
-                <span class="status-label status-label-featured">{{t 'featured'}}</span>
-              {{/if}}
-
-              {{#is status 'none'}}
-              {{else}}
-                <span class="status-label-{{status_dasherized}} status-label striped-list-status">{{status_name}}</span>
-              {{/is}}
+            <span class="govuk-phase-banner__text">
+                This is a new service - <a class="govuk-link" href="{{settings.survey_link}}" id="tl-header--feedback">help us to improve it</a>
             </span>
-
-            <ul class="meta-group">
-              <li class="meta-data">{{author.name}}</li>
-              {{#if editor}}
-                <li class="meta-data">{{date edited_at timeago=true}}</li>
-                <li class="meta-data">{{t 'edited'}}</li>
-              {{else}}
-                <li class="meta-data">{{date created_at timeago=true}}</li>
-              {{/if}}
-            </ul>
-          </span>
-
-          <div class="post-overview-count striped-list-count">
-            <span class="striped-list-count-item">
-              <span class="striped-list-number">{{vote_sum}}</span>
-              {{t 'vote' count=vote_sum}}
-            </span>
-            <span class="striped-list-count-item">
-              <span class="striped-list-number">{{comment_count}}</span>
-              {{t 'comment' count=comment_count}}
-            </span>
-          </div>
-        </div>
-      </section>
-    {{/each}}
-  </div>
-
-  {{pagination}}
-
-  {{#if featured_posts}}
-    <section class="section community-featured-posts">
-      <h2 class="title">{{t 'featured_posts'}}</h2>
-      <ul class="promoted-articles">
-        {{#each featured_posts}}
-          <li class="promoted-articles-item">
-            <a href="{{url}}">
-              {{title}}
-            </a>
-          </li>
-        {{/each}}
-      </ul>
-    </section>
-  {{/if}}
-
-  <section class="community-activity activity">
-    {{#if help_center.community_enabled}}
-      {{recent_activity scope='community'}}
-    {{/if}}
-  </section>
-
-  <section class="container community-footer">
-    <h2 class="community-footer-title">{{t 'suggest_new_post'}}</h2>
-    {{link 'new_post' class='button button-large'}}
-  </section>
+        </p>
+    </div>
 </div>
+
+
+
+<!-- Main content -->
+<main id="main-content" role="main">
+
+    <!-- Hero Banner -->
+    <div class="tl-hero--community">
+
+
+        <div class="govuk-width-container" id="tl-breadcrumbs--community">
+            <div class="tl-breadcrumbs">
+                {{breadcrumbs}}
+            </div>
+        </div>
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Discussion forum</h1>
+                    <label class="tl-hidden" for="query">
+                        Search all discussions
+                    </label>
+                    <div class="tl-form-group tl-search--container tl-search--community" id="tl-search--community--home">
+
+                        <div class="tl-search--error tl-hidden">
+                            <span class="tl-error--message"></span>
+                        </div>
+                        <form role="search" class="tl-search govuk-!-margin-top-2" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get">
+                            <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search all discussions" aria-label="Search discussions">
+                            <input type="hidden" name="filter_by" value="community" />
+                            <input type="submit" name="commit" value="Search all discussions">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Community content -->
+    <div class="govuk-width-container govuk-!-margin-top-7">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="tl-community-sortby">Sort by</label>
+
+                    <select name="sortby" class="govuk-select" id="tl-community-sortby" onchange="if (this.value) window.location.href=this.value">
+                        {{#each sorters}}
+                        {{#is name 'Votes'}}
+                        {{else}}
+                        <option value="{{url}}" {{#if selected}} selected {{/if}}>
+                            {{#is name 'Newest post'}}
+                            Newest questions
+                            {{else}}
+                            {{#is name 'Recent activity'}}
+                            Latest activity
+                            {{else}}
+                            {{#is name 'Comments'}}
+                            Most replies
+                            {{else}}
+                            {{name}}
+                            {{/is}}
+                            {{/is}}
+                            {{/is}}
+                        </option>
+                        {{/is}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="govuk-grid-column-one-half tl-text--right govuk-!-margin-top-5">
+                {{#if signed_in}}
+                <a href="#" class="govuk-button govuk-!-margin-bottom-0" id="tl-community--newpost">Post a question</a>
+
+                <script>
+                    $(document).ready(function () {
+                        if (isApprovedUser()) {
+                            $("#tl-community--newpost").attr('href', "/hc/en-gb/community/posts/new");
+
+                        }
+                        else {
+                            $("#tl-community--newpost").attr('href', "/hc/en-gb/articles/{{settings.article_id_interrupt}}");
+                        }
+                    });
+                </script>
+                {{else}}
+                {{#link 'new_post' class="govuk-button tl-community--newpost--signin"}}Sign in to post a question{{/link}}</li>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header tl-community--table__header">Question</th>
+                            <th scope="col" class="govuk-table__header tl-community--table__header">Replies</th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+
+
+
+                        {{#each posts}}
+                        <tr class="govuk-table__row tl-community--table__row">
+                            <th scope="row" class="govuk-table__cell">
+                                <a href="{{url}}" id="tl-community-home--post" class="govuk-link tl-community-table-post--link">{{title}}</a>
+                                <script>
+                                  $.getJSON('/api/v2/community/posts/{{id}}.json', function(title) {
+                                      $('.{{id}}post').html(title.post.details.replace(/(<([^>]+)>)/gi, "").replace("&nbsp;", " ").substring(0, 75) + '...');
+                                  });
+                                </script>
+                                <div class="{{id}}post govuk-!-margin-top-0 tl-community-table-post--description">
+                                </div>
+                            </th>
+                            <td class="govuk-table__cell">{{comment_count}}</td>
+
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+
+                <div class="tl-community--pagination govuk-!-margin-bottom-6">
+                    {{pagination}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+

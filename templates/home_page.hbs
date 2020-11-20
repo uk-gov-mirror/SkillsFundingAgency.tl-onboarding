@@ -2,13 +2,13 @@
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
         <p class="govuk-phase-banner__content">
-            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
+            <a href="{{settings.survey_link}}" id="tl-header--feedback-button">
                 <strong class="govuk-tag govuk-phase-banner__content__tag">
                     Give feedback
                 </strong>
             </a>
             <span class="govuk-phase-banner__text">
-                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback">help us to improve it</a>
+                This is a new service - <a class="govuk-link" href="{{settings.survey_link}}" id="tl-header--feedback">help us to improve it</a>
             </span>
         </p>
     </div>
@@ -25,7 +25,7 @@
                     <label class="tl-inlineblock govuk-body govuk-!-font-size-24 govuk-!-margin-bottom-5" for="query">
                         Help, guidance and support materials for colleges, schools and other T Level providers
                     </label>
-                    <div class="tl-form-group tl-search--container tl-search--home">
+                    <div class="tl-form-group tl-search--container tl-search--home" id="tl-search--home">
 
                         <div class="tl-search--error tl-hidden">
                             <span class="tl-error--message"></span>
@@ -65,23 +65,50 @@
         </div>
 
         <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
+
+
+            {{#if help_center.community_enabled}}
+            <div class="govuk-grid-column-one-half">
+                <div class="tl-card">
+                    <h3 class="govuk-heading-m">Discussion forum</h3>
+                    <p class="govuk-body">
+                        Use the discussion forum to:
+                    </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>get answers to your T Level queries</li>
+                        <li>talk about delivering T Levels with people from other colleges and schools</li>
+                    </ul>
+                    <p class="govuk-body govuk-!-margin-bottom-0">
+                        {{#link 'posts' class='govuk-button tl-home--forum' }}
+                        Go to the forum
+                        {{/link}}
+
+                    </p>
+
+                </div>
+            </div>
+            {{/if}}
+
+
+
+            <div class="govuk-grid-column-one-half">
                 <div class="tl-card">
                     <h3 class="govuk-heading-m">Contact us</h3>
                     <p class="govuk-body">
-                        We want to hear if you have any:
+                        We want to hear if you have:
                     </p>
                     <ul class="govuk-list govuk-list--bullet">
                         <li>questions about how to use the site</li>
-                        <li>comments on any of the content</li>
+                        <li>issues with anything on the site</li>
                         <li>suggestions for how we can improve</li>
                     </ul>
                     <p class="govuk-body govuk-!-margin-bottom-0">Email: <a class="govuk-link" id="tl-home--contact" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
 
                 </div>
             </div>
+
+
         </div>
+
     </div>
-
-
 </main>

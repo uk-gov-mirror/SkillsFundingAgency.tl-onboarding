@@ -2,13 +2,13 @@
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner">
         <p class="govuk-phase-banner__content">
-            <a href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-button">
+            <a href="{{settings.survey_link}}" id="tl-header--feedback-button">
                 <strong class="govuk-tag govuk-phase-banner__content__tag">
                     Give feedback
                 </strong>
             </a>
             <span class="govuk-phase-banner__text">
-                This is a new service - <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/XXECG8/" id="tl-header--feedback-link">help us to improve it</a>
+                This is a new service - <a class="govuk-link" href="{{settings.survey_link}}" id="tl-header--feedback-link">help us to improve it</a>
             </span>
         </p>
     </div>
@@ -29,7 +29,7 @@
                 <div class="govuk-grid-column-two-thirds">
                     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Search results</h1>
 
-                    <div class="tl-form-group tl-search--container">
+                    <div class="tl-form-group tl-search--container" id="tl-search--results">
                         <div class="tl-search--error tl-hidden">
                             <span class="tl-error--message"></span>
                         </div>
@@ -40,23 +40,95 @@
         </section>
         <section id="tl-search--results">
             <div class="govuk-grid-row">
+                {{#if help_center.community_enabled}}
+                <div class="govuk-grid-column-one-third">
+                    <div class="govuk-form-group govuk-!-margin-top-6 tl-search--filters">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                <h1 class="govuk-fieldset__heading">
+                                    Show me
+                                </h1>
+                            </legend>
+                            <div class="govuk-radios--small">
+                                {{#each filters}}
+                                {{#if selected}}
+                                <a class="tl-search--filter--radio tl-search--filter--radio--checked" href="{{url}}">
+                                    <span class="tl-search--filter--radio--button"></span>
+                                    {{#is name 'All types'}}
+                                    All results
+                                    {{else}}
+                                    {{#is name 'Articles'}}
+                                    Articles only
+                                    {{else}}
+                                    {{#is name 'Community'}}
+                                    Discussions only
+                                    {{else}}
+                                    {{name}}
+                                    {{/is}}
+                                    {{/is}}
+                                    {{/is}}
+                                </a>
+
+                                {{else}}
+                                <a class="tl-search--filter--radio" href="{{url}}">
+                                    <span class="tl-search--filter--radio--button"></span>
+                                    {{#is name 'All types'}}
+                                    All results
+                                    {{else}}
+                                    {{#is name 'Articles'}}
+                                    Articles only
+                                    {{else}}
+                                    {{#is name 'Community'}}
+                                    Discussions only
+                                    {{else}}
+                                    {{name}}
+                                    {{/is}}
+                                    {{/is}}
+                                    {{/is}}
+                                </a>
+                                {{/if}}
+                                {{/each}}
+
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+
+                <script>
+                    $(".tl-search--filter-radio").click(function () {
+                        location.href = $(this).attr("value");
+                    });
+                </script>
+
+                {{/if}}
                 <div class="govuk-grid-column-two-thirds">
                     {{#if results}}
                     {{#is results_count 1}}
                     <h2 class="govuk-body-m govuk-!-margin-top-6">
                         There is <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> result for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
                     </h2>
+                    <p class="govuk-body-s">If you can't find what you're looking for, why don't you {{#link 'new_post' class='govuk-link tl-search--results--question'}}{{#if signed_in}}{{else}}sign in to {{/if}}ask a question on our forum?{{/link}}</p>
                     {{else}}
                     <h2 class="govuk-body-m govuk-!-margin-top-6">
                         There are <span class="govuk-!-font-weight-bold" id="tl-search--results-count">{{results_count}}</span> results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
                     </h2>
+                    <p class="govuk-body-s">If you can't find what you're looking for, why don't you {{#link 'new_post' class='govuk-link tl-search--results--question'}}{{#if signed_in}}{{else}}sign in to {{/if}}ask a question on our forum?{{/link}}</p>
+
                     {{/is}}
                     <ul class="tl-search--results--list">
                         {{#each results}}
                         <li>
                             {{#each path_steps}}
                             {{#is @index 1}}
-                            <span class="tl-search--results--category">{{name}}</span>
+
+                            {{#is name 'Community'}}
+                            <span class="tl-search--results--category tl-search--results--category--discussion">Discussion</span>
+                            {{else}}
+                            <span class="tl-search--results--section">{{name}}</span>
+                            <span class="tl-search--results--category tl-search--results--category--article">Article</span>
+                            {{/is}}
+
                             {{/is}}
                             {{/each}}
 
@@ -75,19 +147,32 @@
                     </h2>
                     <p class="govuk-body">Improve your search results by:</p>
                     <ul class="govuk-list govuk-list--bullet">
+                        <li>making sure your filter is set to show all results</li>
                         <li>double-checking your spelling</li>
                         <li>using fewer keywords</li>
                         <li>searching for something less specific</li>
                     </ul>
+
+                    <p class="govuk-body">Alternatively, why don't you {{#link 'new_post' class='govuk-link tl-search--results--question'}}{{#if signed_in}}{{else}}sign in to {{/if}}ask a question on our forum?{{/link}}</p>
+
                     {{/if}}
 
                 </div>
+
             </div>
         </section>
 
     </div>
 </main>
 
-
-
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (isLoggedIn()) {
+            if (isApprovedUser()) {
+            }
+            else {
+                $(".tl-search--results--question").attr("href", "/hc/en-gb/articles/{{settings.article_id_interrupt}}");
+            }
+        }
+    });
+</script>
