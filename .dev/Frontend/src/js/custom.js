@@ -92,9 +92,9 @@ $(document).ready(function () {
                 } else
                     console.log("setFollowButtonStatus::No subscription found");
 
-                console.log(`Setting follow button text to ${(s ? followButtonText : unfollowButtonText)}`);
+                console.log(`Setting follow button text to ${(s ? unfollowButtonText : followButtonText)}`);
 
-                $("#follow-btn").html(s ? followButtonText : unfollowButtonText);
+                $("#follow-btn").html(s ? unfollowButtonText : followButtonText);
                 $('#follow-btn').removeClass("tl-hidden");
             })
             .fail(function(r){
