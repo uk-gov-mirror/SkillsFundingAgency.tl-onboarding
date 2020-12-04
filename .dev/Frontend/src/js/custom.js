@@ -91,7 +91,6 @@ $(document).ready(function () {
                     console.log(s);
                 } else
                     console.log("setFollowButtonStatus::No subscription found");
-                })
 
                 console.log(`Setting follow button text to ${(s ? followButtonText : unfollowButtonText)}`);
 
