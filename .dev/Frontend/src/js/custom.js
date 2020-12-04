@@ -67,10 +67,7 @@ $(document).ready(function () {
                 subscriptions = subscriptionsResult.subscriptions;
                 return $.getJSON('/api/v2/users/me.json');
             })
-            .then(function (user) {			
-                console.log(`getUserSectionSubscription::found user: ${user.user.id}`);
-                var userId = user.user.id;
-                
+            .then(function (user) {
                 console.log(`getUserSectionSubscription::checking subscriptions: for user ${user.user.id}`);
                 console.log(subscriptions);
 
