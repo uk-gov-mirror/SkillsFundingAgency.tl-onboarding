@@ -86,6 +86,15 @@ $(document).ready(function () {
             const sectionId = getSectionId();
             getUserSectionSubscription(sectionId)
             .done(function(s){
+                if(s) {
+                    console.log("setFollowButtonStatus::Found subscription:");
+                    console.log(s);
+                } else
+                    console.log("setFollowButtonStatus::No subscription found");
+                })
+
+                console.log(`Setting follow button text to ${(s ? followButtonText : unfollowButtonText)}`);
+
                 $("#follow-btn").html(s ? followButtonText : unfollowButtonText);
                 $('#follow-btn').removeClass("tl-hidden");
             })
