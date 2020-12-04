@@ -68,7 +68,7 @@ $(document).ready(function () {
                 return $.getJSON('/api/v2/users/me.json');
             })
             .then(function (user) {			
-                console.log(`getUserSectionSubscription::found user: user.user.id}`);
+                console.log(`getUserSectionSubscription::found user: ${user.user.id}`);
                 var userId = user.user.id;
                 
                 console.log(`getUserSectionSubscription::checking subscriptions: for user ${user.user.id}`);
@@ -89,7 +89,7 @@ $(document).ready(function () {
             const sectionId = getSectionId();
             getUserSectionSubscription(sectionId)
             .done(function(s){
-                $("#follow-btn").html(s > 0 ? unfollowButtonText : followButtonText);
+                $("#follow-btn").html(s ? followButtonText : unfollowButtonText);
                 $('#follow-btn').removeClass("tl-hidden");
             })
             .fail(function(r){
