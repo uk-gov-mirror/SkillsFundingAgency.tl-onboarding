@@ -124,7 +124,7 @@ $(document).ready(function () {
                         "X-CSRF-Token":  csrfResponse.current_session.csrf_token
                     },
                     complete: function(){
-                        console.log("Deleted subscription");
+                        console.log("Subscribed to section");
                         $('#follow-btn').html(unfollowButtonText);
                     }
                 });
