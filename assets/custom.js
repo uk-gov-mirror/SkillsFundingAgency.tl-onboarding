@@ -61,22 +61,15 @@ $(document).ready(function () {
             var subscriptions;					
             return $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`)
             .then(function (subscriptionsResult) {
-                console.log("getCurrentUserSectionSubscription::subscriptions response: ");
-                console.log(subscriptionsResult);
                 subscriptions = subscriptionsResult.subscriptions;
                 return $.getJSON('/api/v2/users/me.json');
             })
             .then(function (user) {
-                console.log(`getCurrentUserSectionSubscription::checking subscriptions: for user ${user.user.id}`);
-                console.log(subscriptions);
-
                 var actualSubscription = subscriptions.find(s => s.user_id == user.user.id);
-                
                 if(actualSubscription) {
-                    console.log(`getCurrentUserSectionSubscription::returning subscription ${actualSubscription.id} for user ${user.user.id} ${user.user.email}`);
                     return actualSubscription;
                 }
-                    
+
                 return undefined;
             });
         }
@@ -88,29 +81,21 @@ $(document).ready(function () {
                 if(s) {
                     console.log("setFollowButtonStatus::Found subscription:");
                     console.log(s);
-                } else {
-                    console.log("setFollowButtonStatus::No subscription found");
                 }
-
-                console.log(`Setting follow button text to ${(s ? unfollowButtonText : followButtonText)}`);
 
                 $("#follow-btn").html(s ? unfollowButtonText : followButtonText);
                 $('#follow-btn').removeClass("tl-hidden");
             })
             .fail(function(r){
-                console.log(`Call to getCurrentUserSectionSubscription failed. ${r}`);
+                console.log(`Call from setFollowButtonStatus to getCurrentUserSectionSubscription failed. ${r}`);
             });
         }
 
         function subscribeToSection() {
             const sectionId = getSectionId();
-            console.log(`Subscribing to section ${sectionId}`);
 
             $.getJSON('/hc/api/internal/csrf_token.json')
             .then(function (csrfResponse) {
-                console.log(csrfResponse);
-                console.log(`Got csrf token ${csrfResponse.current_session.csrf_token}`);
-
                 $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
                     type: "POST",
                     data: jQuery.param({
@@ -124,7 +109,7 @@ $(document).ready(function () {
                         "X-CSRF-Token":  csrfResponse.current_session.csrf_token
                     },
                     complete: function(){
-                        console.log("Subscribed to section");
+                        console.log(`Subscribed to section ${sectionId}`);
                         $('#follow-btn').html(unfollowButtonText);
                     }
                 });
@@ -133,17 +118,12 @@ $(document).ready(function () {
 
         function unsubscribeFromSection() {
             const sectionId = getSectionId();
-            console.log(`Unsubscribing from section ${sectionId}`);
 
             $.getJSON('/hc/api/internal/csrf_token.json')
             .then(function (csrfResponse) {
-                console.log(csrfResponse);
-                console.log(`Got csrf token ${csrfResponse.current_session.csrf_token}`);
-
                 getCurrentUserSectionSubscription(sectionId)
                 .done(function(s){
                     if(s) {
-                        console.log(`Deleting subscription ${s.id}`);                   
                         $.ajax({
                             url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${s.id}.json`,
                             type: "DELETE",
@@ -153,14 +133,14 @@ $(document).ready(function () {
                                     }
                             })
                             .then(function() {
-                                console.log(`deleted one subscription ${s.id}`);
+                                console.log(`Deleted subscription ${s.id}`);
                                 setFollowButtonStatus();
                             });
                         } else
                             console.log("No subscription found to delete for this user");                
                 })
                 .fail(function(r){
-                    console.log(`Call to getCurrentUserSectionSubscription failed. ${r}`);
+                    console.log(`Call from unsubscribeFromSection to getCurrentUserSectionSubscription failed. ${r}`);
                 });
             });
         }
