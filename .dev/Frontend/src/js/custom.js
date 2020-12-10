@@ -133,7 +133,7 @@ $(document).ready(function () {
                                     }
                             })
                             .then(function() {
-                                console.log(`Deleted subscription ${s.id}`);
+                                console.log(`Unsubscribed from section ${s.id}`);
                                 setFollowButtonStatus();
                             });
                         } else
