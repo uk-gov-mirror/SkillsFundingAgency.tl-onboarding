@@ -5032,15 +5032,51 @@
 
 #tl-article--subscribe button[data-selected="false"] {
   text-align: left;
-  text-indent: -9999px; }
+  font-size: 0; }
   #tl-article--subscribe button[data-selected="false"]:after {
-    content: "Get updates"; }
+    content: "Get updates";
+    font-family: "GDS Transport", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25; }
+    @media print {
+      #tl-article--subscribe button[data-selected="false"]:after {
+        font-family: sans-serif; } }
+    @media (min-width: 40.0625em) {
+      #tl-article--subscribe button[data-selected="false"]:after {
+        font-size: 19px;
+        font-size: 1.1875rem;
+        line-height: 1.31579; } }
+    @media print {
+      #tl-article--subscribe button[data-selected="false"]:after {
+        font-size: 14pt;
+        line-height: 1.15; } }
 
 #tl-article--subscribe button[data-selected="true"] {
   text-align: left;
-  text-indent: -9999px; }
+  font-size: 0; }
   #tl-article--subscribe button[data-selected="true"]:after {
-    content: "Stop getting updates"; }
+    content: "Stop getting updates";
+    font-family: "GDS Transport", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25; }
+    @media print {
+      #tl-article--subscribe button[data-selected="true"]:after {
+        font-family: sans-serif; } }
+    @media (min-width: 40.0625em) {
+      #tl-article--subscribe button[data-selected="true"]:after {
+        font-size: 19px;
+        font-size: 1.1875rem;
+        line-height: 1.31579; } }
+    @media print {
+      #tl-article--subscribe button[data-selected="true"]:after {
+        font-size: 14pt;
+        line-height: 1.15; } }
 
 /* Article content styling */
 .tl-section--subscribe button {
