@@ -94,7 +94,27 @@
     }
 }
 
+#tl-article--subscribe {
+    button[data-selected="false"] {
+        text-align: left;
+        font-size: 0;
 
+        &:after {
+            content: "Get updates";
+            @include govuk-font($size: 19, $weight: normal);
+        }
+    }
+
+    button[data-selected="true"] {
+        text-align: left;
+        font-size: 0;
+
+        &:after {
+            content: "Stop getting updates";
+            @include govuk-font($size: 19, $weight: normal);
+        }
+    }
+}
 
 /* Article content styling */
 .tl-article--content {
