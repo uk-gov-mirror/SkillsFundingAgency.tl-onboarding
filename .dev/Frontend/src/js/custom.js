@@ -331,13 +331,13 @@ $(function () {
 
 // Function to replace follow and unfollow text on article subscribe button
 $(document).ready(function () {
-    var buttonval = $('#tl-article--subscribe button').text;
+    var buttonval = $('#tl-article--subscribe button').text();
 
-    if (buttonval() === "Follow") {
+    if (buttonval === "Follow") {
         buttonval("Get updates")
     }
 
-    else if (buttonval() === "Unfollow") {
+    else if (buttonval === "Unfollow") {
         buttonval("Stop getting updates")
     }
 });
