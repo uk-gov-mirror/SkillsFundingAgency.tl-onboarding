@@ -94,7 +94,25 @@
     }
 }
 
+#tl-article--subscribe {
+    button[data-selected="false"] {
+        text-align: left;
+        text-indent: -9999px;
 
+        &:after {
+            content: "Get updates"
+        }
+    }
+
+    button[data-selected="true"] {
+        text-align: left;
+        text-indent: -9999px;
+
+        &:after {
+            content: "Stop getting updates"
+        }
+    }
+}
 
 /* Article content styling */
 .tl-article--content {

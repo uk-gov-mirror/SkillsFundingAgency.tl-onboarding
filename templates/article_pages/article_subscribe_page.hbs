@@ -93,19 +93,6 @@
                 {{#if signed_in}}
                 <div class="tl-article--subscribe" id="tl-article--subscribe">
                     {{subscribe}}
-
-                    <script>
-                        var articlesubbutton = $('#tl-article--subscribe button');
-                        $(window).load(function () {
-                            if (articlesubbutton.attr('data-selected') === "false") {
-                                articlesubbutton.text("Get updates");
-                            }
-
-                            else if (articlesubbutton.attr('data-selected') === "true") {
-                                articlesubbutton.text("Stop getting updates");
-                            }
-                        });
-                    </script>
                 </div>
                 {{else}}
                 <div class="tl-article--subscribe">

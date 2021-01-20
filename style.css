@@ -5030,6 +5030,18 @@
 .tl-article--subscribe--signedin button {
   margin-top: 5px; }
 
+#tl-article--subscribe button[data-selected="false"] {
+  text-align: left;
+  text-indent: -9999px; }
+  #tl-article--subscribe button[data-selected="false"]:after {
+    content: "Get updates"; }
+
+#tl-article--subscribe button[data-selected="true"] {
+  text-align: left;
+  text-indent: -9999px; }
+  #tl-article--subscribe button[data-selected="true"]:after {
+    content: "Stop getting updates"; }
+
 /* Article content styling */
 .tl-section--subscribe button {
   margin-top: 5px; }
