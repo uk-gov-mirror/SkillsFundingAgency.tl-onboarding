@@ -333,7 +333,7 @@ $(function () {
 
 var articlesubbutton = $('#tl-article--subscribe button');
 
-$(document).ready(function () {
+$(window).load(function () {
     if (articlesubbutton.text() === "Follow") {
         articlesubbutton.text("Get updates");
     }
