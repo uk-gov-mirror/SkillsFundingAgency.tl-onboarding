@@ -334,11 +334,11 @@ $(document).ready(function () {
     var buttonval = $('#tl-article--subscribe button').text();
 
     if (buttonval === "Follow") {
-        buttonval("Get updates")
+        this.text("Get updates");
     }
 
     else if (buttonval === "Unfollow") {
-        buttonval("Stop getting updates")
+        this.text("Stop getting updates");
     }
 });
 
