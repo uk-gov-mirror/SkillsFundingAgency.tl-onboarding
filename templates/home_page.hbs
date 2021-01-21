@@ -68,7 +68,7 @@
 
 
             {{#if help_center.community_enabled}}
-            <div class="govuk-grid-column-one-half">
+            <div class="govuk-grid-column-full">
                 <div class="tl-card">
                     <h3 class="govuk-heading-m">Discussion forum</h3>
                     <p class="govuk-body">
@@ -90,19 +90,26 @@
             {{/if}}
 
 
+        <div class="govuk-grid-column-full">
+            <h2 class="govuk-heading-l">Contact us</h2>
+            <p class="govuk-body">
+                We want to hear if you have questions about how to use the site, issues with anything on the site or suggestions for how we can improve.
+            </p>
+        </div>
+        <div class="govuk-grid-column-one-half">
+            <div class="tl-card">
+                <h3 class="govuk-heading-m">Email</h3>
+                <p class="govuk-body govuk-!-margin-bottom-0">Send an email to <a class="govuk-link" id="tl-home--contact" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
+
+            </div>
+        </div>
 
             <div class="govuk-grid-column-one-half">
                 <div class="tl-card">
-                    <h3 class="govuk-heading-m">Contact us</h3>
+                    <h3 class="govuk-heading-m">Send a message</h3>
                     <p class="govuk-body">
-                        We want to hear if you have:
+                        You can {{#link 'new_request' class="govuk-link"}}Send a message{{/link}} through our contact form. We'll typically respond within 24 hours
                     </p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>questions about how to use the site</li>
-                        <li>issues with anything on the site</li>
-                        <li>suggestions for how we can improve</li>
-                    </ul>
-                    <p class="govuk-body govuk-!-margin-bottom-0">Email: <a class="govuk-link" id="tl-home--contact" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
 
                 </div>
             </div>
