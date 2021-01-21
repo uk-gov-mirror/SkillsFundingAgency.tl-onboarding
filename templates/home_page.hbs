@@ -105,7 +105,7 @@
         </div>
 
             <div class="govuk-grid-column-one-half">
-                <div class="tl-card">
+                <div class="tl-card tl-js-hidden" id="tl-home--ticket">
                     <h3 class="govuk-heading-m">Send a message</h3>
                     <p class="govuk-body govuk-!-margin-bottom-0">
                         You can 
@@ -116,6 +116,14 @@
                     </p>
 
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        if (!isAgent()) {
+                            $("#tl-home--ticket").show();
+                        }
+                    });
+                </script>
             </div>
 
 
