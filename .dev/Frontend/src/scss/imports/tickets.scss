@@ -1,0 +1,16 @@
+.tl-ticket--form {
+    input {
+
+        &[type="text"] {
+            @extend .govuk-input
+        }
+
+        textarea {
+            @extend .govuk-textarea
+        }
+
+        label {
+            @extend .govuk-label
+        }
+    }
+}
