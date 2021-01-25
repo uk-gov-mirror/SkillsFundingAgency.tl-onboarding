@@ -4,6 +4,10 @@
         &[type="text"] {
             @extend .govuk-input;
         }
+
+        &[type="submit"] {
+            @extend .govuk-button;
+        }
     }
 
     textarea {
@@ -16,5 +20,9 @@
 
     .form-field {
         @extend .govuk-form-group;
+    }
+
+    p {
+        @extend .govuk-body;
     }
 }
