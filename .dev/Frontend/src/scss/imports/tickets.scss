@@ -4,13 +4,13 @@
         &[type="text"] {
             @extend .govuk-input
         }
+    }
 
-        textarea {
-            @extend .govuk-textarea
-        }
+    textarea {
+        @extend .govuk-textarea
+    }
 
-        label {
-            @extend .govuk-label
-        }
+    label {
+        @extend .govuk-label
     }
 }
