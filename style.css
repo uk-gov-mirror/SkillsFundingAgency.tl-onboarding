@@ -699,22 +699,22 @@
 .govuk-section-break--visible {
   border-bottom: 1px solid #b1b4b6; }
 
-.govuk-form-group {
+.govuk-form-group, .tl-ticket--form .form-field {
   margin-bottom: 20px; }
-  .govuk-form-group:after {
+  .govuk-form-group:after, .tl-ticket--form .form-field:after {
     content: "";
     display: block;
     clear: both; }
   @media (min-width: 40.0625em) {
-    .govuk-form-group {
+    .govuk-form-group, .tl-ticket--form .form-field {
       margin-bottom: 30px; } }
-  .govuk-form-group .govuk-form-group:last-of-type {
+  .govuk-form-group .govuk-form-group:last-of-type, .tl-ticket--form .form-field .govuk-form-group:last-of-type, .govuk-form-group .tl-ticket--form .form-field:last-of-type, .tl-ticket--form .govuk-form-group .form-field:last-of-type, .tl-ticket--form .form-field .form-field:last-of-type {
     margin-bottom: 0; }
 
 .govuk-form-group--error {
   padding-left: 15px;
   border-left: 5px solid #d4351c; }
-  .govuk-form-group--error .govuk-form-group {
+  .govuk-form-group--error .govuk-form-group, .govuk-form-group--error .tl-ticket--form .form-field, .tl-ticket--form .govuk-form-group--error .form-field {
     padding: 0;
     border: 0; }
 
@@ -1878,7 +1878,7 @@
   @media (min-width: 40.0625em) {
     .govuk-character-count {
       margin-bottom: 30px; } }
-  .govuk-character-count .govuk-form-group,
+  .govuk-character-count .govuk-form-group, .govuk-character-count .tl-ticket--form .form-field, .tl-ticket--form .govuk-character-count .form-field,
   .govuk-character-count .govuk-textarea,
   .govuk-character-count .tl-ticket--form textarea,
   .tl-ticket--form .govuk-character-count textarea {

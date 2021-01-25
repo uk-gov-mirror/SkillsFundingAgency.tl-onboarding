@@ -2,15 +2,19 @@
     input {
 
         &[type="text"] {
-            @extend .govuk-input
+            @extend .govuk-input;
         }
     }
 
     textarea {
-        @extend .govuk-textarea
+        @extend .govuk-textarea;
     }
 
     label {
-        @extend .govuk-label
+        @extend .govuk-label;
+    }
+
+    .form-field {
+        @extend .govuk-form-group;
     }
 }
