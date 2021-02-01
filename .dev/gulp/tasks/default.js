@@ -14,7 +14,8 @@ gulp.task('assets', () => {
     return src([
         'node_modules/govuk-frontend/govuk/assets/fonts/*',
         'node_modules/govuk-frontend/govuk/assets/images/*',
-        (paths.src.Assets)
+        (paths.src.Assets),
+        (paths.src.AssetDotFiles)
     ])
         .pipe(gulp.dest(paths.dist.Assets));
 });
