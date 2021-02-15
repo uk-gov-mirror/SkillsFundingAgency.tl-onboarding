@@ -1,5 +1,5 @@
 .tl-ticket--form {
-    input {
+    input, .nesty-input {
 
         &[type="text"] {
             @extend .govuk-input;
