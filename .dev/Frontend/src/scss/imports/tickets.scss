@@ -25,4 +25,8 @@
     p {
         @extend .govuk-body;
     }
+
+    .request_subject {
+        display: none;
+    }
 }
