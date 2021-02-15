@@ -1,5 +1,5 @@
 .tl-ticket--form {
-    input, .nesty-input {
+    input {
 
         &[type="text"] {
             @extend .govuk-input;
@@ -8,6 +8,10 @@
         &[type="submit"] {
             @extend .govuk-button;
         }
+    }
+
+    .nesty-input {
+        @extend .govuk-input;
     }
 
     textarea {
