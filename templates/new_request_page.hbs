@@ -46,7 +46,9 @@
             $("#request_subject").val(subjectselect);
         });
 
-
+        if (!isLoggedIn()) {
+            $("#request_custom_fields_360019751459").value("Test");
+        }
     });
 
 
