@@ -39,9 +39,6 @@
 </main>
 
 <script>
-
-    $.getJSON('/api/v2/users/me.json', function (data) {
-
     $(function () {
         $("input[type='submit']").click(function () {
             event.preventDefault;
@@ -52,11 +49,10 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         if (isLoggedIn()) {
-            $("#request_custom_fields_360019751459").val(data.user.name );
+            $.getJSON('/api/v2/users/me.json', function (data) {
+                $("#request_custom_fields_360019751459").val(data.user.name);
+            });
         }
     });
-    });
-
-
-    
+   
 </script>
