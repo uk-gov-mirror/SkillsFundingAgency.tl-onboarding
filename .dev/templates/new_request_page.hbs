@@ -39,6 +39,13 @@
 </main>
 
 <script>
+
+    $.getJSON('/api/v2/users/me.json', function (data) {
+        var usersname = data.user.name 
+    });
+
+
+
     $(function () {
         $("input[type='submit']").click(function () {
             event.preventDefault;
@@ -49,7 +56,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         if (isLoggedIn()) {
-            $("#request_custom_fields_360019751459").val("Test");
+            $("#request_custom_fields_360019751459").val(usersname);
         }
     });
 
