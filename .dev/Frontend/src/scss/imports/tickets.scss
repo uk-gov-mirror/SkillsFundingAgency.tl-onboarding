@@ -38,4 +38,9 @@
     #request_description_hint {
         display: none;
     }
+
+    #upload-dropzone {
+        @extend .govuk-input;
+        background-color: govuk-colour("light-grey");
+    }
 }
