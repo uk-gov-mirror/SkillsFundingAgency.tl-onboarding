@@ -45,13 +45,13 @@
             var subjectselect = $(".nesty-input").text();
             $("#request_subject").val(subjectselect);
         });
+    });
 
+    document.addEventListener('DOMContentLoaded', function () {
         if (!isLoggedIn()) {
             $("#request_custom_fields_360019751459").value("Test");
         }
     });
-
-
 
 
     
