@@ -47,12 +47,14 @@
         });
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
+    $(document).ready(function () {
         if (isLoggedIn()) {
             $.getJSON('/api/v2/users/me.json', function (data) {
                 $("#request_custom_fields_360019751459").val(data.user.name);
             });
-        }
+        };
+
+        $('.form-field.request_custom_fields_360019503240').prepend('<h2 class="govuk-heading>Your message</h2>');
     });
    
 </script>
