@@ -5761,5 +5761,8 @@ ul.govuk-radios label .gem-radios__input {
     .tl-profile--password {
       padding-left: 80px; } }
 
+.tl-ticket--form textarea {
+  min-height: 140px; }
+
 .tl-ticket--form .request_subject {
   display: none; }

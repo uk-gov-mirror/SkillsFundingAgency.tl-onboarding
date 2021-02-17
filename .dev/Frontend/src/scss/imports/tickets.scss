@@ -16,6 +16,7 @@
 
     textarea {
         @extend .govuk-textarea;
+        min-height: 140px;
     }
 
     label {

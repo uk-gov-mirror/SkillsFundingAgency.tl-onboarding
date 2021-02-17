@@ -38,3 +38,12 @@
     </div>
 </main>
 
+<script>
+    $(function () {
+        $("input[type='submit']").click(function () {
+            event.preventDefault;
+            var subjectselect = $(".nesty-input").text();
+            $("#request_subject").val(subjectselect);
+        });
+    });
+</script>
