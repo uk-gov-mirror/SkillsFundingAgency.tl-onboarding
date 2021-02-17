@@ -48,7 +48,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        if (!isLoggedIn()) {
+        if (isLoggedIn()) {
             $("#request_custom_fields_360019751459").val("Test");
         }
     });
