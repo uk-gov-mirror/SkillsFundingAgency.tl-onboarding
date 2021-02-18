@@ -1428,7 +1428,7 @@
     .govuk-button__start-icon {
       margin-left: 10px; } }
 
-.govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message {
+.govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message, .tl-ticket--form .notification-error {
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1441,15 +1441,15 @@
   clear: both;
   color: #d4351c; }
   @media print {
-    .govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message {
+    .govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message, .tl-ticket--form .notification-error {
       font-family: sans-serif; } }
   @media (min-width: 40.0625em) {
-    .govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message {
+    .govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message, .tl-ticket--form .notification-error {
       font-size: 19px;
       font-size: 1.1875rem;
       line-height: 1.31579; } }
   @media print {
-    .govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message {
+    .govuk-error-message, .tl-error--message, .tl-search--container .tl-error--message, .tl-search--home .tl-error--message, .tl-ticket--form .notification-error {
       font-size: 14pt;
       line-height: 1.15; } }
 

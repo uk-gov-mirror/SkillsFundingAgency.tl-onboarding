@@ -52,4 +52,8 @@
             }
         }
     }
+
+    .notification-error {
+        @extend .govuk-error-message;
+    }
 }
