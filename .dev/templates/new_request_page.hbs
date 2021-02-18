@@ -64,11 +64,9 @@
 
         $(".notification-error").each(function () {
             $(this).parent('.form-field').find("label").after(this);
-        });  
+            $(this).parent('.form-field').addClass("govuk-form-group--error");
 
-        if ($(".form-field .notification-error").length > 0) {
-            $(".form-field").addClass("govuk-form-group--error")
-        };
+        });  
     });
    
 </script>
