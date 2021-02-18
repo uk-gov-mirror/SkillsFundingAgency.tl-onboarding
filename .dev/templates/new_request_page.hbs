@@ -61,6 +61,10 @@
 
         var NameField = $('input#request_custom_fields_360019751459').parent();
         NameField.insertBefore($('input#request_anonymous_requester_email').parent());
+
+        $(".notification-error").each(function () {
+            $(this).parent('.form-fieal').find("label").after(this);
+        });  
     });
    
 </script>
