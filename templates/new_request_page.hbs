@@ -13,17 +13,39 @@
         </p>
     </div>
 </div>
+<!-- Search Hero -->
+<div class="tl-hero tl-hero--minimal">
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
 
+                <div id="tl-breadcrumbs--help">
+                    <div class="tl-breadcrumbs">
+                        {{breadcrumbs}}
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-grid-column-one-half tl-text--right govuk-!-margin-top-1">
+                <div class="tl-form-group tl-search--container tl-search--home tl-search--home--minimal" id="tl-search--article">
 
-<div class="govuk-width-container">
-    <div class="tl-breadcrumbs" id="tl-breadcrumbs--help">
-        {{breadcrumbs}}
+                    <div class="tl-search--error tl-hidden">
+                        <span class="tl-error--message"></span>
+                    </div>
+                    <form role="search" class="tl-search" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get">
+                        <input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Search for support" aria-label="Search for support">
+                        <input type="hidden" name="filter_by" value="knowledge_base" />
+                        <input type="submit" name="commit" value="Search">
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <!-- Main content -->
 <main id="main-content" role="main">
-       <div class="govuk-width-container govuk-main-wrapper">
+    <div class="govuk-width-container govuk-main-wrapper">
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
@@ -53,7 +75,7 @@
                 $("#request_custom_fields_360019751459").val(data.user.name);
             });
         };
-        
+
         $('.form-field.request_custom_fields_360019503240').prepend('<h2 class="govuk-heading-m govuk-!-margin-top-7">Your message</h2>');
         $('.form-field.request_custom_fields_360019751459').prepend('<h2 class="govuk-heading-m govuk-!-margin-top-7">Your details</h2>');
 
@@ -68,7 +90,7 @@
                 $(this).parent('.form-field').addClass("govuk-form-group--error");
             }
 
-        });  
+        });
     });
-   
+
 </script>
