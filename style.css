@@ -4935,6 +4935,9 @@
       width: 0px;
       margin: 4px auto; }
 
+.tl-article--content img {
+  max-width: 100%; }
+
 .tl-article--date {
   margin-top: 25px; }
   @media (min-width: 40.0625em) {

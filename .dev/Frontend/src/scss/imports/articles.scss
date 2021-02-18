@@ -3,6 +3,10 @@
     p {
         @extend %govuk-body-m;
     }
+
+    img {
+        max-width: 100%;
+    }
 }
 
 .tl-article--date {
