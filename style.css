@@ -5793,3 +5793,6 @@ ul.govuk-radios label .gem-radios__input {
   padding: 30px 0 20px 0; }
   .tl-ticket--form #upload-dropzone span a {
     font-size: unset; }
+
+.tl-ticket--form #request_description_label {
+  display: none; }
