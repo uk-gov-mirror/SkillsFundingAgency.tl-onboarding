@@ -64,34 +64,42 @@
                     <h2 class="govuk-heading-m">{{name}}</h2>
                     {{#is name "Newsletters"}}
                     {{#if articles}}
-                    <ul class="govuk-list tl-newsletter--list">
-                        {{#each articles}}
-                        <li>
-                            <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
-                        </li>
-                        {{/each}}
+                <ul class="govuk-list tl-newsletter--list">
+                    {{#each articles}}
+                    <li>
+                        <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
+                    </li>
+                    {{/each}}
 
-                        {{#if more_articles}}
+                    {{#if more_articles}}
+                    <li class="govuk-!-margin-top-4">
                         <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
                             See all newsletters
                         </a>
-                        {{/if}}
-                        {{#is article_count 4}}
+                    </li>
+                    {{/if}}
+                    {{#is article_count 4}}
+                    <li class="govuk-!-margin-top-4">
                         <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
                             See all newsletters
                         </a>
+                    </li>
+                    {{/is}}
+                    {{#is article_count 5}}
+                    <li class="govuk-!-margin-top-4">
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
+                            See all newsletters
+                        </a>
+                    </li>
+                    {{/is}}
+                    {{#is article_count 6}}
+                    <li class="govuk-!-margin-top-4">
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
+                            See all newsletters
+                        </a>
+                        </li>
                         {{/is}}
-                        {{#is article_count 5}}
-                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
-                            See all newsletters
-                        </a>
-                        {{/is}}
-                        {{#is article_count 6}}
-                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
-                            See all newsletters
-                        </a>
-                        {{/is}}
-                    </ul>
+                </ul>
                     {{else}}
                     <ul class="govuk-list">
                         <li>
