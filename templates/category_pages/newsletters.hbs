@@ -131,6 +131,8 @@
 
             </div>
             <div class="govuk-grid-column-one-third">
+                {{#each sections}}
+                {{#is name "Newsletters"}}
                 {{#if signed_in}}
                 {{#if settings.show_follow_article}}
                 <div class="article-subscribe tl-article--subscribe--signedin tl-js-visible" id="tl-newsletter--subscribe">
@@ -146,6 +148,8 @@
                 </div>
                 {{/if}}
                 {{/if}}
+                {{else}}
+                {{/each}}
             </div>
         </div>
     </div>
