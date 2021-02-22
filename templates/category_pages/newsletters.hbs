@@ -17,7 +17,6 @@
 
 <!-- Main content -->
 <main id="main-content" role="main">
-
     <!-- Search Hero -->
     <div class="tl-hero tl-hero--minimal">
         <div class="govuk-width-container">
@@ -63,7 +62,7 @@
             <section>
                 {{#each sections}}
                 <h2 class="govuk-heading-m">{{name}}</h2>
-                {{#is section.name "Newsletters"}}
+                {{#is name "Newsletters"}}
                 {{#if articles}}
                 <ul class="govuk-list tl-newsletter--list">
                     {{#each articles}}
@@ -84,7 +83,7 @@
                     </li>
                 </ul>
                 {{/if}}
-                <hr class="govuk-section-break govuk-section-break--visible">
+                <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-8 govuk-!-margin-bottom-7">
                 {{else}}
                 {{#if articles}}
                 <ul class="govuk-list">
@@ -115,9 +114,7 @@
             </section>
 
             </div>
-
-                    {{/is}}
-            </div>
         </div>
+    </div>
 </main>
 
