@@ -62,51 +62,52 @@
                 {{/if}}
             <section>
                 {{#each sections}}
-                <h2 class="govuk-heading-s">{{name}}</h2>
+                <h2 class="govuk-heading-m">{{name}}</h2>
                 {{#is section.name "Newsletters"}}
-                    {{#if articles}}
-                    <ul class="govuk-list tl-newsletter--list">
-                        {{#each articles}}
-                        <li>
-                            <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
-                        </li>
-                        {{/each}}
-                        {{#if more_articles}}
-                        <li class="govuk-!-margin-top-4">
-                            <a class="govuk-link govuk-body-s tl-category--more" href="{{url}}">See all newsletters</a>
-                        </li>
-                        {{/if}}
-                    </ul>
-                    {{else}}
-                    <ul class="govuk-list">
-                        <li>
-                            <p class="govuk-body">There's nothing here at the moment</p>
-                        </li>
-                    </ul>
+                {{#if articles}}
+                <ul class="govuk-list tl-newsletter--list">
+                    {{#each articles}}
+                    <li>
+                        <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
+                    </li>
+                    {{/each}}
+                    {{#if more_articles}}
+                    <li class="govuk-!-margin-top-4">
+                        <a class="govuk-link govuk-body-s tl-category--more" href="{{url}}">See all newsletters</a>
+                    </li>
                     {{/if}}
+                </ul>
                 {{else}}
-                    {{#if articles}}
-                    <ul class="govuk-list">
-                        {{#each articles}}
-                        <li>
-                            <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
-                        </li>
-                        {{/each}}
-                        {{#if more_articles}}
-                        <li class="govuk-!-margin-top-4">
-                            <a class="govuk-link govuk-body-s tl-category--more" href="{{url}}">
-                                {{t 'show_all_articles' count=article_count}}
-                            </a>
-                        </li>
-                        {{/if}}
-                    </ul>
-                    {{else}}
-                    <ul class="govuk-list">
-                        <li>
-                            <p class="govuk-body">There's nothing here at the moment</p>
-                        </li>
-                    </ul>
+                <ul class="govuk-list">
+                    <li>
+                        <p class="govuk-body">There's nothing here at the moment</p>
+                    </li>
+                </ul>
+                {{/if}}
+                <hr class="govuk-section-break govuk-section-break--visible">
+                {{else}}
+                {{#if articles}}
+                <ul class="govuk-list">
+                    {{#each articles}}
+                    <li>
+                        <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
+                    </li>
+                    {{/each}}
+                    {{#if more_articles}}
+                    <li class="govuk-!-margin-top-4">
+                        <a class="govuk-link govuk-body-s tl-category--more" href="{{url}}">
+                            {{t 'show_all_articles' count=article_count}}
+                        </a>
+                    </li>
                     {{/if}}
+                </ul>
+                {{else}}
+                <ul class="govuk-list">
+                    <li>
+                        <p class="govuk-body">There's nothing here at the moment</p>
+                    </li>
+                </ul>
+                {{/if}}
                 {{/is}}
 
 
