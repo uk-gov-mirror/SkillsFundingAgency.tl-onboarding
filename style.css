@@ -5796,3 +5796,6 @@ ul.govuk-radios label .gem-radios__input {
 
 .tl-ticket--form #request_description_label {
   display: none; }
+
+.tl-newsletter--list li:nth-child(n+4) {
+  display: none; }
