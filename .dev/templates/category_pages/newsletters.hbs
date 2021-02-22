@@ -59,76 +59,93 @@
                 {{#if category.description}}
                 <p class="govuk-body-l">{{category.description}}</p>
                 {{/if}}
-            <section>
-                {{#each sections}}
-                <h2 class="govuk-heading-m">{{name}}</h2>
-                {{#is name "Newsletters"}}
-                {{#if articles}}
-            <ul class="govuk-list tl-newsletter--list">
-                {{#each articles}}
-                <li>
-                    <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
-                </li>
-                {{/each}}
+                <section>
+                    {{#each sections}}
+                    <h2 class="govuk-heading-m">{{name}}</h2>
+                    {{#is name "Newsletters"}}
+                    {{#if articles}}
+                    <ul class="govuk-list tl-newsletter--list">
+                        {{#each articles}}
+                        <li>
+                            <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
+                        </li>
+                        {{/each}}
 
-                    {{#if more_articles}}
-                    <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
-                        See all newsletters
-                    </a>
-                    {{/if}}
-                    {{#is article_count 4}}
-                    <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
-                        See all newsletters
-                    </a>
-                    {{/is}}
-                    {{#is article_count 5}}
-                    <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
-                        See all newsletters
-                    </a>
-                    {{/is}}
-                    {{#is article_count 6}}
-                    <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
-                        See all newsletters
-                    </a>
-                    {{/is}}
-            </ul>
-                {{else}}
-                <ul class="govuk-list">
-                    <li>
-                        <p class="govuk-body">There's nothing here at the moment</p>
-                    </li>
-                </ul>
-                {{/if}}
-                <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-8 govuk-!-margin-bottom-7">
-                {{else}}
-                {{#if articles}}
-                <ul class="govuk-list">
-                    {{#each articles}}
-                    <li>
-                        <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
-                    </li>
-                    {{/each}}
-                    {{#if more_articles}}
-                    <li class="govuk-!-margin-top-4">
-                        <a class="govuk-link govuk-body-s tl-category--more" href="{{url}}">
-                            {{t 'show_all_articles' count=article_count}}
+                        {{#if more_articles}}
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
+                            See all newsletters
                         </a>
-                    </li>
+                        {{/if}}
+                        {{#is article_count 4}}
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
+                            See all newsletters
+                        </a>
+                        {{/is}}
+                        {{#is article_count 5}}
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
+                            See all newsletters
+                        </a>
+                        {{/is}}
+                        {{#is article_count 6}}
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
+                            See all newsletters
+                        </a>
+                        {{/is}}
+                    </ul>
+                    {{else}}
+                    <ul class="govuk-list">
+                        <li>
+                            <p class="govuk-body">There's nothing here at the moment</p>
+                        </li>
+                    </ul>
                     {{/if}}
-                </ul>
-                {{else}}
-                <ul class="govuk-list">
-                    <li>
-                        <p class="govuk-body">There's nothing here at the moment</p>
-                    </li>
-                </ul>
+                    <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-8 govuk-!-margin-bottom-7">
+                    {{else}}
+                    {{#if articles}}
+                    <ul class="govuk-list">
+                        {{#each articles}}
+                        <li>
+                            <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
+                        </li>
+                        {{/each}}
+                        {{#if more_articles}}
+                        <li class="govuk-!-margin-top-4">
+                            <a class="govuk-link govuk-body-s tl-category--more" href="{{url}}">
+                                {{t 'show_all_articles' count=article_count}}
+                            </a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                    {{else}}
+                    <ul class="govuk-list">
+                        <li>
+                            <p class="govuk-body">There's nothing here at the moment</p>
+                        </li>
+                    </ul>
+                    {{/if}}
+                    {{/is}}
+
+
+                    {{/each}}
+                </section>
+
+            </div>
+            <div class="govuk-grid-column-one-third">
+                {{#if signed_in}}
+                {{#if settings.show_follow_article}}
+                <div class="article-subscribe tl-article--subscribe--signedin tl-js-visible" id="tl-newsletter--subscribe">
+                    <button id="follow-btn" type="button" class="tl-hidden">Follow </button>
+                </div>
                 {{/if}}
-                {{/is}}
-
-
-                {{/each}}
-            </section>
-
+                {{else}}
+                {{#if settings.show_follow_article}}
+                <div class="article-subscribe tl-article--subscribe">
+                    <button data-auth-action="signin" data-selected="false" aria-expanded="false" aria-haspopup="menu" type="button">
+                        Sign in to get news updates
+                    </button>
+                </div>
+                {{/if}}
+                {{/if}}
             </div>
         </div>
     </div>
