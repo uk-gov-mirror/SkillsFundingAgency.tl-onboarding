@@ -137,9 +137,17 @@
                     </li>
                     {{/each}}
                 </ul>
-                <div class="tl-search--pagination">
+                
+                <div class="tl-search--pagination tl-js-hidden">
                     {{pagination}}
                 </div>
+
+                <script>
+                    var results = "{{result_count}}"
+                    if (results > 10) {
+                        $(".tl-search--pagination").show();
+                    };
+                </script>
                 {{else}}
                 <h2 class="govuk-body-m govuk-!-margin-top-6">
                     No results for <span class="govuk-!-font-weight-bold">"{{query}}"</span>
