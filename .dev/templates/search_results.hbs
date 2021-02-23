@@ -143,10 +143,15 @@
                 </div>
 
                 <script>
-                    var results = "{{result_count}}"
+                    document.addEventListener('DOMContentLoaded', function () {
+                    var results = "{{results_count}}";
                     if (results > 10) {
                         $(".tl-search--pagination").show();
-                    };
+                    }
+                    else {
+
+                    }
+                    });
                 </script>
                 {{else}}
                 <h2 class="govuk-body-m govuk-!-margin-top-6">
