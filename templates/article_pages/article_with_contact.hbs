@@ -94,12 +94,23 @@
                     Go to the forum
                     {{/link}}
                 </p>
-                <p class="govuk-body">You can also contact the Education and Skills Funding Agency (ESFA) directly if you have questions about marketing, events or general feedback. </p>
-                <p class="govuk-body">
-                    {{#link 'new_request' class='govuk-button'}}
-                    Contact us
-                    {{/link}}
-                </p>
+                <div id="tl-article--ticket" class="tl-js-hidden">
+
+                    <p class="govuk-body">You can also contact the Education and Skills Funding Agency (ESFA) directly if you have questions about marketing, events or general feedback. </p>
+                    <p class="govuk-body">
+                        {{#link 'new_request' class='govuk-button'}}
+                        Contact us
+                        {{/link}}
+                    </p>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                    if (!isAgent()) {
+                        $("#tl-article--ticket").show();
+                        }
+                    });
+                </script>
+
             </div>
         </div>
 

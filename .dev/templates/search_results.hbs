@@ -166,12 +166,14 @@
                     Go to the forum
                     {{/link}}
                 </p>
-                <p class="govuk-body">You can also contact the Education and Skills Funding Agency (ESFA) directly if you have questions about marketing, events or general feedback. </p>
-                <p class="govuk-body">
-                    {{#link 'new_request' class='govuk-button'}}
-                    Contact us
-                    {{/link}}
-                </p>
+                <div id="tl-search--ticket" class="tl-js-hidden">
+                    <p class="govuk-body">You can also contact the Education and Skills Funding Agency (ESFA) directly if you have questions about marketing, events or general feedback. </p>
+                    <p class="govuk-body">
+                        {{#link 'new_request' class='govuk-button'}}
+                        Contact us
+                        {{/link}}
+                    </p>
+                </div>
             </div>
 
             </div>
@@ -188,6 +190,11 @@
             else {
                 $(".tl-search--results--question").attr("href", "/hc/en-gb/articles/{{settings.article_id_interrupt}}");
             }
+        };
+
+        if (!isAgent()) {
+            $("#tl-search--ticket").show();
         }
     });
+
 </script>
