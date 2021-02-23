@@ -70,27 +70,28 @@
                             <a class="govuk-link tl-category--article" href="{{url}}">{{title}}</a>
                         </li>
                         {{/each}}
-
+                    <li class="govuk-!-margin-top-4">
                         {{#if more_articles}}
-                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more govuk-!-margin-top-4">
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
                             See all newsletters
                         </a>
                         {{/if}}
                         {{#is article_count 4}}
-                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more govuk-!-margin-top-4">
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
                             See all newsletters
                         </a>
                         {{/is}}
                         {{#is article_count 5}}
-                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more govuk-!-margin-top-4">
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
                             See all newsletters
                         </a>
                         {{/is}}
                         {{#is article_count 6}}
-                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more govuk-!-margin-top-4">
+                        <a href="{{url}}" class="govuk-link see-all-articles govuk-body-s tl-category--more">
                             See all newsletters
                         </a>
                         {{/is}}
+                    </li>
                     </ul>
                     {{else}}
                     <ul class="govuk-list">
