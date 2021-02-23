@@ -5799,3 +5799,6 @@ ul.govuk-radios label .gem-radios__input {
 
 .tl-newsletter--list li:nth-child(n+4) {
   display: none; }
+
+.tl-newsletter--list li:last-child {
+  display: list-item; }
