@@ -81,6 +81,9 @@
                 {{#if settings.show_follow_article}}
                 <div class="article-subscribe tl-article--subscribe--signedin tl-js-visible" id="tl-newsletter--subscribe">
                     <button id="follow-btn" type="button" class="tl-hidden">Follow </button>
+                    <script type="text/javascript">
+                        const section_id_newsletters = {{settings.section_id_newsletters}}
+                    </script>
                 </div>
                 {{/if}}
                 {{else}}

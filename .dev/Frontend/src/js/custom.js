@@ -53,11 +53,6 @@ $(document).ready(function () {
         const followButtonText = 'Get news updates';
         const unfollowButtonText = 'Stop getting news updates';
 
-        function getSectionId() {
-            console.log(`getSectionId returning section id ${section_id_newsletters}`);
-            return section_id_newsletters;
-        }
-
         var getCurrentUserSectionSubscription = function (sectionId) {
             var subscriptions;					
             return $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`)
@@ -75,8 +70,7 @@ $(document).ready(function () {
             });
         }
 
-        function setFollowButtonStatus() {
-            const sectionId = getSectionId();
+        function setFollowButtonStatus(sectionId) {
             getCurrentUserSectionSubscription(sectionId)
             .done(function(s){
                 if(s) {
@@ -92,9 +86,7 @@ $(document).ready(function () {
             });
         }
 
-        function subscribeToSection() {
-            const sectionId = getSectionId();
-
+        function subscribeToSection(sectionId) {
             $.getJSON('/hc/api/internal/csrf_token.json')
             .then(function (csrfResponse) {
                 $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
@@ -117,9 +109,7 @@ $(document).ready(function () {
             });
         }
 
-        function unsubscribeFromSection() {
-            const sectionId = getSectionId();
-
+        function unsubscribeFromSection(sectionId) {
             $.getJSON('/hc/api/internal/csrf_token.json')
             .then(function (csrfResponse) {
                 getCurrentUserSectionSubscription(sectionId)
@@ -135,7 +125,7 @@ $(document).ready(function () {
                             })
                             .then(function() {
                                 console.log(`Unsubscribed from section ${s.id}`);
-                                setFollowButtonStatus();
+                                setFollowButtonStatus(sectionId);
                             });
                         } else
                             console.log("No subscription found to delete for this user");                
@@ -146,15 +136,14 @@ $(document).ready(function () {
             });
         }
 
-
         //Set initial button state on load
-        setFollowButtonStatus();
+        setFollowButtonStatus(section_id_newsletters);
         
         //Click handlers  
         $('#follow-btn').click(function () {
             $('#follow-btn').html() === followButtonText
-                ? subscribeToSection()
-                : unsubscribeFromSection();
+                ? subscribeToSection(section_id_newsletters)
+                : unsubscribeFromSection(section_id_newsletters);
             });
         }
 });
