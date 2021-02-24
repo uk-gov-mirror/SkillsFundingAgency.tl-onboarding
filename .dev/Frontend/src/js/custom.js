@@ -54,7 +54,8 @@ $(document).ready(function () {
         const unfollowButtonText = 'Stop getting news updates';
 
         function getSectionId() {
-            return $(".breadcrumbs li a[href*='/sections/']").attr("href").match(/[0-9]+/);
+            console.log(`getSectionId returning section id ${section_id_newsletters}`);
+            return section_id_newsletters;
         }
 
         var getCurrentUserSectionSubscription = function (sectionId) {
