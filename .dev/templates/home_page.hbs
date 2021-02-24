@@ -44,15 +44,6 @@
             {{#each categories}}
             {{#is name "How this site works"}}
             {{else}}
-            {{#is name "T Level news and events"}}
-            {{#each sections}}
-            <div class="tl-home--category">
-                <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link" GTMname="{{name}}">{{name}}</a></h3>
-                <p class="govuk-body">{{excerpt description}}</p>
-            </div>
-            {{/each}}
-
-            {{else}}
             <div class="tl-home--category">
                 <h3 class="govuk-heading-m"><a href="{{url}}" class="govuk-link" GTMname="{{name}}">{{name}}</a></h3>
                 <p class="govuk-body">{{excerpt description}}</p>
