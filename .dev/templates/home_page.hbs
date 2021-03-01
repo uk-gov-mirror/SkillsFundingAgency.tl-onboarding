@@ -1,9 +1,7 @@
 <script type="text/javascript">
-    $(document).ready(function () {
-        if (window.location.href.indexOf("eturn_to=%2Fhc%2Frequests") > -1) {
-            window.location.href = "/hc/en-gb/articles/{{settings.article_id_confirmation}}";
-        }
-    });
+    if (window.location.href.indexOf("eturn_to=%2Fhc%2Frequests") > -1) {
+        window.location.href = "/hc/en-gb/articles/{{settings.article_id_confirmation}}";
+    }
 </script>
 
 <div class="govuk-width-container ">
