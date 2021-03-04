@@ -5690,3 +5690,9 @@ ul.govuk-radios label .gem-radios__input {
   @media (min-width: 40.0625em) {
     .tl-profile--password {
       padding-left: 80px; } }
+
+.tl-newsletter--list li:nth-child(n+5) {
+  display: none; }
+
+.tl-newsletter--list li:last-child {
+  display: list-item; }
