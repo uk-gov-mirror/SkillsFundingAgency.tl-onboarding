@@ -1,7 +1,7 @@
 {
-  "name": "GDS Style",
+  "name": "GDS Style - Ticketing ",
   "author": "Ash Anderton",
-  "version": "2.0.50",
+  "version": "2.1.51",
   "api_version": 2,
   "default_locale": "en-gb",
   "settings": [
@@ -252,11 +252,25 @@
           "value": "360017540560"
         },
         {
+          "identifier": "article_id_confirmation",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Ticketing confirmation",
+          "value": "360019906999"
+        },
+        {
           "identifier": "survey_link",
           "type": "text",
           "description": "Sitewide",
           "label": "Feedback survey",
           "value": "https://www.smartsurvey.co.uk/s/VXHHIQ/"
+        },
+        {
+          "identifier": "section_id_newsletters",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Newseltter Section ID",
+          "value": "360005433999"
         }
       ]
     }
