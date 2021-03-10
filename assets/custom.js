@@ -18,7 +18,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".tl-article--vote--button").click(function () {
         event.preventDefault();
-        $(".tl-article--vote--buttons").addClass("tl-hidden");       
+        $(".tl-article--vote--buttons").addClass("tl-hidden");
         $(".tl-article--vote--question").text("Thank you for your feedback");
     });
 });
@@ -29,7 +29,7 @@ $(document).ready(function () {
 var searchbox = $(".tl-search--container input[type=search]");
 
 function showerror(message) {
-    $(".tl-search--error").removeClass("tl-hidden");   
+    $(".tl-search--error").removeClass("tl-hidden");
     $(".tl-form-group").addClass("tl-form-group--error");
     $(".tl-search #query").addClass("tl-input--error");
     $(".tl-error--message").text(message);
@@ -37,8 +37,8 @@ function showerror(message) {
 }
 
 $(document).ready(function () {
-    $(".tl-search--container").submit(function ()  {
-        if ( !searchbox.val() ) {
+    $(".tl-search--container").submit(function () {
+        if (!searchbox.val()) {
             event.preventDefault();
             showerror("You must enter a search term");
         }
@@ -48,114 +48,105 @@ $(document).ready(function () {
 
 /* Follow/unfollow section subscription */
 $(document).ready(function () {
-    if($('#follow-btn').length) {
-    
+    if ($('#follow-btn').length) {
+
         const followButtonText = 'Get news updates';
         const unfollowButtonText = 'Stop getting news updates';
 
-        function getSectionId() {
-            return $(".breadcrumbs li a[href*='/sections/']").attr("href").match(/[0-9]+/);
-        }
-
         var getCurrentUserSectionSubscription = function (sectionId) {
-            var subscriptions;					
+            var subscriptions;
             return $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`)
-            .then(function (subscriptionsResult) {
-                subscriptions = subscriptionsResult.subscriptions;
-                return $.getJSON('/api/v2/users/me.json');
-            })
-            .then(function (user) {
-                var actualSubscription = subscriptions.find(s => s.user_id == user.user.id);
-                if(actualSubscription) {
-                    return actualSubscription;
-                }
-
-                return undefined;
-            });
-        }
-
-        function setFollowButtonStatus() {
-            const sectionId = getSectionId();
-            getCurrentUserSectionSubscription(sectionId)
-            .done(function(s){
-                if(s) {
-                    console.log("setFollowButtonStatus::Found subscription:");
-                    console.log(s);
-                }
-
-                $("#follow-btn").html(s ? unfollowButtonText : followButtonText);
-                $('#follow-btn').removeClass("tl-hidden");
-            })
-            .fail(function(r){
-                console.log(`Call from setFollowButtonStatus to getCurrentUserSectionSubscription failed. ${r}`);
-            });
-        }
-
-        function subscribeToSection() {
-            const sectionId = getSectionId();
-
-            $.getJSON('/hc/api/internal/csrf_token.json')
-            .then(function (csrfResponse) {
-                $.ajax({url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
-                    type: "POST",
-                    data: jQuery.param({
-                        "subscription": {
-                            "source_locale": `${HelpCenter.user.locale}`, 
-                            "include_comments": true
-                        }
-                    }),
-                    dataType: "application/json",
-                    headers: {
-                        "X-CSRF-Token":  csrfResponse.current_session.csrf_token
-                    },
-                    complete: function(){
-                        console.log(`Subscribed to section ${sectionId}`);
-                        $('#follow-btn').html(unfollowButtonText);
-                    }
-                });
-            });
-        }
-
-        function unsubscribeFromSection() {
-            const sectionId = getSectionId();
-
-            $.getJSON('/hc/api/internal/csrf_token.json')
-            .then(function (csrfResponse) {
-                getCurrentUserSectionSubscription(sectionId)
-                .done(function(s){
-                    if(s) {
-                        $.ajax({
-                            url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${s.id}.json`,
-                            type: "DELETE",
-                            dataType: "application/json",
-                            headers: {
-                                    "X-CSRF-Token": csrfResponse.current_session.csrf_token
-                                    }
-                            })
-                            .then(function() {
-                                console.log(`Unsubscribed from section ${s.id}`);
-                                setFollowButtonStatus();
-                            });
-                        } else
-                            console.log("No subscription found to delete for this user");                
+                .then(function (subscriptionsResult) {
+                    subscriptions = subscriptionsResult.subscriptions;
+                    return $.getJSON('/api/v2/users/me.json');
                 })
-                .fail(function(r){
-                    console.log(`Call from unsubscribeFromSection to getCurrentUserSectionSubscription failed. ${r}`);
+                .then(function (user) {
+                    var actualSubscription = subscriptions.find(s => s.user_id == user.user.id);
+                    if (actualSubscription) {
+                        return actualSubscription;
+                    }
+
+                    return undefined;
                 });
-            });
         }
 
+        function setFollowButtonStatus(sectionId) {
+            getCurrentUserSectionSubscription(sectionId)
+                .done(function (s) {
+                    if (s) {
+                        console.log("setFollowButtonStatus::Found subscription:");
+                        console.log(s);
+                    }
+
+                    $("#follow-btn").html(s ? unfollowButtonText : followButtonText);
+                    $('#follow-btn').removeClass("tl-hidden");
+                })
+                .fail(function (r) {
+                    console.log(`Call from setFollowButtonStatus to getCurrentUserSectionSubscription failed. ${r}`);
+                });
+        }
+
+        function subscribeToSection(sectionId) {
+            $.getJSON('/hc/api/internal/csrf_token.json')
+                .then(function (csrfResponse) {
+                    $.ajax({
+                        url: `/api/v2/help_center/sections/${sectionId}/subscriptions.json`,
+                        type: "POST",
+                        data: jQuery.param({
+                            "subscription": {
+                                "source_locale": `${HelpCenter.user.locale}`,
+                                "include_comments": true
+                            }
+                        }),
+                        dataType: "application/json",
+                        headers: {
+                            "X-CSRF-Token": csrfResponse.current_session.csrf_token
+                        },
+                        complete: function () {
+                            console.log(`Subscribed to section ${sectionId}`);
+                            $('#follow-btn').html(unfollowButtonText);
+                        }
+                    });
+                });
+        }
+
+        function unsubscribeFromSection(sectionId) {
+            $.getJSON('/hc/api/internal/csrf_token.json')
+                .then(function (csrfResponse) {
+                    getCurrentUserSectionSubscription(sectionId)
+                        .done(function (s) {
+                            if (s) {
+                                $.ajax({
+                                    url: `/api/v2/help_center/sections/${sectionId}/subscriptions/${s.id}.json`,
+                                    type: "DELETE",
+                                    dataType: "application/json",
+                                    headers: {
+                                        "X-CSRF-Token": csrfResponse.current_session.csrf_token
+                                    }
+                                })
+                                    .then(function () {
+                                        console.log(`Unsubscribed from section ${s.id}`);
+                                        setFollowButtonStatus(sectionId);
+                                    });
+                            } else
+                                console.log("No subscription found to delete for this user");
+                        })
+                        .fail(function (r) {
+                            console.log(`Call from unsubscribeFromSection to getCurrentUserSectionSubscription failed. ${r}`);
+                        });
+                });
+        }
 
         //Set initial button state on load
-        setFollowButtonStatus();
-        
+        setFollowButtonStatus(section_id_newsletters);
+
         //Click handlers  
         $('#follow-btn').click(function () {
             $('#follow-btn').html() === followButtonText
-                ? subscribeToSection()
-                : unsubscribeFromSection();
-            });
-        }
+                ? subscribeToSection(section_id_newsletters)
+                : unsubscribeFromSection(section_id_newsletters);
+        });
+    }
 });
 /* Follow/unfollow section subscription ends */
 
@@ -326,6 +317,9 @@ $(function () {
     $('html').addClass("govuk-template");
     $('body').addClass("govuk-template__body");
 });
+
+
+
 
 
 
