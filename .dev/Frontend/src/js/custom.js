@@ -65,7 +65,7 @@ $(document).ready(function () {
                         }
         
                         if (subscriptions.next_page) {
-                            return getSectionSubscription(sectionId, userId, page + 1);
+                            return getSectionSubscription(sectionId, userId, page + 1, itemsPerPage);
                         }
                     }
         
