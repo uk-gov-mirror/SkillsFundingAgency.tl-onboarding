@@ -53,22 +53,33 @@ $(document).ready(function () {
         const followButtonText = 'Get news updates';
         const unfollowButtonText = 'Stop getting news updates';
 
-        var getCurrentUserSectionSubscription = function (sectionId) {
-            var subscriptions;					
-            return $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json`)
-            .then(function (subscriptionsResult) {
-                subscriptions = subscriptionsResult.subscriptions;
-                return $.getJSON('/api/v2/users/me.json');
-            })
-            .then(function (user) {
-                var actualSubscription = subscriptions.find(s => s.user_id == user.user.id);
-                if(actualSubscription) {
-                    return actualSubscription;
-                }
-
-                return undefined;
-            });
+        var getSectionSubscription = function (sectionId, userId, page = 1, itemsPerPage = 50) {
+            return $.getJSON(`/api/v2/help_center/${HelpCenter.user.locale}/sections/${sectionId}/subscriptions.json?page=${page}&per_page=${itemsPerPage}`)
+                .then(function (subscriptionsResult) {
+                    if (subscriptionsResult) {
+                        var subscription = subscriptionsResult.subscriptions.find(s => s.user_id == userId);
+                        if (subscription) {
+                            console.log(`getSectionSubscription: found subscription for user id ${userId} on page ${subscriptionsResult.page} of ${subscriptionsResult.page_count}`);
+                            return subscription;
+                        }
+        
+                        if (subscriptionsResult.next_page) {
+                            return getSectionSubscription(sectionId, userId, page + 1);
+                        }
+                    }
+        
+                    return undefined;
+                });
         }
+        
+        var getCurrentUserSectionSubscription = function (sectionId) {
+            return $.getJSON('/api/v2/users/me.json')
+                .then(function (user) {
+                    return (user && user.user && user.user.id)
+                        ? getSectionSubscription(sectionId, user.user.id)
+                        : undefined;
+                });
+        }        
 
         function setFollowButtonStatus(sectionId) {
             getCurrentUserSectionSubscription(sectionId)
