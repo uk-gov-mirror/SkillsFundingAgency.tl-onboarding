@@ -2,6 +2,11 @@
     if (window.location.href.indexOf("eturn_to=%2Fhc%2Frequests") > -1) {
         window.location.href = "/hc/en-gb/articles/{{settings.article_id_confirmation}}";
     }
+
+    $(".tl-search").submit(function () {
+        datalayer = [{ 'searchquery': $("#query"}.val() }];
+    });
+
 </script>
 
 <div class="govuk-width-container ">
