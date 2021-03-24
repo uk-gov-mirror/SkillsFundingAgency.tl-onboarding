@@ -122,7 +122,18 @@
 
 .tl-article--resources {
     background-color: #003A69;
-    color: govuk-colour("white");
+
+    .tl-article--resources--container {
+        @extend .govuk-width-container;
+    }
+
+    * {
+        color: govuk-colour("white");
+    }
+
+    .tl-article--resources--header {
+        border-bottom: 1px solid govuk-colour("white");
+    }
 }
 
 
