@@ -5119,9 +5119,10 @@
 
 .tl-article--resources {
   background-color: #003A69; }
-  .tl-article--resources * {
+  .tl-article--resources .govuk-link, .tl-article--resources .tl-search--pagination ul li a, .tl-search--pagination ul li .tl-article--resources a, .tl-article--resources .tl-community--pagination ul li a, .tl-community--pagination ul li .tl-article--resources a, .tl-article--resources .tl-article--vote .tl-article--vote--button, .tl-article--vote .tl-article--resources .tl-article--vote--button, .tl-article--resources .tl-article--content a, .tl-article--content .tl-article--resources a, .tl-article--resources .tl-community--post--content a, .tl-community--post--content .tl-article--resources a, .tl-article--resources .tl-community--comment--actions button, .tl-community--comment--actions .tl-article--resources button, .tl-article--resources .tl-community--post--actions button, .tl-community--post--actions .tl-article--resources button {
     color: #ffffff; }
   .tl-article--resources .tl-article--resources--header {
+    color: #ffffff;
     border-bottom: 1px solid #ffffff; }
 
 /* Article content styling */
