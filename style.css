@@ -5117,6 +5117,10 @@
         font-size: 14pt;
         line-height: 1.15; } }
 
+.tl-article--resources {
+  background-color: #003A69;
+  color: #ffffff; }
+
 /* Article content styling */
 .tl-section--subscribe button {
   margin-top: 5px; }
