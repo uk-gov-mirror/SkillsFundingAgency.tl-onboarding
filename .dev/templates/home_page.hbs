@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    if (window.location.href.indexOf("eturn_to=%2Fhc%2Frequests") > -1) {
+        window.location.href = "/hc/en-gb/articles/{{settings.article_id_confirmation}}";
+    }
+</script>
+
 <div class="govuk-width-container ">
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
@@ -61,14 +67,14 @@
                 <div class="tl-card">
                     <h3 class="govuk-heading-m">Discussion forum</h3>
                     <p class="govuk-body">
-                        Use the discussion forum to:
+                        Use the community discussion forum to:
                     </p>
                     <ul class="govuk-list govuk-list--bullet">
                         <li>get answers to your T Level queries</li>
                         <li>talk about delivering T Levels with people from other colleges and schools</li>
                     </ul>
                     <p class="govuk-body govuk-!-margin-bottom-0">
-                        {{#link 'posts' class='govuk-button tl-home--forum' }}
+                        {{#link 'posts' class='govuk-button tl-home--forum govuk-!-margin-bottom-0' }}
                         Go to the forum
                         {{/link}}
 
@@ -78,26 +84,35 @@
             </div>
             {{/if}}
 
-
-
             <div class="govuk-grid-column-one-half">
-                <div class="tl-card">
+                <div class="tl-card tl-js-hidden" id="tl-home--ticket">
                     <h3 class="govuk-heading-m">Contact us</h3>
                     <p class="govuk-body">
-                        We want to hear if you have:
+                        Get in touch with the Education and Skills Funding Agency (ESFA) directly if you have:
                     </p>
                     <ul class="govuk-list govuk-list--bullet">
-                        <li>questions about how to use the site</li>
-                        <li>issues with anything on the site</li>
-                        <li>suggestions for how we can improve</li>
+                        <li>questions about T Levels marketing or events</li>
+                        <li>general feedback or suggestions for how we can improve</li>
                     </ul>
-                    <p class="govuk-body govuk-!-margin-bottom-0">Email: <a class="govuk-link" id="tl-home--contact" href="mailto:support.deliveringtlevels@education.gov.uk"><span class="tl-breakword">support.deliveringtlevels@education.gov.uk</span></a></p>
+                    <p class="govuk-body govuk-!-margin-bottom-0">
+                        {{#link 'new_request' class='govuk-button tl-home--contact govuk-!-margin-bottom-0' }}
+                        Send a message
+                        {{/link}}
+
+                    </p>
 
                 </div>
             </div>
 
-
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (!isAgent()) {
+                        $("#tl-home--ticket").show();
+                    }
+                });
+            </script>
         </div>
 
-    </div>
+
+        </div>
 </main>

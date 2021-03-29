@@ -1,7 +1,7 @@
 {
   "name": "GDS Style - Ticketing ",
   "author": "Ash Anderton",
-  "version": "2.1.52",
+  "version": "2.1.60",
   "api_version": 2,
   "default_locale": "en-gb",
   "settings": [
@@ -271,6 +271,20 @@
           "description": "Sitewide",
           "label": "Newseltter Section ID",
           "value": "360005433999"
+        },
+        {
+          "identifier": "field_id_name",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Name Form ID",
+          "value": "360019503240"
+        },
+        {
+          "identifier": "field_id_subject",
+          "type": "text",
+          "description": "Sitewide",
+          "label": "Subject Form ID",
+          "value": "360019751459"
         }
       ]
     }

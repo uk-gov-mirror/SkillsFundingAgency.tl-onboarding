@@ -23,7 +23,7 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-one-half">
 
-                    <div id="tl-breadcrumbs--help">
+                    <div id="tl-breadcrumbs--article">
                         <div class="tl-breadcrumbs">
                             {{breadcrumbs}}
                         </div>
@@ -79,13 +79,16 @@
             <div class="govuk-grid-column-one-third">
                 {{#if signed_in}}
                 {{#if settings.show_follow_article}}
-                <div class="article-subscribe tl-article--subscribe--signedin tl-js-visible">
+                <div class="article-subscribe tl-article--subscribe--signedin tl-js-visible" id="tl-newsletter--subscribe">
                     <button id="follow-btn" type="button" class="tl-hidden">Follow </button>
+                    <script type="text/javascript">
+                        const section_id_newsletters = {{settings.section_id_newsletters}}
+                    </script>
                 </div>
                 {{/if}}
                 {{else}}
                 {{#if settings.show_follow_article}}
-                <div class="article-subscribe tl-article--subscribe" id="tl-article--subscribe">
+                <div class="article-subscribe tl-article--subscribe">
                     <button data-auth-action="signin" data-selected="false" aria-expanded="false" aria-haspopup="menu" type="button">
                         Sign in to get news updates
                     </button>

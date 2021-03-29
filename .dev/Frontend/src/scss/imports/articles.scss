@@ -3,6 +3,10 @@
     p {
         @extend %govuk-body-m;
     }
+
+    img {
+        max-width: 100%;
+    }
 }
 
 .tl-article--date {
@@ -94,6 +98,44 @@
     }
 }
 
+#tl-article--subscribe {
+    button[data-selected="false"] {
+        text-align: left;
+        font-size: 0;
+
+        &:after {
+            content: "Get updates";
+            @include govuk-font($size: 19, $weight: normal);
+        }
+    }
+
+    button[data-selected="true"] {
+        text-align: left;
+        font-size: 0;
+
+        &:after {
+            content: "Stop getting updates";
+            @include govuk-font($size: 19, $weight: normal);
+        }
+    }
+}
+
+.tl-article--resources {
+    background-color: #003A69;
+
+    .tl-article--resources--container {
+        @extend .govuk-width-container;
+    }
+
+    .govuk-link {
+        color: govuk-colour("white");
+    }
+
+    .tl-article--resources--header {
+        color: govuk-colour("white");
+        border-bottom: 1px solid govuk-colour("white");
+    }
+}
 
 
 /* Article content styling */

@@ -1,4 +1,4 @@
-﻿<div class="govuk-width-container ">
+<div class="govuk-width-container ">
     <!-- Phase banner -->
     <div class="govuk-phase-banner tl-phase-banner tl-phase-banner--home">
         <p class="govuk-phase-banner__content">
@@ -89,6 +89,19 @@
 
 
             </div>
+            <div class="govuk-grid-column-one-third">
+                {{#if signed_in}}
+                <div class="tl-article--subscribe" id="tl-article--subscribe">
+                    {{subscribe}}
+                </div>
+                {{else}}
+                <div class="tl-article--subscribe">
+                    <button data-auth-action="signin" data-selected="false" aria-expanded="false" aria-haspopup="menu" type="button">
+                        Sign in to get news updates
+                    </button>
+                </div>
+                {{/if}}
+            </div>
         </div>
 
 
@@ -127,8 +140,6 @@
 
         </div>
     </div>
-
-
     {{/with}}
 
 </main>

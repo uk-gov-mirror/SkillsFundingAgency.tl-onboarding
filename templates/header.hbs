@@ -9,6 +9,7 @@
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
 </script>
+<div id="tl-login--status" login="{{#if signed_in}}true{{else}}false{{/if}}"></div>
 
 <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
@@ -45,8 +46,6 @@
                 {{#if signed_in}}
                 <li><a href="/hc/en-gb/profile" class="tl-header--link" id="tl-header--profile">Your profile</a></li>
                 <li>{{link 'sign_out' class="tl-header--link"}}</li>
-                {{else}}
-                <li>{{#link "sign_in" class="tl-header--link"}}{{t 'sign_in'}}{{/link}}</li>
                 {{/if}}
             </ul>
         </div>
@@ -72,3 +71,8 @@
 
     </div>
 </header>
+
+
+
+
+
