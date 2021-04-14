@@ -123,7 +123,7 @@
 
 
                         {{#each posts}}
-                        <tr class="govuk-table__row tl-community--table__row">
+                        <tr class="govuk-table__row tl-community--table__row {{#if pinned}}tl-community--table__row--pinned{{/if}}">
                             <th scope="row" class="govuk-table__cell">
                                 <a href="{{url}}" id="tl-community-home--post" class="govuk-link tl-community-table-post--link">{{title}}</a>
                                 <script>

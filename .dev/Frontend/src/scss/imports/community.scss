@@ -25,6 +25,10 @@
     .govuk-table__cell {
         padding: 20px 20px 20px 0;
     }
+
+    &--pinned {
+        display: table-header-group;
+    }
 }
 
 .tl-community--table__header{
