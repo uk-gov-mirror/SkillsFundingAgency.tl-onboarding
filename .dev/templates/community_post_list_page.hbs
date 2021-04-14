@@ -117,10 +117,6 @@
                             <th scope="col" class="govuk-table__header tl-community--table__header">Question</th>
                             <th scope="col" class="govuk-table__header tl-community--table__header">Replies</th>
                         </tr>
-                    </thead>
-                    <tbody class="govuk-table__body">
-
-
 
                         {{#each posts}}
                         {{#if pinned}}
@@ -138,7 +134,15 @@
                             <td class="govuk-table__cell">{{comment_count}}</td>
 
                         </tr>
+                        {{/if}}
+                        {{/each}}
+                    </thead>
+                    <tbody class="govuk-table__body">
 
+
+
+                        {{#each posts}}
+                        {{#if pinned}}
                         {{else}}
                         <tr class="govuk-table__row tl-community--table__row ">
                             <th scope="row" class="govuk-table__cell">
