@@ -22,6 +22,8 @@
 }
 
 .tl-community--table__row {
+    display: table-row-group;
+    
     .govuk-table__cell {
         padding: 20px 20px 20px 0;
     }
