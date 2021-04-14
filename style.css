@@ -5507,12 +5507,8 @@ ul.govuk-radios label .gem-radios__input {
   .tl-hero--community--minimal .tl-search--error {
     text-align: left; }
 
-.tl-community--table__row {
-  display: table-row-group; }
-  .tl-community--table__row .govuk-table__cell {
-    padding: 20px 20px 20px 0; }
-  .tl-community--table__row--pinned {
-    display: table-header-group; }
+.tl-community--table__row .govuk-table__cell {
+  padding: 20px 20px 20px 0; }
 
 .tl-community--table__header {
   padding-right: 30px; }

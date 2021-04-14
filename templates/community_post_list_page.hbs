@@ -123,7 +123,8 @@
 
 
                         {{#each posts}}
-                        <tr class="govuk-table__row tl-community--table__row {{#if pinned}}tl-community--table__row--pinned{{/if}}">
+                        {{#if pinned}}
+                        <tr class="govuk-table__row tl-community--table__row ">
                             <th scope="row" class="govuk-table__cell">
                                 <a href="{{url}}" id="tl-community-home--post" class="govuk-link tl-community-table-post--link">{{title}}</a>
                                 <script>
@@ -137,6 +138,23 @@
                             <td class="govuk-table__cell">{{comment_count}}</td>
 
                         </tr>
+                        {{/if}}
+                        {{else}}
+                        <tr class="govuk-table__row tl-community--table__row ">
+                            <th scope="row" class="govuk-table__cell">
+                                <a href="{{url}}" id="tl-community-home--post" class="govuk-link tl-community-table-post--link">{{title}}</a>
+                                <script>
+                                  $.getJSON('/api/v2/community/posts/{{id}}.json', function(title) {
+                                      $('.{{id}}post').html(title.post.details.replace(/(<([^>]+)>)/gi, "").replace("&nbsp;", " ").substring(0, 75) + '...');
+                                  });
+                                </script>
+                                <div class="{{id}}post govuk-!-margin-top-0 tl-community-table-post--description">
+                                </div>
+                            </th>
+                            <td class="govuk-table__cell">{{comment_count}}</td>
+
+                        </tr>
+
                         {{/each}}
 
                     </tbody>
