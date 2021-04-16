@@ -1,7 +1,7 @@
 {
   "name": "GDS Style - Pinned Posts ",
   "author": "Ash Anderton",
-  "version": "2.1.70",
+  "version": "2.1.71",
   "api_version": 2,
   "default_locale": "en-gb",
   "settings": [
@@ -285,6 +285,13 @@
           "description": "Sitewide",
           "label": "Subject Form ID",
           "value": "360019751459"
+        },
+        {
+          "identifier": "ticketing_form_link",
+          "type": "text",
+          "description": "Ticketing Form Link",
+          "label": "Ticketing Form Link ID",
+          "value": "360001454080"
         }
       ]
     }
