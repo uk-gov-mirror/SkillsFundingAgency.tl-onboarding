@@ -5009,7 +5009,7 @@
   padding: 10px 0;
   position: relative;
   top: 1px; }
-  .tl-article--vote .tl-article--vote--question {
+  .tl-article--vote .tl-article--vote--question, .tl-article--vote .tl-article--vote--response {
     font-family: "GDS Transport", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -5021,19 +5021,19 @@
     float: left;
     margin-right: 15px; }
     @media print {
-      .tl-article--vote .tl-article--vote--question {
+      .tl-article--vote .tl-article--vote--question, .tl-article--vote .tl-article--vote--response {
         font-family: sans-serif; } }
     @media (min-width: 40.0625em) {
-      .tl-article--vote .tl-article--vote--question {
+      .tl-article--vote .tl-article--vote--question, .tl-article--vote .tl-article--vote--response {
         font-size: 19px;
         font-size: 1.1875rem;
         line-height: 1.31579; } }
     @media print {
-      .tl-article--vote .tl-article--vote--question {
+      .tl-article--vote .tl-article--vote--question, .tl-article--vote .tl-article--vote--response {
         font-size: 14pt;
         line-height: 1.15; } }
     @media (min-width: 40.0625em) {
-      .tl-article--vote .tl-article--vote--question {
+      .tl-article--vote .tl-article--vote--question, .tl-article--vote .tl-article--vote--response {
         margin-right: 15px; } }
   .tl-article--vote .tl-article--vote--button {
     color: #ffffff !important;

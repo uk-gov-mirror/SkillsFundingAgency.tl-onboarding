@@ -64,7 +64,7 @@
         @extend .govuk-width-container;
     }
 
-    .tl-article--vote--question {
+    .tl-article--vote--question, .tl-article--vote--response {
         @include govuk-font($size: 19, $weight: bold);
         color: govuk-colour("white");
         float: left;
