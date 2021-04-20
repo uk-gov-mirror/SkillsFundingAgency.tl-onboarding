@@ -171,6 +171,7 @@
 
             $("#tl-article--vote--yes").click(function() {
 							$('#isPageUseful').text('Thank you for your feedback').addClass('govuk-!-font-weight-bold');
+              $('#articlefeedbacklabel').html('Is there anything we could do to further improve this page? (optional)');
             });
 
             $(".vote-confirm").click(function() {
@@ -186,7 +187,7 @@
 
             $('#commentform').hide();
 
-        $('#tl-article--vote--yes').click(function(){
+        $('#tl-article--vote--no').click(function(){
             	$('#commentform').toggle();
               $('#feedbackbuttonyes a').toggle();
             });
