@@ -187,9 +187,13 @@
 
             $('#commentform').hide();
 
-        $('#tl-article--vote--no').click(function(){
+            $('#tl-article--vote--no').click(function(){
             	$('#commentform').toggle();
               $('#feedbackbuttonyes a').toggle();
+            });
+
+            $('#tl-article--vote--yes').click(function () {
+                $('#feedbackbuttonyes a').toggle();
             });
 
             function getCSRFToken(callback,comment) {
