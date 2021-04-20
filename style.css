@@ -5046,7 +5046,9 @@
     margin-right: 15px;
     border: none;
     text-decoration: underline;
-    cursor: pointer; }
+    cursor: pointer;
+    background: none;
+    padding: 0; }
     @media print {
       .tl-article--vote .tl-article--vote--button {
         font-family: sans-serif; } }
@@ -5062,6 +5064,28 @@
     @media (min-width: 40.0625em) {
       .tl-article--vote .tl-article--vote--button {
         margin-right: 15px; } }
+  .tl-article--vote--form .govuk-label, .tl-article--vote--form .tl-ticket--form label, .tl-ticket--form .tl-article--vote--form label {
+    color: #ffffff !important; }
+  .tl-article--vote--form--count {
+    color: #ffffff !important;
+    font-family: "GDS Transport", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 1.14286; }
+    @media print {
+      .tl-article--vote--form--count {
+        font-family: sans-serif; } }
+    @media (min-width: 40.0625em) {
+      .tl-article--vote--form--count {
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1.25; } }
+    @media print {
+      .tl-article--vote--form--count {
+        font-size: 14pt;
+        line-height: 1.2; } }
 
 .tl-article--subscribe button {
   margin-top: 5px; }

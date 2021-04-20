@@ -79,6 +79,19 @@
         border: none;
         text-decoration: underline;
         cursor: pointer;
+        background: none;
+        padding: 0;
+    }
+
+    &--form {
+        .govuk-label {
+            color: govuk-colour("white") !important;
+        }
+
+        &--count {
+            color: govuk-colour("white") !important;
+            @include govuk-font($size: 16, $weight: normal);
+        }
     }
 }
 
