@@ -68,41 +68,9 @@
             </div>
             <!-- NEWSLETTER -->
             <div class="govuk-grid-row tl-row-fill govuk-!-margin-top-7">
-                <div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-full tl-flex--column govuk-!-margin-bottom-7">
-                    <h2 class="govuk-heading-m tl-heading--bar">T Level newsletter</h2>
-                    {{#each categories}}
-                    {{#is name "T Level news"}}
-                    {{#each sections}}
-                    {{#is name "Newsletters"}}
-                    {{#each articles}}
-                    {{#if @first}}
-                    <h3 class="govuk-heading-s  govuk-!-margin-top-1 govuk-!-margin-bottom-3"><a id="tl-home-newsletter--article" class="govuk-link govuk-link--no-visited-state" href="{{url}}">{{title}}</a></h3>
-                    <p class="govuk-body govuk-!-margin-bottom-0">The latest T Level updates from the Department for Education, Awarding Organisations and more.</p>
-                    {{/if}}
-                    {{/each}}
-                    {{/is}}
-                    {{/each}}
-                    <hr class="govuk-section-break tl-section-break govuk-!-margin-bottom-3 govuk-section-break--m govuk-section-break--visible tl-flex--grow">
-                    <p class="govuk-body tl-text--right govuk-!-margin-bottom-0"><a id="tl-home-newsletter--all" href="{{url}}" class="govuk-link govuk-link--no-visited-state">All newsletters</a></p>
-                    {{/is}}
-                    {{/each}}
+                <!--<div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-full tl-flex--column govuk-!-margin-bottom-7">
 
-                    <script>
-                        $(document).ready(function () {
-                            $('h3 a:contains("- T Level Newsletter")').contents().each(function () {
-                                if (this.nodeType == 3) {
-                                    $(this).parent().html(function (_, oldValue) {
-                                        return oldValue.replace(/- /g, "<span class='tl-hidden'>$&")
-                                    })
-                                    $(this).parent().html(function (_, oldValue2) {
-                                        return oldValue2.replace(/newsletter/g, "$&</span>")
-                                    })
-                                }
-                            });
-                        });
-                    </script>
-                </div>
-
+                </div>-->
                 <!-- KEY DATES -->
                 <div class="govuk-grid-column-two-thirds-from-desktop govuk-grid-column-full tl-flex--column govuk-!-margin-bottom-7">
                     <h2 class="govuk-heading-m tl-heading--bar">Key dates and deadlines</h2>
@@ -196,7 +164,11 @@
                     {{/is}}
                     {{/each}}
                 </div>
+
+                <div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-full tl-flex--column govuk-!-margin-bottom-7">
+                    <img class="tl-image--cover tl-home--banner--column--image" src="{{settings.homepage_key_dates_image}}" />
                 </div>
+            </div>
         </div>
     </section>
     <section id="tl-home--findemployers">
@@ -375,8 +347,8 @@
 
 
                 </div>
-                </div>
             </div>
+        </div>
     </section>
 
     <section id="tl-home--more">
@@ -423,15 +395,15 @@
                                 </div>
                                 {{/is}}
                                 {{/each}}
-                            </div>                            
+                            </div>
 
                         </div>
                     </div>
                 </div>
 
-                    </div>
+            </div>
 
-                </div>
+        </div>
     </section>
 
     <section id="tl-home--contact">
@@ -482,7 +454,7 @@
     </section>
 </main>
 
-    <script>
+<script>
   document.addEventListener('DOMContentLoaded', function() {
   	frontDoor('{{settings.tl_calendar_api_key}}', '{{settings.tl_calendar_data_source}}');
   });
@@ -491,11 +463,11 @@
     openHelp();
     event.preventDefault();
 });
-    </script>
+</script>
 
-    {{#if settings.answerbot_enabled}}
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{settings.answerbot_key}}"></script>
-    <script type="text/javascript">
+{{#if settings.answerbot_enabled}}
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{settings.answerbot_key}}"></script>
+<script type="text/javascript">
     window.zESettings = {
         webWidget: {
             answerBot: {
@@ -516,17 +488,17 @@
             }
         }
     };
-    </script>
-    {{/if}}
+</script>
+{{/if}}
 
-    <script>
-        if ($('.tl-home--panel--events--events').children().length == 0) {
-            $('.tl-home--panel--events--events').html('<div class="govuk-grid-column-full"><p class="govuk-body">There are no upcoming T Level events at the moment.</p></div>')
-            $('.tl-home--panel--events--all').hide();
-        }
+<script>
+    if ($('.tl-home--panel--events--events').children().length == 0) {
+        $('.tl-home--panel--events--events').html('<div class="govuk-grid-column-full"><p class="govuk-body">There are no upcoming T Level events at the moment.</p></div>')
+        $('.tl-home--panel--events--all').hide();
+    }
 
-        if ($('.tl-home--panel--keydates--keydates').children().length == 0) {
-            $('.tl-home--panel--keydates--keydates').html('<p class="govuk-body">There are no upcoming T Level key dates or deadlines.</p>')
-            $('.tl-home--panel--keydates--all').hide();
-        }
-    </script>
+    if ($('.tl-home--panel--keydates--keydates').children().length == 0) {
+        $('.tl-home--panel--keydates--keydates').html('<p class="govuk-body">There are no upcoming T Level key dates or deadlines.</p>')
+        $('.tl-home--panel--keydates--all').hide();
+    }
+</script>
