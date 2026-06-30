@@ -80,6 +80,12 @@
           "label": "News Image"
         },
         {
+          "identifier": "homepage_key_dates_image",
+          "type": "file",
+          "description": "Home Page Key Dates Image",
+          "label": "Key Dates Image"
+        },
+        {
           "identifier": "homepage_employers_image1",
           "type": "file",
           "description": "Home Find Employers Image 1",

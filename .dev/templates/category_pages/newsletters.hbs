@@ -54,14 +54,26 @@
                         {{#is @index 0}}
                         <div class="govuk-grid-column-one-half">
                             <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a href="{{url}}" class="govuk-link tl-news--featured">{{title}}</a></h3>
-                            <p class="govuk-body-s">{{date created_at class='metadata' format='medium'}}</p>
+                            <p class="govuk-body-s">
+                                {{#is created_at edited_at}}
+                                {{date created_at class='metadata' format='medium'}}
+                                {{else}}
+                                {{date edited_at class='metadata' format='medium'}}
+                                {{/is}}
+                            </p>
                             <p class="govuk-body">{{excerpt body characters=90}}</p>
                         </div>
                         {{/is}}
                         {{#is @index 1}}
                         <div class="govuk-grid-column-one-half">
                             <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a href="{{url}}" class="govuk-link tl-news--featured">{{title}}</a></h3>
-                            <p class="govuk-body-s">{{date created_at class='metadata' format='medium'}}</p>
+                            <p class="govuk-body-s">
+                                {{#is created_at edited_at}}
+                                {{date created_at class='metadata' format='medium'}}
+                                {{else}}
+                                {{date edited_at class='metadata' format='medium'}}
+                                {{/is}}
+                            </p>
                             <p class="govuk-body">{{excerpt body characters=90}}</p>
                         </div>
                         {{/is}}

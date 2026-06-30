@@ -67,136 +67,113 @@
 
             </div>
             <!-- NEWSLETTER -->
-            <div class="govuk-grid-row tl-row-fill govuk-!-margin-top-7">
-                <div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-full tl-flex--column govuk-!-margin-bottom-7">
-                    <h2 class="govuk-heading-m tl-heading--bar">T Level newsletter</h2>
-                    {{#each categories}}
-                    {{#is name "T Level news"}}
-                    {{#each sections}}
-                    {{#is name "Newsletters"}}
-                    {{#each articles}}
-                    {{#if @first}}
-                    <h3 class="govuk-heading-s  govuk-!-margin-top-1 govuk-!-margin-bottom-3"><a id="tl-home-newsletter--article" class="govuk-link govuk-link--no-visited-state" href="{{url}}">{{title}}</a></h3>
-                    <p class="govuk-body govuk-!-margin-bottom-0">The latest T Level updates from the Department for Education, Awarding Organisations and more.</p>
-                    {{/if}}
-                    {{/each}}
-                    {{/is}}
-                    {{/each}}
-                    <hr class="govuk-section-break tl-section-break govuk-!-margin-bottom-3 govuk-section-break--m govuk-section-break--visible tl-flex--grow">
-                    <p class="govuk-body tl-text--right govuk-!-margin-bottom-0"><a id="tl-home-newsletter--all" href="{{url}}" class="govuk-link govuk-link--no-visited-state">All newsletters</a></p>
-                    {{/is}}
-                    {{/each}}
-
-                    <script>
-                        $(document).ready(function () {
-                            $('h3 a:contains("- T Level Newsletter")').contents().each(function () {
-                                if (this.nodeType == 3) {
-                                    $(this).parent().html(function (_, oldValue) {
-                                        return oldValue.replace(/- /g, "<span class='tl-hidden'>$&")
-                                    })
-                                    $(this).parent().html(function (_, oldValue2) {
-                                        return oldValue2.replace(/newsletter/g, "$&</span>")
-                                    })
-                                }
-                            });
-                        });
-                    </script>
-                </div>
-
-                <!-- KEY DATES -->
-                <div class="govuk-grid-column-two-thirds-from-desktop govuk-grid-column-full tl-flex--column govuk-!-margin-bottom-7">
+            <div class="govuk-grid-row govuk-!-margin-top-7 govuk-!-margin-bottom-6">
+                <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-m tl-heading--bar">Key dates and deadlines</h2>
-                    <div class="tl-home--panel--keydates--keydates">
 
-                        {{#each categories}}
-                        {{#is name "T Level events"}}
-                        {{#each sections}}
-                        {{#is name "Key dates and deadlines"}}
+                    <div class="govuk-grid-row tl-row-fill">
+                        <!-- KEY DATES -->
+                        <div class="govuk-grid-column-two-thirds-from-desktop">
+                            <div class="tl-home--panel--keydates--keydates">
 
-                        {{#each articles}}
+                                {{#each categories}}
+                                {{#is name "T Level events"}}
+                                {{#each sections}}
+                                {{#is name "Key dates and deadlines"}}
 
-                        {{#is @index 0}}
-                        <div class="tl-home-keydates govuk-!-margin-top-1">
-                            <p class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--date" id="tl-article--date--{{id}}"></p>
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--title"><a class="govuk-link tl-home-keydates--article" href="{{url}}">{{title}}</a></h3>
-                            <script>
-                                $.getJSON('/api/v2/help_center/articles/{{id}}', function (articlelabels) {
+                                {{#each articles}}
 
-                                    if (articlelabels.article.label_names && articlelabels.article.label_names.length) {
-                                        articlelabels.article.label_names.forEach(function (labelname) {
+                                {{#is @index 0}}
+                                <div class="tl-home-keydates govuk-!-margin-top-1">
+                                    <p class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--date" id="tl-article--date--{{id}}"></p>
+                                    <h3 class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--title">
+                                        <a class="govuk-link tl-home-keydates--article" href="{{url}}">{{title}}</a>
+                                    </h3>
+                                    <script>
+                                                    $.getJSON('/api/v2/help_center/articles/{{id}}', function (articlelabels) {
+                                                        if (articlelabels.article.label_names && articlelabels.article.label_names.length) {
+                                                            articlelabels.article.label_names.forEach(function (labelname) {
+                                                                if (labelname.indexOf("date") != -1) {
+                                                                    var date = labelname.split('/')[1];
+                                                                    var dateformatted = moment(date).format("D MMM");
+                                                                    $("#tl-article--date--{{id}}").text(dateformatted);
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                    </script>
+                                </div>
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                                {{/is}}
 
-                                            if (labelname.indexOf("date") != -1) {
-                                                var date = labelname.split('/')[1];
-                                                var dateformatted = moment(date).format("D MMM");
-                                                $("#tl-article--date--{{id}}").text(dateformatted);
-                                            }
-                                        });
-                                    }
-                                });
-                            </script>
+                                {{#is @index 1}}
+                                <div class="tl-home-keydates">
+                                    <p class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--date" id="tl-article--date--{{id}}"></p>
+                                    <h3 class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--title">
+                                        <a class="govuk-link tl-home-keydates--article" href="{{url}}">{{title}}</a>
+                                    </h3>
+                                    <script>
+                                                    $.getJSON('/api/v2/help_center/articles/{{id}}', function (articlelabels) {
+                                                        if (articlelabels.article.label_names && articlelabels.article.label_names.length) {
+                                                            articlelabels.article.label_names.forEach(function (labelname) {
+                                                                if (labelname.indexOf("date") != -1) {
+                                                                    var date = labelname.split('/')[1];
+                                                                    var dateformatted = moment(date).format("D MMM");
+                                                                    $("#tl-article--date--{{id}}").text(dateformatted);
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                    </script>
+                                </div>
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                                {{/is}}
+
+                                {{#is @index 2}}
+                                <div class="tl-home-keydates">
+                                    <p class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--date" id="tl-article--date--{{id}}"></p>
+                                    <h3 class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--title">
+                                        <a class="govuk-link tl-home-keydates--article" href="{{url}}">{{title}}</a>
+                                    </h3>
+                                    <script>
+                                                    $.getJSON('/api/v2/help_center/articles/{{id}}', function (articlelabels) {
+                                                        if (articlelabels.article.label_names && articlelabels.article.label_names.length) {
+                                                            articlelabels.article.label_names.forEach(function (labelname) {
+                                                                if (labelname.indexOf("date") != -1) {
+                                                                    var date = labelname.split('/')[1];
+                                                                    var dateformatted = moment(date).format("D MMM");
+                                                                    $("#tl-article--date--{{id}}").text(dateformatted);
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                    </script>
+                                </div>
+                                {{/is}}
+                                {{/each}}
+                            </div>
+
+                            <div class="tl-home--panel--keydates--all">
+                                <hr class="govuk-section-break tl-section-break govuk-!-margin-bottom-3 govuk-section-break--m govuk-section-break--visible tl-flex--grow">
+                                <p class="govuk-body tl-text--right govuk-!-margin-bottom-0">
+                                    <a id="tl-home-keydates--all" href="{{url}}" class="govuk-link govuk-link--no-visited-state">All key dates</a>
+                                </p>
+                            </div>
+
+                            {{/is}}
+                            {{/each}}
+                            {{/is}}
+                            {{/each}}
 
                         </div>
-                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                        {{/is}}
-                        {{#is @index 1}}
-                        <div class="tl-home-keydates">
-                            <p class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--date" id="tl-article--date--{{id}}"></p>
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--title"><a class="govuk-link tl-home-keydates--article" href="{{url}}">{{title}}</a></h3>
-                            <script>
-                                $.getJSON('/api/v2/help_center/articles/{{id}}', function (articlelabels) {
 
-                                    if (articlelabels.article.label_names && articlelabels.article.label_names.length) {
-                                        articlelabels.article.label_names.forEach(function (labelname) {
-
-                                            if (labelname.indexOf("date") != -1) {
-                                                var date = labelname.split('/')[1];
-                                                var dateformatted = moment(date).format("D MMM");
-                                                $("#tl-article--date--{{id}}").text(dateformatted);
-                                            }
-                                        });
-                                    }
-                                });
-                            </script>
-
+                        <!-- IMAGE -->
+                        <div class="govuk-grid-column-one-third-from-desktop">
+                            <img class="tl-image--cover tl-home--banner--column--image" src="{{settings.homepage_key_dates_image}}" />
                         </div>
-                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                        {{/is}}
-                        {{#is @index 2}}
-                        <div class="tl-home-keydates">
-                            <p class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--date" id="tl-article--date--{{id}}"></p>
-                            <h3 class="govuk-heading-s govuk-!-margin-bottom-0 tl-home-keydates--title"><a class="govuk-link tl-home-keydates--article" href="{{url}}">{{title}}</a></h3>
-                            <script>
-                                $.getJSON('/api/v2/help_center/articles/{{id}}', function (articlelabels) {
-
-                                    if (articlelabels.article.label_names && articlelabels.article.label_names.length) {
-                                        articlelabels.article.label_names.forEach(function (labelname) {
-
-                                            if (labelname.indexOf("date") != -1) {
-                                                var date = labelname.split('/')[1];
-                                                var dateformatted = moment(date).format("D MMM");
-                                                $("#tl-article--date--{{id}}").text(dateformatted);
-                                            }
-                                        });
-                                    }
-                                });
-                            </script>
-
-                        </div>
-                        {{/is}}
-                        {{/each}}
                     </div>
-                    <div class="tl-home--panel--keydates--all">
-                        <hr class="govuk-section-break tl-section-break govuk-!-margin-bottom-3 govuk-section-break--m govuk-section-break--visible tl-flex--grow">
-                        <p class="govuk-body tl-text--right govuk-!-margin-bottom-0"><a id="tl-home-keydates--all" href="{{url}}" class="govuk-link govuk-link--no-visited-state">All key dates</a></p>
-                    </div>
-
-
-                    {{/is}}
-                    {{/each}}
-                    {{/is}}
-                    {{/each}}
                 </div>
-                </div>
+            </div>
         </div>
     </section>
     <section id="tl-home--findemployers">
@@ -248,7 +225,7 @@
                         {{else}}
                         {{#is name "How to deliver T Levels"}}
                         {{else}}
-                        {{#is name "T Level Foundation Year"}}
+                        {{#is name "Foundation Year"}}
                         {{else}}
                         {{#is name "Case studies"}}
                         {{else}}
@@ -375,8 +352,8 @@
 
 
                 </div>
-                </div>
             </div>
+        </div>
     </section>
 
     <section id="tl-home--more">
@@ -415,7 +392,7 @@
                                     <img class="tl-image--cover tl-home--banner--column--image" src="{{settings.home_image_6}}" />
                                 </div>
                                 {{#each categories}}
-                                {{#is name "T Level Foundation Year"}}
+                                {{#is name "Foundation Year"}}
                                 <div class="tl-column--half tl-flex--column">
                                     <h4 class="govuk-heading-s">{{name}}</h4>
                                     <p class="govuk-body-s">{{excerpt description}}</p>
@@ -423,15 +400,15 @@
                                 </div>
                                 {{/is}}
                                 {{/each}}
-                            </div>                            
+                            </div>
 
                         </div>
                     </div>
                 </div>
 
-                    </div>
+            </div>
 
-                </div>
+        </div>
     </section>
 
     <section id="tl-home--contact">
@@ -482,7 +459,7 @@
     </section>
 </main>
 
-    <script>
+<script>
   document.addEventListener('DOMContentLoaded', function() {
   	frontDoor('{{settings.tl_calendar_api_key}}', '{{settings.tl_calendar_data_source}}');
   });
@@ -491,11 +468,11 @@
     openHelp();
     event.preventDefault();
 });
-    </script>
+</script>
 
-    {{#if settings.answerbot_enabled}}
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{settings.answerbot_key}}"></script>
-    <script type="text/javascript">
+{{#if settings.answerbot_enabled}}
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{settings.answerbot_key}}"></script>
+<script type="text/javascript">
     window.zESettings = {
         webWidget: {
             answerBot: {
@@ -516,17 +493,17 @@
             }
         }
     };
-    </script>
-    {{/if}}
+</script>
+{{/if}}
 
-    <script>
-        if ($('.tl-home--panel--events--events').children().length == 0) {
-            $('.tl-home--panel--events--events').html('<div class="govuk-grid-column-full"><p class="govuk-body">There are no upcoming T Level events at the moment.</p></div>')
-            $('.tl-home--panel--events--all').hide();
-        }
+<script>
+    if ($('.tl-home--panel--events--events').children().length == 0) {
+        $('.tl-home--panel--events--events').html('<div class="govuk-grid-column-full"><p class="govuk-body">There are no upcoming T Level events at the moment.</p></div>')
+        $('.tl-home--panel--events--all').hide();
+    }
 
-        if ($('.tl-home--panel--keydates--keydates').children().length == 0) {
-            $('.tl-home--panel--keydates--keydates').html('<p class="govuk-body">There are no upcoming T Level key dates or deadlines.</p>')
-            $('.tl-home--panel--keydates--all').hide();
-        }
-    </script>
+    if ($('.tl-home--panel--keydates--keydates').children().length == 0) {
+        $('.tl-home--panel--keydates--keydates').html('<p class="govuk-body">There are no upcoming T Level key dates or deadlines.</p>')
+        $('.tl-home--panel--keydates--all').hide();
+    }
+</script>
